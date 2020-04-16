@@ -10,6 +10,37 @@
 // make any "Next" button contain class "JNextButton" and any "Back" button conain "JBackButton"
 // Pure Javascript with dependency on gsam which is also pure javascript and no dependencies
 
+// this is a finction to get the next nav-link
+var getNextSibling = function(elem, selector) {
+    // Get the next sibling element
+    var sibling = elem.nextElementSibling;
+
+    // If there's no selector, return the first sibling
+    if (!selector) return sibling;
+
+    // If the sibling matches our selector, use it
+    // If not, jump to the next sibling and continue the loop
+    while (sibling) {
+        if (sibling.matches(selector)) return sibling;
+        sibling = sibling.nextElementSibling
+    }
+};
+
+// this is a finction to get the next nav-link
+var getPreviousSibling = function(elem, selector) {
+    // Get the next sibling element
+    var sibling = elem.previousElementSibling;
+
+    // If there's no selector, return the first sibling
+    if (!selector) return sibling;
+
+    // If the sibling matches our selector, use it
+    // If not, jump to the next sibling and continue the loop
+    while (sibling) {
+        if (sibling.matches(selector)) return sibling;
+        sibling = sibling.previousElementSibling;
+    }
+};
 
 function getCommonAncestor(node1, node2) {
     var method = "contains" in node1 ? "contains" : "compareDocumentPosition",
@@ -98,6 +129,12 @@ function BSMagic(parameters) {
         tabs.item(i).setAttribute('data-parent', parameters.id);
     }
 
+    //find and number all tabs containers
+    var tabPanes = BSObject.getElementsByClassName("tab-pane");
+    for (var i = 0; i < tabPanes.length; i++) {
+        tabPanes.item(i).setAttribute('data-tabPane', i);
+        tabPanes.item(i).setAttribute('data-parent', parameters.id);
+    }
 
     //divide the navbar width into equal space for each tab (Horizonal)
     var jtotal = navlinks.length;
@@ -205,6 +242,27 @@ function BSMagic(parameters) {
 
             //check if we are on the first or last tab
             CheckTabLocation(JNewTab, BSObject, parameters);
+
+
+    //if there is no next, then we know we just clicked submit button, otherwise which tab is active
+    if (JCurTab.classList.contains("nav-link") && JNewTab != null) {
+        JCurTab.classList.remove("active");
+        JNewTab.className += " active";
+
+        // now change which tab content is visible
+        var JCurTabContent = BSObject.querySelector('.tab-pane.active');
+
+         nextTabContentNumber = parseInt(JNewTab.getAttribute('data-tab') );
+         var nextContent = BSObject.querySelectorAll('[data-tabpane="' + nextTabContentNumber + '"]')[0];
+
+
+        JCurTabContent.classList.remove("active");
+        JCurTabContent.classList.remove("show");
+        nextContent.className += " active";
+        nextContent.className += " show";
+    }
+
+
 
             JAnimate(JCurTab, JNewTab, BSObject, parameters);
 
@@ -330,12 +388,6 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
     tl.eventCallback("onComplete", function() {
         ReFresh(BSObject, parameters);
     });
-    tl.eventCallback("onComplete", function() {
-        ReFresh(BSObject, parameters);
-    });
-    tl.eventCallback("onComplete", function() {
-        ReFresh(BSObject, parameters);
-    });
 
     tl.staggerFromTo(BSObject.getElementsByClassName(parameters.customNavTabs), 0.5, {
         y: JCurTab.top,
@@ -395,10 +447,12 @@ function Initialize(JCurTab, BSObject, parameters) {
     var JCurtRect = JCurTab.getBoundingClientRect();
     var div = document.createElement("div");
     div.style.width = JCurtRect.width + 'px';
-    1212
-    if (parameters.navShape == "circle") { div.style.height = JCurtRect.width + 'px'; } else
+    if (parameters.navShape == "circle") { 
+        div.style.height = JCurtRect.width + 'px'; 
+    } 
+    else{
         div.style.height = JCurtRect.height + 'px';
-    1212
+    }
     div.style.position = "fixed";
     div.style.top = parseInt(JCurtRect.top) + parseInt(parameters.navOffsetY) - 12 + 'px'; // 12 subtracted to add for padding in css
     div.style.left = parseInt(JCurtRect.left) + parseInt(parameters.navOffsetX) + 'px';
@@ -434,7 +488,7 @@ function ReFresh(BSObject, parameters) {
     for (i = elements.length; i--;) {
         elements[i].parentNode.removeChild(elements[i]);
     }
-
+    
     // if parent contain nav-pills that we don't have the nav-link in a wrapper
     if (JCurTab.parentElement.classList.contains("nav-pills"))
         Initialize(JCurTab, BSObject, parameters); // draw initial bo around starting tab
@@ -446,21 +500,6 @@ function ReFresh(BSObject, parameters) {
 //when forward button is pressed
 function NextTab(JCurTab, JNewTab, BSObject, parameters) {
 
-    // this is a finction to get the next nav-link
-    var getNextSibling = function(elem, selector) {
-        // Get the next sibling element
-        var sibling = elem.nextElementSibling;
-
-        // If there's no selector, return the first sibling
-        if (!selector) return sibling;
-
-        // If the sibling matches our selector, use it
-        // If not, jump to the next sibling and continue the loop
-        while (sibling) {
-            if (sibling.matches(selector)) return sibling;
-            sibling = sibling.nextElementSibling
-        }
-    };
 
     //make sure button stays at last state if it can't go further
     isLast = CheckTabLocation(JCurTab, BSObject, parameters);
@@ -474,6 +513,11 @@ function NextTab(JCurTab, JNewTab, BSObject, parameters) {
         var JCurTabContent = BSObject.querySelector('.tab-pane.active');
 
         var nextContent = getNextSibling(JCurTabContent);
+
+        // nextTabContentNumber = parseInt(JCurTab.getAttribute('data-tab') + 1);
+        // var nextContent = BSObject.querySelectorAll('[data-tabpane="' + nextTabContentNumber + '"]')[0];
+
+
         JCurTabContent.classList.remove("active");
         JCurTabContent.classList.remove("show");
         nextContent.className += " active";
@@ -504,21 +548,6 @@ function NextTab(JCurTab, JNewTab, BSObject, parameters) {
 //when forward button is pressed
 function BackTab(JCurTab, JNewTab, BSObject, parameters) {
 
-    // this is a finction to get the next nav-link
-    var getPreviousSibling = function(elem, selector) {
-        // Get the next sibling element
-        var sibling = elem.previousElementSibling;
-
-        // If there's no selector, return the first sibling
-        if (!selector) return sibling;
-
-        // If the sibling matches our selector, use it
-        // If not, jump to the next sibling and continue the loop
-        while (sibling) {
-            if (sibling.matches(selector)) return sibling;
-            sibling = sibling.previousElementSibling;
-        }
-    };
 
     //if there is no next, then we know we just clicked submit button, otherwise which tab is active
 
