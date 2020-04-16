@@ -16,6 +16,7 @@
   <a href="#key-features">Key Features</a> •
   <a href="#how-to-use">How To Use</a> •
   <a href="#download">Download</a> •
+  <a href="#codepen-examples">Codepen Examples</a> •
   <a href="#license">License</a>
 </p>
 
@@ -51,6 +52,58 @@ just add these two lines to your website!
 /****  Here is the CSS Style sheet  ****/
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/chetstriker/BSMagic/release/BSMagic-min.css">
 ```
+
+## Codepen Examples
+
+[Demo 1](https://codepen.io/chetstriker/details/rNOejNz)
+[Demo 2](https://codepen.io/chetstriker/pen/zYvqNdj)
+
+## BSMagic Parameters
+
+// The id name of the tab you want to alter and is the only required field
+**id** (**Required**) 
+
+// If you want navigation buttons added
+**addButtons** = true; `//Default is true`
+
+// The shape of the current nav tab ("square", "oval", "circle")
+**navShape** = "square"; `//Default is "square"`
+
+// The background color of the current nav tab ("blue", "white", "clear")
+**navBackground** = "blue";`//Default is "blue"`
+
+// The font color of the current nav tab ("blue", "white")
+**navFontColor** = "white"; `//Default is "white"`
+
+// If you want to add underline border to current nav tab (true, false)
+**navUnderline** = false; `//Default is false`
+
+// If you want to add a shadow to the current nav tab (true, false)
+**navShadow** = false; `//Default is false`
+
+// What text you want on the "next tab" button, if addButtons is enabled
+**nextText** = "NEXT"; `//Default is "NEXT"`
+
+// What text you want on the "previous tab" button, if addButtons is enabled
+**prevText** = "PREVIOUS"; `//Default is "PREVIOUS"`
+
+// Adjust offset amount of pixels you want to move from the top position of the current nav tab
+**navOffsetX** = 0; `//Default is 0`
+
+// Adjust offset amount of pixels you want to move from the left position of the current nav tab
+**navOffsetY** = 0; `//Default is 0`
+
+// If isWizard is enabled, the tabs will disappear as with the bottom bottons and leave two small button in the center on both sides to move through steps, like a step-by-step wizard
+**isWizard** = false; `//Default is false`
+
+// If you would like to use your own CSS name to draw the current nab tab
+**customNavTabs** = "BSNavTab"; `//Default is BSNavTab`
+
+// Adjust the pixels from left position of the text inside the current nav tab as opposed to the location of the current nav tab itself.
+**navTabTextOffetX** = 0; `//Default is 0`
+
+// Adjust the pixels from top position of the text inside the current nav tab as opposed to the location of the current nav tab itself.
+**navTabTextOffetY** = 0; `//Default is 0`
 
 ## License
 
