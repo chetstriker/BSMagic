@@ -1,4 +1,5 @@
 ﻿
+<meta name="google-site-verification" content="XWdWfRGGiNbrVjOryYFie-Po4Ji-hUDT2wCm-qP03O8" />
 <h1 align="center">
   <br>
   <a href="https://github.com/chetstriker/BSMagic"><img src="https://raw.githubusercontent.com/chetstriker/BSMagic/master/img/BSMagicLogo.png" alt="BSMagic" width="800"></a>
@@ -17,7 +18,8 @@
   <a href="#how-to-use">How To Use</a> •
   <a href="#download">Download</a> •
   <a href="#codepen-examples">Codepen Examples</a> •
-  <a href="#license">License</a>
+  <a href="#license">License</a>•
+  <a href="#github">GitHub</a>
 </p>
 
 ![screenshot](https://raw.githubusercontent.com/chetstriker/BSMagic/master/img/Demo2.gif)
@@ -105,6 +107,10 @@ just add these two lines to your website!
 
 // Adjust the pixels from top position of the text inside the current nav tab as opposed to the location of the current nav tab itself.</br>
 **navTabTextOffetY** = 0; `//Default is 0`
+
+## GitHub
+
+[GitHub Project URL](https://github.com/chetstriker/BSMagic)
 
 ## License
 
