@@ -48,10 +48,10 @@ After adding the JS and CSS files, just add a BSMagic command somewhere in your 
 just add these two lines to your website!
 ```bash
 /****  Here is the vanilla JavaScript  ****/
-<script src="https://cdn.jsdelivr.net/gh/chetstriker/BSMagic/release/BSMagic-min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/chetstriker/BSMagic@0.5.0/release/BSMagic-min.js"></script>
 
 /****  Here is the CSS Style sheet  ****/
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/chetstriker/BSMagic/release/BSMagic-min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/chetstriker/BSMagic@0.5.0/release/BSMagic-min.css">
 ```
 
 ## Codepen Examples
