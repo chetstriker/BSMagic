@@ -1,5 +1,4 @@
 ﻿
-<meta name="google-site-verification" content="DXgdQGgc0QIZeW_JHJJlODQeIO-XLrihLEtgsAa3P48" />
 <h1 align="center">
   <br>
   <a href="https://github.com/chetstriker/BSMagic"><img src="https://raw.githubusercontent.com/chetstriker/BSMagic/master/img/BSMagicLogo.png" alt="BSMagic" width="800"></a>
