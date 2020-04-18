@@ -59,6 +59,33 @@ function BSMagic(parameters) {
     // get parent object, this way we can have multiple controls on the same page
     var BSObject = document.getElementById(parameters.id);
 
+    if(parameters.theme == "Magic2"){ //white square button with blue underline and shadow and blue text
+        parameters.addButtons = true;
+        parameters.navShape = "square";
+        parameters.navBackground = "NavShapeSquare2";
+        parameters.navFontColor ="blue";
+        parameters.navUnderline = true;
+        parameters.navShadow = true;
+    }
+
+    else if(parameters.theme == "Magic1"){ //blue oval button with white text
+       // "addButtons": true,
+         //   "navShape": "oval",
+         //   "navFontColor": "blue",
+            //"navOffsetX": "51",
+            //"navOffsetY": "-5",
+            //"navTabTextOffetX": "-3",
+            //"navTabTextOffetY": "-1",
+            // "isWizard":true,
+            //"navBackground": "blue",
+
+        parameters.addButtons = true;
+        parameters.navShape = "oval";
+        parameters.navBackground = "NavBackgroundBlue";
+        parameters.navFontColor ="white";
+      //  parameters.navUnderline = true;
+      //  parameters.navShadow = true;
+    }
 
     //define if we want navigation buttons added
     if (parameters.addButtons === undefined) parameters.addButtons = true;
@@ -70,7 +97,7 @@ function BSMagic(parameters) {
     if (parameters.navBackground === undefined) parameters.navBackground = "blue";
 
     //define navigation font color
-    if (parameters.navFontColor === undefined) parameters.navFontColor = "white";
+    if (parameters.navFontColor === undefined) parameters.navFontColor = "purple";
 
     //define if we want to underline navigation
     if (parameters.navUnderline === undefined) parameters.navUnderline = false;
@@ -92,9 +119,13 @@ function BSMagic(parameters) {
 
     if (parameters.customNavTabs === undefined) parameters.customNavTabs = "BSNavTab";
 
+    if (parameters.customNavTabsFlare === undefined) parameters.customNavTabsFlare = "BSNavTabFlare";
+
     if (parameters.navTabTextOffetX === undefined) parameters.navTabTextOffetX = 0;
 
     if (parameters.navTabTextOffetY === undefined) parameters.navTabTextOffetY = 0;
+
+    if (parameters.customNavBar === undefined) parameters.customNavBar = "";
 
 
     //create variable to determine if we have vertical tabs
@@ -194,12 +225,20 @@ function BSMagic(parameters) {
     if (parameters.navShape == "oval") { getCommonAncestor(pills, pane).classList += " NavShapeOval"; }
     if (parameters.navShape == "circle") { getCommonAncestor(pills, pane).classList += " NavShapeCircle"; }
 
-    if (parameters.navBackground == "blue") { getCommonAncestor(pills, pane).classList += " NavBackgroundBlue"; }
-    if (parameters.navBackground == "white") { getCommonAncestor(pills, pane).classList += " NavBackgroundWhite"; }
-    if (parameters.navBackground == "clear") { getCommonAncestor(pills, pane).classList += " NavBackgroundClear"; }
+   // if (parameters.navBackground == "blue") { getCommonAncestor(pills, pane).classList += " NavBackgroundBlue"; }
+  //  if (parameters.navBackground == "white") { getCommonAncestor(pills, pane).classList += " NavBackgroundWhite"; }
+  //  if (parameters.navBackground == "clear") { getCommonAncestor(pills, pane).classList += " NavBackgroundClear"; }
 
-    if (parameters.navFontColor == "white") { getCommonAncestor(pills, pane).classList += " NavFontWhite"; }
-    if (parameters.navFontColor == "blue") { getCommonAncestor(pills, pane).classList += " NavFontBlue"; }
+ // console.log("check");
+ // console.log(BSObject.getElementsByClassName(parameters.customNavTabs));
+  //  BSObject.getElementsByClassName(parameters.customNavTabs)[0].classList += " " + parameters.navBackground;
+
+   // if (parameters.navFontColor == "white") { 
+    //    getCommonAncestor(pills, pane).classList += " NavFontWhite"; 
+
+   // }
+
+   // if (parameters.navFontColor == "blue") { getCommonAncestor(pills, pane).classList += " NavFontBlue"; }
 
     if (parameters.navUnderline == true) { getCommonAncestor(pills, pane).classList += " NavUnderlineBlue"; }
 
@@ -315,7 +354,7 @@ function BSMagic(parameters) {
 function AddButtons(topContainer, parameters) {
     console.log("Add append buttons as child of:");
     console.log(topContainer);
-    var buttombuttons = "<div class='BSMagicButtons col-sm-12' style='justify-content:space-between;'><div class='float-right'> <button type='button' class='btn btn-next btn-fill btn-danger btn-wd square JNextButton' name='next' value='Next' >" + parameters.nextText + "</button></div><div class='pull-left'><button type='button' class='btn btn-previous btn-fill btn-default btn-wd square JBackButton' name='previous' value='Previous' >" + parameters.prevText + "</button></div><div class='clearfix'></div></div>";
+    var buttombuttons = "<div class='BSMagicButtons col-sm-12' style='justify-content:space-between;'><div class='float-right'> <button type='button' class='btn btn-next btn-fill btn-danger btn-wd square JNextButton' name='next' value='Next' >" + parameters.nextText + "</button></div><div class='float-left'><button type='button' class='btn btn-previous btn-fill btn-default btn-wd square JBackButton' name='previous' value='Previous' >" + parameters.prevText + "</button></div><div class='clearfix'></div></div>";
     topContainer.insertAdjacentHTML('beforeend', buttombuttons);
     topContainer.getElementsByClassName("BSMagicButtons").item(0).setAttribute('data-parent', parameters.id);
     // topContainer.appendChild(buttombuttons);
@@ -342,12 +381,23 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
         elements[i].parentNode.removeChild(elements[i]);
     }
 
+       // remove old box flare first so we don't create duplicates, possibly can remove later
+       var i, elements = BSObject.getElementsByClassName(parameters.customNavTabsFlare);
+       for (i = elements.length; i--;) {
+           elements[i].parentNode.removeChild(elements[i]);
+       }
+
 
     // create new div containing the drawing
     var div = document.createElement("div")
+    //create a sub div where "Flare" elements can be used for a secondary decorative overlay or layer on the main extra tab. 
+    var divFlare = document.createElement("div")
+    divFlare.className += " " + parameters.customNavTabsFlare;
+
     var JCurtRect = JCurTab.getBoundingClientRect();
     var JNewRect = JNewTab.getBoundingClientRect();
 
+    
 
     // Getting offsets between items
     Yoffset = Math.abs(JCurtRect.top - JNewRect.top);
@@ -373,6 +423,9 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
         div.children[0].style.top = parseInt(parameters.navTabTextOffetY) + "px";
     }
 
+
+    // add flare layer under main div layer
+    div.appendChild(divFlare);
     // var navpills = BSObject.getElementsByClassName("nav-pills");
     JCurTab.parentElement.appendChild(div);
 
@@ -383,7 +436,23 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
         textOffset.style.left = parseInt(parameters.navTabTextOffetX) + "px";
     }
 
+    // console.log("Set font color of active tab text");
+    BSObject.getElementsByClassName(parameters.customNavTabs)[0].style.color = parameters.navFontColor;
+    if(BSObject.getElementsByClassName(parameters.customNavTabs)[0].querySelector('.nav-link.active') !== null){
+    console.log(BSObject.getElementsByClassName(parameters.customNavTabs)[0].querySelector('.nav-link.active'));
+    BSObject.getElementsByClassName(parameters.customNavTabs)[0].querySelector('.nav-link.active').style.color = parameters.navFontColor;
+    }
+
+    // add custom decorating to the navigation bar or navbar
+    if(BSObject.querySelector('.nav-pills') !== null)
+    {
+        BSObject.querySelector('.nav-pills').className += " "+parameters.customNavBar;
+    }
+
     // now animate the new div to expand to the nex location and then move over and shink or epand to new size
+    // first check if GSAP is installed
+    if (typeof TimelineLite !== 'undefined') 
+    {
     var tl = new TimelineLite();
     tl.eventCallback("onComplete", function() {
         ReFresh(BSObject, parameters);
@@ -402,6 +471,11 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
         ease: "back"
     }, 0.5);
 
+    }
+    else
+    { // if GSAP is not instlled, will still work but no animation
+        ReFresh(BSObject, parameters);
+    }
 
 
 
@@ -446,6 +520,10 @@ function Initialize(JCurTab, BSObject, parameters) {
     // create initial box image around active tab on load
     var JCurtRect = JCurTab.getBoundingClientRect();
     var div = document.createElement("div");
+
+    var divFlare = document.createElement("div")
+    divFlare.className += " " + parameters.customNavTabsFlare;
+
     div.style.width = JCurtRect.width + 'px';
     if (parameters.navShape == "circle") { 
         div.style.height = JCurtRect.width + 'px'; 
@@ -467,14 +545,36 @@ function Initialize(JCurTab, BSObject, parameters) {
         var BSparent = getCommonAncestor(pills, pane);
         //   console.log(BSparent);
         BSparent.children[0].style.display = "none";
-    } else
+    } else{
+        // if tabs are going to be visible, then add them
+        // add Flare layer to main div
+        div.appendChild(divFlare);
         navpills[0].appendChild(div);
+    }
 
     if (BSObject.querySelector('.nav-link.active').children.length > 0) {
         textOffset = BSObject.querySelector('.nav-link.active').children[0];
         textOffset.style.top = parseInt(parameters.navTabTextOffetY) + "px";
         textOffset.style.left = parseInt(parameters.navTabTextOffetX) + "px";
     }
+
+
+   // console.log("Set font color of active tab text");
+    BSObject.getElementsByClassName(parameters.customNavTabs)[0].style.color = parameters.navFontColor;
+    if(BSObject.getElementsByClassName(parameters.customNavTabs)[0].querySelector('.nav-link.active') !== null){
+    console.log(BSObject.getElementsByClassName(parameters.customNavTabs)[0].querySelector('.nav-link.active'));
+    BSObject.getElementsByClassName(parameters.customNavTabs)[0].querySelector('.nav-link.active').style.color = parameters.navFontColor;
+    }
+
+    // add custom decorating to the navigation bar or navbar
+    if(BSObject.querySelector('.nav-pills') !== null)
+    {
+        BSObject.querySelector('.nav-pills').className += " "+parameters.customNavBar;
+    }
+
+    // add custom stylesheet to nav tab
+    BSObject.getElementsByClassName(parameters.customNavTabs)[0].classList += " " + parameters.navBackground;
+
 
 }
 

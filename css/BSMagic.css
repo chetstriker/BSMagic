@@ -32,21 +32,42 @@
 }
 
 .customTab {
-    position: absolute;
-    text-align: center;
-    padding: 12px;
-    font-size: 12px;
-    height: 45px !important;
-    text-transform: uppercase;
-    -webkit-font-smoothing: subpixel-antialiased;
-    position: relative;
-    top: 12px;
-    cursor: pointer;
-    font-weight: 500;
-    background-color: rebeccapurple;
-    color: #4caf50;
+    top: -10px !important;
+    margin-top: -20px;
+    margin-bottom: -20px;
+   /* box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); */
+    border-radius: 5px;
+    position: relative !important;
+    width: 50px;
+    background: transparent;
+    height:35px !important;
 }
 
+.customTabFlare{
+    margin: 0px -1px;
+    border-top: 3px solid #f0a5a5;
+    border-radius: 30px;
+    width: 20%;
+    margin-left: 40%;
+    margin-top: -2%;
+
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.25), 0px 4px 12px 2px rgba(0, 0, 0, 0.22);
+}
+
+
+
+.customTab .nav-link.active{
+  /*margin: 0 -1px;
+  border-top: 4px solid #4cc8f1;
+  */
+}
+
+.nav-item .nav-link.active{
+    color: transparent !important;
+}
+.nav-link.active{
+    color: inherit;
+}
 .BSMagic .tab-pane {
     margin-top: 15px;
 }
@@ -56,37 +77,68 @@
 }
 
 .NavUnderlineBlue .BSNavTab {
-    border-bottom: 2px solid #00bcd4 !important;
+    border-bottom: 2px solid #00bcd4;
 }
 
-.NavBackgroundBlue .BSNavTab {
-    background-color: #00bcd4 !important;
+.NavBackgroundBlue {
+    background-color: #00bcd4;
 }
 
-.NavBackgroundWhite .BSNavTab {
-    background-color: #fff !important;
+.NavBackgroundWhite {
+    background-color: #fff;
 }
 
-.NavFontBlue .BSNavTab {
-    color: #00bcd4 !important;
+.NavBackgroundClear {
+    background-color: transparent !important;
 }
 
-.NavFontWhite .BSNavTab {
-    color: #fff !important;
+.NavFontBlue .nav-link.active {
+    color: #00bcd4;
 }
 
-.NavShapeSquare .BSNavTab {
+.NavFontWhite .nav-link.active {
+    color: #fff;
+}
+
+.NavShapeSquare {
     position: absolute;
     text-align: center;
     padding: 12px;
     font-size: 12px;
-    height: 45px !important;
+    height: 45px;
     text-transform: uppercase;
     -webkit-font-smoothing: subpixel-antialiased;
     position: relative;
     top: 12px;
     cursor: pointer;
     font-weight: 500;
+}
+
+/* ADDED FOR GLASS EFFECT */
+.NavShapeSquare2 {
+    position: absolute;
+    height: 52px !important;
+    text-align: center;
+    padding: 12px;
+    font-size: 12px;
+    height: 52px !important;
+    text-transform: uppercase;
+    -webkit-font-smoothing: subpixel-antialiased;
+    position: relative;
+    top: 12px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* ADDED FOR GLASS EFFECT */
+.NavBlueShadow2 .BSNavTab {
+    box-shadow: 0px 2px 11px -10px rgba(0, 188, 212, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), inset 1px 6px 0px 0px rgba(0, 188, 212, 0.2);
+    }
+
+/* ADDED FOR GLASS EFFECT */
+.nav-pills2{
+background-color: transparent;
+box-shadow: 0 16px 26px -10px rgba(0, 188, 212, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 188, 212, 0.2);
 }
 
 .NavShapeOval .BSNavTab {
@@ -122,44 +174,6 @@
     /* left:80px !important; */
 }
 
-
-/*
-  .BSMagic .BSNavTabSquare {
-    position: absolute;
-    text-align: center;
-    padding: 12px;
-    font-size: 12px;
-    height: 45px !important;
-    text-transform: uppercase;
-    -webkit-font-smoothing: subpixel-antialiased;
-    background-color: #00bcd4;
-    position: relative;
-    top: 12px;
-    color: #FFFFFF;
-    cursor: pointer;
-    font-weight: 500;
-    box-shadow: 0 16px 26px -10px rgba(0, 188, 212, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 188, 212, 0.2);
-   
-  }
-  
-  .BSMagic .BSNavTab {
-    position: absolute;
-    text-align: center;
-    padding: 12px;
-    font-size: 12px;
-    height: 45px !important;
-    text-transform: uppercase;
-    -webkit-font-smoothing: subpixel-antialiased;
-    position: relative;
-    top: 3px; 
-    color: #00bcd4;
-    cursor: pointer;
-    font-weight: 500;
-    border-bottom: 2px solid #00bcd4;
-    
-    box-shadow: 0 16px 26px -10px rgba(0, 188, 212, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 188, 212, 0.2);
-  }
-  */
 
 .BSHorizontal .BSMagicButtons {
     background-color: #e9ecef;

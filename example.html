@@ -121,7 +121,7 @@
                 "id": "JTab1",
                 "addButtons": true,
                 "navShape": "square",
-                "navBackground": "white",
+                "navBackground": "NavShapeSquare2",
                 "navFontColor": "blue",
                 "navUnderline": true,
                 "navShadow": true,
@@ -140,7 +140,7 @@
 
     <!--                -->
     <div class="row col-sm-12">
-        <div class="bd-example-tabs col-sm-6" id="JTab2" style="border:1px solid #000;">
+        <div class="bd-example-tabs col-sm-6" id="JTab2" style="">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">A</a>
@@ -229,18 +229,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js" integrity="sha256-sPB0F50YUDK0otDnsfNHawYmA5M0pjjUf4TvRJkGFrI=" crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="js/BSMagic.js"></script>
-
+ 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
-
+ 
     <script>
         BSMagic({
             "id": "JTab1",
-            "addButtons": true,
-            "navShape": "square",
-            "navBackground": "white",
-            "navFontColor": "blue",
-            "navUnderline": true,
-            "navShadow": true,
+            "theme":"Magic1",
+           // "addButtons": true,
+           // "navShape": "square",
+           // "navBackground": "white",
+            "navFontColor": "red",
+            "navBackground":"NavShapeSquare2",
+          //  "navUnderline": true,
+          //  "navShadow": true,
             "nextText": "<span style='color:white;' class='glyphicon glyphicon-chevron-right'></span>",
             "prevText": "<span style='color:white;' class='glyphicon glyphicon-chevron-left'></span>",
             // "nextText":"<i class='fi fi-angle-right fi-border ellipse'></i>",
@@ -251,16 +253,19 @@
 
         BSMagic({
             "id": "JTab2",
-            "addButtons": true,
-            "navShape": "oval",
-            "navFontColor": "white",
+           // "addButtons": true,
+            "navFontColor": "red",
+            "theme":"Magic2",
+            "customNavBar":"nav-pills2",
+            //"navShape": "oval",
             //"navOffsetX": "51",
             //"navOffsetY": "-5",
             //"navTabTextOffetX": "-3",
             //"navTabTextOffetY": "-1",
             // "isWizard":true,
             //"navBackground": "blue",
-            // "customNavTabs":"customTab",
+           //  "customNavTabs":"customTab",
+           //  "customNavTabsFlare":"customTabFlare",
         });
     </script>
 
