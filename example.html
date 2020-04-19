@@ -37,7 +37,7 @@
 
     <!--            -->
     <div class="row col-sm-12">
-        <div class="bd-example bd-example-tabs col-sm-6" id="JTab1" style="border:1px solid #000;">
+        <div class="bd-example bd-example-tabs col-sm-6" id="JTab1" style="">
             <div class="row">
                 <div class="col-3">
                     <div class="nav flex-column flex-grow-1 flex-fill nav-pills" role="tablist" style="height: 200px;" aria-orientation="vertical">
@@ -72,7 +72,7 @@
         </div>
 
 
-        <div class=" bd-example-tabs col-sm-6" id="regular" style="border:1px solid #000;">
+        <div class=" bd-example-tabs col-sm-6" id="regular" style="">
             <div class="row">
                 <div class="col-3">
                     <div class="nav flex-column flex-grow-1 flex-fill nav-pills" role="tablist" style="height: 200px;" aria-orientation="vertical">
@@ -115,32 +115,32 @@
 
     <div class="row col-sm-12" style="text-align: center;">
         <div class="col-sm-6">
-             <B>After adding BSMagic</B></br>
-             <div style="background-color:rgb(77, 77, 78); border:1px solid #000; color:rgb(1, 238, 255); border-radius: 20px;">
-                <code">BSMagic({
-                "id": "JTab1",
-                "addButtons": true,
-                "navShape": "square",
-                "navBackground": "white",
-                "navFontColor": "blue",
-                "navUnderline": true,
-                "navShadow": true,
-                "nextText": "&ltspan style='color:white;' class='glyphicon glyphicon-chevron-right'&gt&lt/span&gt",
-                "prevText": ""&ltspan style='color:white;' class='glyphicon glyphicon-chevron-left'&gt&lt/span&gt",
-            });</code></div>
+            <B>After adding BSMagic</B>
+            </br>
+            <div style="background-color:rgb(77, 77, 78);  color:rgb(1, 238, 255); border-radius: 20px;">
+                <code ">BSMagic({
+                "id ": "JTab1 ",
+                "buttonBarBS ": true,
+                "navShape ": "square ",
+                "navBackground ": "white ",
+                "navFontColor ": "blue ",
+                "navUnderline ": true,
+                "navShadow ": true,
+                "nextText ": "&ltspan style='color:white;' class='glyphicon glyphicon-chevron-right' &gt&lt/span&gt ",
+                "prevText ": " "&ltspan style='color:white;' class='glyphicon glyphicon-chevron-left'&gt&lt/span&gt", });</code></div>
         </div>
         <div class="col-sm-6" style="text-align: center;">
             <b>Default BootStrap Tabs</b>
         </div>
     </div>
 
-</br>
-</br>
+    </br>
+    </br>
 
 
     <!--                -->
     <div class="row col-sm-12">
-        <div class="bd-example-tabs col-sm-6" id="JTab2" style="border:1px solid #000;">
+        <div class="bd-example-tabs col-sm-6" id="JTab2" style="">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">A</a>
@@ -171,7 +171,7 @@
             </div>
         </div>
 
-        <div class=" bd-example-tabs col-sm-6" id="none" style="border:1px solid #000;">
+        <div class=" bd-example-tabs col-sm-6" id="none" style="">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="home-tab1" data-toggle="tab" href="#home1" role="tab" aria-controls="home" aria-selected="true">A</a>
@@ -207,61 +207,64 @@
 
     </div>
 
-</br>
+    </br>
 
-<div class="row col-sm-12" style="text-align: center;">
-    <div class="col-sm-6">
-         <B>After adding BSMagic</B></br>
-         <div style="background-color:rgb(77, 77, 78); border:1px solid #000; color:rgb(1, 238, 255); border-radius: 20px;">
-            <code">BSMagic({
-                "id": "JTab2",
-                "addButtons": true,
-                "navShape": "oval",
-                "navFontColor": "white",
+    <div class="row col-sm-12" style="text-align: center;">
+        <div class="col-sm-6">
+            <B>After adding BSMagic</B>
+            </br>
+            <div style="background-color:rgb(77, 77, 78);  color:rgb(1, 238, 255); border-radius: 20px;">
+                <code ">BSMagic({
+                "id ": "JTab2 ",
+                "buttonBarBS ": true,
+                "navShape ": "oval ",
+                "navFontColor ": "white ",
         });</code></div>
     </div>
-    <div class="col-sm-6" style="text-align: center;">
+    <div class="col-sm-6 " style="text-align: center; ">
         <b>Default BootStrap Tabs</b>
     </div>
 </div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js" integrity="sha256-sPB0F50YUDK0otDnsfNHawYmA5M0pjjUf4TvRJkGFrI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js " integrity="sha256-sPB0F50YUDK0otDnsfNHawYmA5M0pjjUf4TvRJkGFrI=" crossorigin=" anonymous "></script>
 
-    <script type="text/javascript" src="js/BSMagic.js"></script>
+    <script type="text/javascript " src="js/BSMagic.js "></script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+    <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js "></script>
 
     <script>
+
         BSMagic({
             "id": "JTab1",
-            "addButtons": true,
-            "navShape": "square",
-            "navBackground": "white",
-            "navFontColor": "blue",
+            "buttonBarBS": true,
+            "navTabActiveBS.color": "white",
+            "navTabActiveBS.background-color": "#00bcd4",
+            "navTabActiveBS.shape":"oval",
+            "navBarBS":"nav-pills2",
             "navUnderline": true,
             "navShadow": true,
-            "nextText": "<span style='color:white;' class='glyphicon glyphicon-chevron-right'></span>",
-            "prevText": "<span style='color:white;' class='glyphicon glyphicon-chevron-left'></span>",
-            // "nextText":"<i class='fi fi-angle-right fi-border ellipse'></i>",
-            // "prevText":"<i class='fi fi-angle-left fi-border ellipse'></i>",
-        });
+            "nextText": '<span style="color:white;" class="glyphicon glyphicon-chevron-right"></span>', 
+            "prevText": "<span style='color:white;' class='glyphicon glyphicon-chevron-left'></span>"
+        }); 
 
-
-
-        BSMagic({
-            "id": "JTab2",
-            "addButtons": true,
-            "navShape": "oval",
-            "navFontColor": "white",
-            //"navOffsetX": "51",
-            //"navOffsetY": "-5",
-            //"navTabTextOffetX": "-3",
-            //"navTabTextOffetY": "-1",
-            // "isWizard":true,
-            //"navBackground": "blue",
-            // "customNavTabs":"customTab",
-        });
+        BSMagic({ 
+                "id": "JTab2", 
+                "buttonBarBS": true, 
+                "navTabActiveBS":"NavShapeSquare2",
+                "navTabActiveBS.shape":"square",
+                "navTabActiveBS.color":"blue", 
+                "navTabActiveBS.background-color":"transparent",
+                "navTabActiveFlareBS":"customTabFlare", 
+             //   "theme":"Magic2", 
+                "navBarBS":"nav-pills2",
+                "navUnderline": true,
+                "navShadow": true,
+                "navTabInactiveBS":"NavBackgroundBlue",
+                "navTabInactiveBS.font-weight":"bold",
+            });
+            
+           
     </script>
 
 
