@@ -117,7 +117,11 @@ function BSMagic(parameters) {
     }
     if (parameters.navTabActiveBS === undefined) parameters.navTabActiveBS = "BSNavTab";
 
-    if (parameters.navTabActiveFlareBS === undefined) parameters.navTabActiveFlareBS = "BSNavTabFlare";
+    if (parameters.navTabActiveFlairBS === undefined) parameters.navTabActiveFlairBS = "BSNavTabFlair";
+
+    if (parameters.navTabInactiveBS === undefined) parameters.navTabInactiveBS = "BSNavInactiveTab";
+
+    if (parameters.navTabInactiveFlairBS === undefined) parameters.navTabInactiveFlairBS = "BSNavInactiveTabFlair";
 
     if (parameters.navTabTextOffetX === undefined) parameters.navTabTextOffetX = 0;
 
@@ -355,8 +359,8 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
         elements[i].parentNode.removeChild(elements[i]);
     }
 
-    // remove old box flare first so we don't create duplicates, possibly can remove later
-    var i, elements = BSObject.getElementsByClassName(parameters.navTabActiveFlareBS);
+    // remove old box Flair first so we don't create duplicates, possibly can remove later
+    var i, elements = BSObject.getElementsByClassName(parameters.navTabActiveFlairBS);
     for (i = elements.length; i--;) {
         elements[i].parentNode.removeChild(elements[i]);
     }
@@ -364,9 +368,9 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
     // create new div containing the drawing
     var div = document.createElement("div")
 
-    //create a sub div where "Flare" elements can be used for a secondary decorative overlay or layer on the main extra tab. 
-    var divFlare = document.createElement("div")
-    divFlare.className += " " + parameters.navTabActiveFlareBS;
+    //create a sub div where "Flair" elements can be used for a secondary decorative overlay or layer on the main extra tab. 
+    var divFlair = document.createElement("div")
+    divFlair.className += " " + parameters.navTabActiveFlairBS;
 
     var JCurtRect = JCurTab.getBoundingClientRect();
     var JNewRect = JNewTab.getBoundingClientRect();
@@ -383,9 +387,6 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
     //need to redraw div otherwise movement will be be offset incorrectly - possible can remove later
     div.style.width = JCurtRect.width;
 
-    if (parameters["navTabActiveBS.shape"] == "circle") { div.style.height = JCurtRect.width + "px"; } 
-    else
-        div.style.height = JCurtRect.height + "px";
     div.style.position = "fixed";
     div.style.top = parseInt(JCurtRect.top) + parseInt(parameters.navOffsetY) - 12 + 'px'; //12 subtracted to add for padding in css
     div.style.left = parseInt(JCurtRect.left) + parseInt(parameters.navOffsetX) + 'px';
@@ -399,8 +400,6 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
     }
 
 
-
-    //************** START MOVE *******/
     if (BSObject.querySelector('.nav-link.active').children.length > 0) {
         textOffset = BSObject.querySelector('.nav-link.active').children[0];
         textOffset.style.top = parseInt(parameters.navTabTextOffetY) + "px";
@@ -416,340 +415,17 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
 
         BSObject.querySelector('.nav-pills').className += " " + parameters.navBarBS;
     }
-       //************** END MOVE *******/
 
 
-    // add flare layer under main div layer
-    div.appendChild(divFlare);
+    // add Flair layer under main div layer
+    div.appendChild(divFlair);
     JCurTab.parentElement.appendChild(div);
 
-    // ADD STYLES for navTabActiveBS
+    // define styles
 
-    // define navTabActiveBS.shape
-    if (parameters["navTabActiveBS.shape"] == "square") { 
-        //first remove any existing shapes if they exist
-        if(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].classList.contains(" NavShapeSquare"))
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].classList.remove(" NavShapeSquare");
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].classList += " NavShapeSquare"; 
-    }
-    if (parameters["navTabActiveBS.shape"] == "oval") { 
-        //first remove any existing shapes if they exist
-        if(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].classList.contains(" NavShapeOval"))
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].classList.remove(" NavShapeOval");
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].classList += " NavShapeOval"; 
-    }
-    if (parameters["navTabActiveBS.shape"] == "circle") { 
-        //first remove any existing shapes if they exist
-        if(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].classList.contains(" NavShapeCircle"))
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].classList.remove(" NavShapeCircle");
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].classList += " NavShapeCircle"; 
-    }
-    
-        // define navTabActiveBS.color
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.color = parameters["navTabActiveBS.color"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.color = parameters["navTabActiveBS.color"];
-        }
-        // define navTabActiveBS.background-color
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.backgroundColor = parameters["navTabActiveBS.background-color"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.backgroundColor = parameters["navTabActiveBS.background-color"];
-        }
-
-        // define navTabActiveBS.background-image
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.backgroundImage = parameters["navTabActiveBS.background-image"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.backgroundImage = parameters["navTabActiveBS.background-image"];
-        }
-        // define navTabActiveBS.padding
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.padding = parameters["navTabActiveBS.padding"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.backgroundImage = parameters["navTabActiveBS.padding"];
-        }
-        // define navTabActiveBS.margin
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.margin = parameters["navTabActiveBS.margin"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.margin"];
-        }
-        // define navTabActiveBS.border
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.border = parameters["navTabActiveBS.border"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.border"];
-        }
-        // define navTabActiveBS.borderRadius
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.borderRadius = parameters["navTabActiveBS.border-radius"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.border-radius"];
-        }
-        // define navTabActiveBS.height
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.height = parameters["navTabActiveBS.height"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.height"];
-        }
-        // define navTabActiveBS.width
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.width = parameters["navTabActiveBS.width"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.width"];
-        }
-        // define navTabActiveBS.min-height
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.minHeight = parameters["navTabActiveBS.min-height"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.min-height"];
-        }
-        // define navTabActiveBS.min-width
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.minWidth = parameters["navTabActiveBS.min-width"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.min-width"];
-        }
-        // define navTabActiveBS.max-height
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.maxHeight = parameters["navTabActiveBS.max-height"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.max-height"];
-        }
-        // define navTabActiveBS.max-width
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.maxWidth = parameters["navTabActiveBS.max-width"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.max-width"];
-        }
-        // define navTabActiveBS.font
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.font = parameters["navTabActiveBS.font"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.font"];
-        }
-        // define navTabActiveBS.font-weight
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.fontWeight = parameters["navTabActiveBS.font-weight"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.font-weight"];
-        }
-        // define navTabActiveBS.font-family
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.fontFamily = parameters["navTabActiveBS.font-family"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.font-family"];
-        }
-        // define navTabActiveBS.font-size
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.fontSize = parameters["navTabActiveBS.font-size"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.font-size"];
-        }
-
-
-
-        // define navTabActiveFlareBS.shape
-if (parameters["navTabActiveFlareBS.shape"] == "square") { 
-    //first remove any existing shapes if they exist
-    if(BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].classList.contains(" NavShapeSquare"))
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].classList.remove(" NavShapeSquare");
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].classList += " NavShapeSquare"; 
-}
-if (parameters["navTabActiveFlareBS.shape"] == "oval") { 
-    //first remove any existing shapes if they exist
-    if(BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].classList.contains(" NavShapeOval"))
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].classList.remove(" NavShapeOval");
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].classList += " NavShapeOval"; 
-}
-if (parameters["navTabActiveFlareBS.shape"] == "circle") { 
-    //first remove any existing shapes if they exist
-    if(BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].classList.contains(" NavShapeCircle"))
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].classList.remove(" NavShapeCircle");
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].classList += " NavShapeCircle"; 
-}
-
-    // define navTabActiveFlareBS.color
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.color = parameters["navTabActiveFlareBS.color"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.color = parameters["navTabActiveFlareBS.color"];
-    }
-    // define navTabActiveFlareBS.background-color
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.backgroundColor = parameters["navTabActiveFlareBS.background-color"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.backgroundColor = parameters["navTabActiveFlareBS.background-color"];
-    }
-
-    // define navTabActiveFlareBS.background-image
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.backgroundImage = parameters["navTabActiveFlareBS.background-image"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.backgroundImage = parameters["navTabActiveFlareBS.background-image"];
-    }
-    // define navTabActiveFlareBS.padding
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.padding = parameters["navTabActiveFlareBS.padding"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.backgroundImage = parameters["navTabActiveFlareBS.padding"];
-    }
-    // define navTabActiveFlareBS.margin
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.margin = parameters["navTabActiveFlareBS.margin"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.margin"];
-    }
-    // define navTabActiveFlareBS.border
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.border = parameters["navTabActiveFlareBS.border"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.border"];
-    }
-    // define navTabActiveFlareBS.borderRadius
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.borderRadius = parameters["navTabActiveFlareBS.border-radius"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.border-radius"];
-    }
-    // define navTabActiveFlareBS.height
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.height = parameters["navTabActiveFlareBS.height"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.height"];
-    }
-    // define navTabActiveFlareBS.width
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.width = parameters["navTabActiveFlareBS.width"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.width"];
-    }
-    // define navTabActiveFlareBS.min-height
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.minHeight = parameters["navTabActiveFlareBS.min-height"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.min-height"];
-    }
-    // define navTabActiveFlareBS.min-width
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.minWidth = parameters["navTabActiveFlareBS.min-width"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.min-width"];
-    }
-    // define navTabActiveFlareBS.max-height
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.maxHeight = parameters["navTabActiveFlareBS.max-height"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.max-height"];
-    }
-    // define navTabActiveFlareBS.max-width
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.maxWidth = parameters["navTabActiveFlareBS.max-width"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.max-width"];
-    }
-    // define navTabActiveFlareBS.font
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.font = parameters["navTabActiveFlareBS.font"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.font"];
-    }
-    // define navTabActiveFlareBS.font-weight
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.fontWeight = parameters["navTabActiveFlareBS.font-weight"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.font-weight"];
-    }
-    // define navTabActiveFlareBS.font-family
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.fontFamily = parameters["navTabActiveFlareBS.font-family"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.font-family"];
-    }
-    // define navTabActiveFlareBS.font-size
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.fontSize = parameters["navTabActiveFlareBS.font-size"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.font-size"];
-    }
-        
-
-
-      // define navTabInactiveBS.shape
-  if (parameters["navTabInactiveBS.shape"] == "square") { 
-    //first remove any existing shapes if they exist
-    if(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].classList.contains(" NavShapeSquare"))
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].classList.remove(" NavShapeSquare");
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].classList += " NavShapeSquare"; 
-}
-if (parameters["navTabInactiveBS.shape"] == "oval") { 
-    //first remove any existing shapes if they exist
-    if(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].classList.contains(" NavShapeOval"))
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].classList.remove(" NavShapeOval");
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].classList += " NavShapeOval"; 
-}
-if (parameters["navTabInactiveBS.shape"] == "circle") { 
-    //first remove any existing shapes if they exist
-    if(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].classList.contains(" NavShapeCircle"))
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].classList.remove(" NavShapeCircle");
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].classList += " NavShapeCircle"; 
-}
-
-    // define navTabInactiveBS.color
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.color = parameters["navTabInactiveBS.color"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.color = parameters["navTabInactiveBS.color"];
-    }
-    // define navTabInactiveBS.background-color
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.backgroundColor = parameters["navTabInactiveBS.background-color"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.backgroundColor = parameters["navTabInactiveBS.background-color"];
-    }
-
-    // define navTabInactiveBS.background-image
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.backgroundImage = parameters["navTabInactiveBS.background-image"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.backgroundImage = parameters["navTabInactiveBS.background-image"];
-    }
-    // define navTabInactiveBS.padding
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.padding = parameters["navTabInactiveBS.padding"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.backgroundImage = parameters["navTabInactiveBS.padding"];
-    }
-    // define navTabInactiveBS.margin
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.margin = parameters["navTabInactiveBS.margin"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.margin"];
-    }
-    // define navTabInactiveBS.border
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.border = parameters["navTabInactiveBS.border"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.border"];
-    }
-    // define navTabInactiveBS.borderRadius
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.borderRadius = parameters["navTabInactiveBS.border-radius"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.border-radius"];
-    }
-    // define navTabInactiveBS.height
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.height = parameters["navTabInactiveBS.height"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.height"];
-    }
-    // define navTabInactiveBS.width
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.width = parameters["navTabInactiveBS.width"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.width"];
-    }
-    // define navTabInactiveBS.min-height
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.minHeight = parameters["navTabInactiveBS.min-height"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.min-height"];
-    }
-    // define navTabInactiveBS.min-width
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.minWidth = parameters["navTabInactiveBS.min-width"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.min-width"];
-    }
-    // define navTabInactiveBS.max-height
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.maxHeight = parameters["navTabInactiveBS.max-height"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.max-height"];
-    }
-    // define navTabInactiveBS.max-width
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.maxWidth = parameters["navTabInactiveBS.max-width"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.max-width"];
-    }
-    // define navTabInactiveBS.font
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.font = parameters["navTabInactiveBS.font"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.font"];
-    }
-    // define navTabInactiveBS.font-weight
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.fontWeight = parameters["navTabInactiveBS.font-weight"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.font-weight"];
-    }
-    // define navTabInactiveBS.font-family
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.fontFamily = parameters["navTabInactiveBS.font-family"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.font-family"];
-    }
-    // define navTabInactiveBS.font-size
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.fontSize = parameters["navTabInactiveBS.font-size"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.font-size"];
-    }
-
+    addStyling(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0],"navTabActiveBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.navTabActiveFlairBS)[0],"navTabActiveFlairBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0],"navTabInactiveBS",parameters,JCurTab);
 
     
     // now animate the new div to expand to the nex location and then move over and shink or epand to new size
@@ -821,16 +497,10 @@ function Initialize(JCurTab, BSObject, parameters) {
     var JCurtRect = JCurTab.getBoundingClientRect();
     var div = document.createElement("div");
 
-    var divFlare = document.createElement("div")
-    divFlare.className += " " + parameters.navTabActiveFlareBS;
+    var divFlair = document.createElement("div")
+    divFlair.className += " " + parameters.navTabActiveFlairBS;
 
     div.style.width = JCurtRect.width + 'px';
-
-    if (parameters["navTabActiveBS.shape"] == "circle") {
-        div.style.height = JCurtRect.width + 'px';
-    } else {
-        div.style.height = JCurtRect.height + 'px';
-    }
 
     div.style.position = "fixed";
     div.style.top = parseInt(JCurtRect.top) + parseInt(parameters.navOffsetY) - 12 + 'px'; // 12 subtracted to add for padding in css
@@ -838,28 +508,6 @@ function Initialize(JCurTab, BSObject, parameters) {
     div.style.pointerEvents = "none";
     div.className += " " + parameters.navTabActiveBS;
     div.innerHTML = JCurTab.innerHTML;
-
-
-    if (BSObject.querySelector('.nav-link.active').children.length > 0) {
-        textOffset = BSObject.querySelector('.nav-link.active').children[0];
-        textOffset.style.top = parseInt(parameters.navTabTextOffetY) + "px";
-        textOffset.style.left = parseInt(parameters.navTabTextOffetX) + "px";
-    }
-
-
-    // add custom decorating to the navigation bar or navbar
-     // remove the bar if it already exists
-    // define navBarBS
-     if(BSObject.querySelector('.nav-pills').classList.contains(parameters.navBarBS))
-     BSObject.querySelector('.nav-pills').classList.remove(parameters.navBarBS);
-     BSObject.querySelector('.nav-pills').className += " " + parameters.navBarBS;
-     
-     //TODO change to querySelectorAll so all are found and not just the first
-    // define navTabInactiveBS
-     if(BSObject.querySelector(".nav-link:not(.active)"))
-     BSObject.querySelector('.nav-link:not(.active)').classList.remove(parameters.navTabInactiveBS);
-     BSObject.querySelector('.nav-link:not(.active)').className += " " + parameters.navTabInactiveBS;
-
 
     var navpills = BSObject.getElementsByClassName("nav-pills");
     if (parameters.isWizard) {
@@ -870,348 +518,84 @@ function Initialize(JCurTab, BSObject, parameters) {
         BSparent.children[0].style.display = "none";
     } else {
         // if tabs are going to be visible, then add them
-        // add Flare layer to main div
-        div.appendChild(divFlare);
+        // add Flair layer to main div
+        div.appendChild(divFlair);
         navpills[0].appendChild(div);
 
-    // Add styles for navTabActiveBS
-    // define navTabActiveBS.shape
-    if (parameters["navTabActiveBS.shape"] == "square") { 
-        //first remove any existing shapes if they exist
-        if(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].classList.contains(" NavShapeSquare"))
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].classList.remove(" NavShapeSquare");
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].classList += " NavShapeSquare"; 
+    // update alterations needed to selections and classes
+    if (BSObject.querySelector('.nav-link.active').children.length > 0) {
+        textOffset = BSObject.querySelector('.nav-link.active').children[0];
+        textOffset.style.top = parseInt(parameters.navTabTextOffetY) + "px";
+        textOffset.style.left = parseInt(parameters.navTabTextOffetX) + "px";
+        textOffset.classList.remove(parameters.navTabInactiveBS);
     }
-    if (parameters["navTabActiveBS.shape"] == "oval") { 
-        //first remove any existing shapes if they exist
-        if(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].classList.contains(" NavShapeOval"))
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].classList.remove(" NavShapeOval");
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].classList += " NavShapeOval"; 
+
+
+    // add custom decorating to the navigation bar or navbar
+     // remove the bar if it already exists
+    // define navBarBS
+     if(BSObject.querySelector('.nav-pills').classList.contains(parameters.navBarBS))
+     {
+     BSObject.querySelector('.nav-pills').classList.remove(parameters.navBarBS);
+     BSObject.querySelector('.nav-pills').className += " " + parameters.navBarBS;
     }
-    if (parameters["navTabActiveBS.shape"] == "circle") { 
-        //first remove any existing shapes if they exist
-        if(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].classList.contains(" NavShapeCircle"))
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].classList.remove(" NavShapeCircle");
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].classList += " NavShapeCircle"; 
+     
+     
+      // delete any existing classes navTabInactiveBS
+      BSObject.classList.remove(parameters.navTabInactiveBS);
+      if(BSObject.querySelectorAll("."+parameters.navTabInactiveBS))
+      for (const delFlair of BSObject.querySelectorAll("."+parameters.navTabInactiveBS) ){
+         delFlair.classList.remove(parameters.navTabInactiveBS);
+      }
+
+
+     // delete any existing navTabInactiveFlairBS divs
+     if(BSObject.querySelectorAll("."+parameters.navTabInactiveFlairBS))
+     for (const delFlair of BSObject.querySelectorAll("."+parameters.navTabInactiveFlairBS) ){
+        delFlair.parentNode.removeChild(delFlair);
+     }
+     
+     // possibly not needed
+     // find and remove any old inactive tabs that are now active
+    if(BSObject.querySelectorAll(".nav-link.active"))
+     for (const inActive of BSObject.querySelectorAll(".nav-link.active") ){
+        inActive.classList.remove(parameters.navTabInactiveBS);
+     }
+ 
+    // define navTabInactiveBS
+     if(BSObject.querySelectorAll(".nav-link:not(.active)"))
+     for (const inActive of BSObject.querySelectorAll(".nav-link:not(.active)") ){
+
+        if(!inActive.classList.contains("BSNavTab")){
+        inActive.className += " " + parameters.navTabInactiveBS;
+
+
+            //define navTabInactiveFlairBS, a sub div where "Flair" elements can be used for a secondary decorative overlay or layer on the main extra tab. 
+            if(inActive.getElementsByClassName(parameters.navTabInactiveFlairBS).length == 0){
+                addFlair = document.createElement("div")
+                addFlair.classList.remove(parameters.navTabInactiveFlairBS);
+                addFlair.className += " " + parameters.navTabInactiveFlairBS;
+                inActive.appendChild(addFlair);
+            }
+        }
     }
-    
-        // define navTabActiveBS.color
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.color = parameters["navTabActiveBS.color"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.color = parameters["navTabActiveBS.color"];
-        }
-        // define navTabActiveBS.background-color
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.backgroundColor = parameters["navTabActiveBS.background-color"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.backgroundColor = parameters["navTabActiveBS.background-color"];
-        }
-
-        // define navTabActiveBS.background-image
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.backgroundImage = parameters["navTabActiveBS.background-image"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.backgroundImage = parameters["navTabActiveBS.background-image"];
-        }
-        // define navTabActiveBS.padding
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.padding = parameters["navTabActiveBS.padding"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.backgroundImage = parameters["navTabActiveBS.padding"];
-        }
-        // define navTabActiveBS.margin
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.margin = parameters["navTabActiveBS.margin"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.margin"];
-        }
-        // define navTabActiveBS.border
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.border = parameters["navTabActiveBS.border"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.border"];
-        }
-        // define navTabActiveBS.borderRadius
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.borderRadius = parameters["navTabActiveBS.border-radius"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.border-radius"];
-        }
-        // define navTabActiveBS.height
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.height = parameters["navTabActiveBS.height"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.height"];
-        }
-        // define navTabActiveBS.width
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.width = parameters["navTabActiveBS.width"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.width"];
-        }
-        // define navTabActiveBS.min-height
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.minHeight = parameters["navTabActiveBS.min-height"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.min-height"];
-        }
-        // define navTabActiveBS.min-width
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.minWidth = parameters["navTabActiveBS.min-width"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.min-width"];
-        }
-        // define navTabActiveBS.max-height
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.maxHeight = parameters["navTabActiveBS.max-height"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.max-height"];
-        }
-        // define navTabActiveBS.max-width
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.maxWidth = parameters["navTabActiveBS.max-width"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.max-width"];
-        }
-        // define navTabActiveBS.font
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.font = parameters["navTabActiveBS.font"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.font"];
-        }
-        // define navTabActiveBS.font-weight
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.fontWeight = parameters["navTabActiveBS.font-weight"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.font-weight"];
-        }
-        // define navTabActiveBS.font-family
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.fontFamily = parameters["navTabActiveBS.font-family"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.font-family"];
-        }
-        // define navTabActiveBS.font-size
-        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.fontSize = parameters["navTabActiveBS.font-size"];
-        if (BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active') !== null) {
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveBS.font-size"];
-        }
 
 
 
+    // define styles
+    addStyling(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0],"navTabActiveBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.navTabActiveFlairBS)[0],"navTabActiveFlairBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0],"navTabInactiveBS",parameters,JCurTab);
 
-        // define navTabActiveFlareBS.shape
-if (parameters["navTabActiveFlareBS.shape"] == "square") { 
-    //first remove any existing shapes if they exist
-    if(BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].classList.contains(" NavShapeSquare"))
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].classList.remove(" NavShapeSquare");
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].classList += " NavShapeSquare"; 
-}
-if (parameters["navTabActiveFlareBS.shape"] == "oval") { 
-    //first remove any existing shapes if they exist
-    if(BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].classList.contains(" NavShapeOval"))
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].classList.remove(" NavShapeOval");
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].classList += " NavShapeOval"; 
-}
-if (parameters["navTabActiveFlareBS.shape"] == "circle") { 
-    //first remove any existing shapes if they exist
-    if(BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].classList.contains(" NavShapeCircle"))
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].classList.remove(" NavShapeCircle");
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].classList += " NavShapeCircle"; 
+
+    }
+
+
+
 }
 
-    // define navTabActiveFlareBS.color
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.color = parameters["navTabActiveFlareBS.color"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.color = parameters["navTabActiveFlareBS.color"];
-    }
-    // define navTabActiveFlareBS.background-color
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.backgroundColor = parameters["navTabActiveFlareBS.background-color"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.backgroundColor = parameters["navTabActiveFlareBS.background-color"];
-    }
-
-    // define navTabActiveFlareBS.background-image
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.backgroundImage = parameters["navTabActiveFlareBS.background-image"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.backgroundImage = parameters["navTabActiveFlareBS.background-image"];
-    }
-    // define navTabActiveFlareBS.padding
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.padding = parameters["navTabActiveFlareBS.padding"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.backgroundImage = parameters["navTabActiveFlareBS.padding"];
-    }
-    // define navTabActiveFlareBS.margin
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.margin = parameters["navTabActiveFlareBS.margin"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.margin"];
-    }
-    // define navTabActiveFlareBS.border
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.border = parameters["navTabActiveFlareBS.border"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.border"];
-    }
-    // define navTabActiveFlareBS.borderRadius
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.borderRadius = parameters["navTabActiveFlareBS.border-radius"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.border-radius"];
-    }
-    // define navTabActiveFlareBS.height
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.height = parameters["navTabActiveFlareBS.height"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.height"];
-    }
-    // define navTabActiveFlareBS.width
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.width = parameters["navTabActiveFlareBS.width"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.width"];
-    }
-    // define navTabActiveFlareBS.min-height
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.minHeight = parameters["navTabActiveFlareBS.min-height"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.min-height"];
-    }
-    // define navTabActiveFlareBS.min-width
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.minWidth = parameters["navTabActiveFlareBS.min-width"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.min-width"];
-    }
-    // define navTabActiveFlareBS.max-height
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.maxHeight = parameters["navTabActiveFlareBS.max-height"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.max-height"];
-    }
-    // define navTabActiveFlareBS.max-width
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.maxWidth = parameters["navTabActiveFlareBS.max-width"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.max-width"];
-    }
-    // define navTabActiveFlareBS.font
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.font = parameters["navTabActiveFlareBS.font"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.font"];
-    }
-    // define navTabActiveFlareBS.font-weight
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.fontWeight = parameters["navTabActiveFlareBS.font-weight"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.font-weight"];
-    }
-    // define navTabActiveFlareBS.font-family
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.fontFamily = parameters["navTabActiveFlareBS.font-family"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.font-family"];
-    }
-    // define navTabActiveFlareBS.font-size
-    BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].style.fontSize = parameters["navTabActiveFlareBS.font-size"];
-    if (BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabActiveFlareBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabActiveFlareBS.font-size"];
-    }
-
-
-
-
-
-
-      // define navTabInactiveBS.shape
-  if (parameters["navTabInactiveBS.shape"] == "square") { 
-    //first remove any existing shapes if they exist
-    if(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].classList.contains(" NavShapeSquare"))
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].classList.remove(" NavShapeSquare");
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].classList += " NavShapeSquare"; 
-}
-if (parameters["navTabInactiveBS.shape"] == "oval") { 
-    //first remove any existing shapes if they exist
-    if(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].classList.contains(" NavShapeOval"))
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].classList.remove(" NavShapeOval");
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].classList += " NavShapeOval"; 
-}
-if (parameters["navTabInactiveBS.shape"] == "circle") { 
-    //first remove any existing shapes if they exist
-    if(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].classList.contains(" NavShapeCircle"))
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].classList.remove(" NavShapeCircle");
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].classList += " NavShapeCircle"; 
-}
-
-    // define navTabInactiveBS.color
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.color = parameters["navTabInactiveBS.color"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.color = parameters["navTabInactiveBS.color"];
-    }
-    // define navTabInactiveBS.background-color
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.backgroundColor = parameters["navTabInactiveBS.background-color"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.backgroundColor = parameters["navTabInactiveBS.background-color"];
-    }
-
-    // define navTabInactiveBS.background-image
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.backgroundImage = parameters["navTabInactiveBS.background-image"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.backgroundImage = parameters["navTabInactiveBS.background-image"];
-    }
-    // define navTabInactiveBS.padding
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.padding = parameters["navTabInactiveBS.padding"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.backgroundImage = parameters["navTabInactiveBS.padding"];
-    }
-    // define navTabInactiveBS.margin
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.margin = parameters["navTabInactiveBS.margin"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.margin"];
-    }
-    // define navTabInactiveBS.border
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.border = parameters["navTabInactiveBS.border"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.border"];
-    }
-    // define navTabInactiveBS.borderRadius
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.borderRadius = parameters["navTabInactiveBS.border-radius"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.border-radius"];
-    }
-    // define navTabInactiveBS.height
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.height = parameters["navTabInactiveBS.height"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.height"];
-    }
-    // define navTabInactiveBS.width
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.width = parameters["navTabInactiveBS.width"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.width"];
-    }
-    // define navTabInactiveBS.min-height
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.minHeight = parameters["navTabInactiveBS.min-height"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.min-height"];
-    }
-    // define navTabInactiveBS.min-width
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.minWidth = parameters["navTabInactiveBS.min-width"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.min-width"];
-    }
-    // define navTabInactiveBS.max-height
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.maxHeight = parameters["navTabInactiveBS.max-height"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.max-height"];
-    }
-    // define navTabInactiveBS.max-width
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.maxWidth = parameters["navTabInactiveBS.max-width"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.max-width"];
-    }
-    // define navTabInactiveBS.font
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.font = parameters["navTabInactiveBS.font"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.font"];
-    }
-    // define navTabInactiveBS.font-weight
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.fontWeight = parameters["navTabInactiveBS.font-weight"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.font-weight"];
-    }
-    // define navTabInactiveBS.font-family
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.fontFamily = parameters["navTabInactiveBS.font-family"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.font-family"];
-    }
-    // define navTabInactiveBS.font-size
-    BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].style.fontSize = parameters["navTabInactiveBS.font-size"];
-    if (BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active') !== null) {
-        BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].querySelector('.nav-link.active').style.margin = parameters["navTabInactiveBS.font-size"];
-    }
-
-
-
-
-
-    }
-
-
-
+function hasClass(element, cls) {
+    return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
 }
 
 function ReFresh(BSObject, parameters) {
@@ -1384,4 +768,163 @@ function CheckTabLocation(curTab, BSObject, parameters) {
 function submitClicked() {
     // we will hide the back button if on the first tab
     console.log("CLICKED SUBMIT");
+}
+
+
+function addStyling(parameterBaseElement, parameterBaseName,parameters,JCurTab){
+
+    // addStyling(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0],"parameters.navTabActiveBS",parameters);
+    //parameterBaseElement example: parameters.navTabBS
+    //parameterBaseName "parameters.navTabBS" 
+    
+    // define current tab shape in case we need to alter it
+    var JCurtRect = JCurTab.getBoundingClientRect();
+
+    // define shape
+if (parameters[parameterBaseName+".shape"] == "square") { 
+    //first remove any existing shapes if they exist
+    if(parameterBaseElement.classList.contains(" NavShapeSquare"))
+    parameterBaseElement.classList.remove(" NavShapeSquare");
+    parameterBaseElement.classList += " NavShapeSquare";
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+    parameterBaseElement.querySelector('.nav-link.active').style.height = JCurtRect.height + "px"; 
+    }
+}
+if (parameters[parameterBaseName+".shape"] == "oval") { 
+    //first remove any existing shapes if they exist
+    if(parameterBaseElement.classList.contains(" NavShapeOval"))
+    parameterBaseElement.classList.remove(" NavShapeOval");
+    parameterBaseElement.classList += " NavShapeOval"; 
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+    parameterBaseElement.querySelector('.nav-link.active').style.height = JCurtRect.height + "px";
+    }
+}
+if (parameters[parameterBaseName+".shape"] == "circle") { 
+    //first remove any existing shapes if they exist
+    if(parameterBaseElement.classList.contains(" NavShapeCircle"))
+    parameterBaseElement.classList.remove(" NavShapeCircle");
+    parameterBaseElement.classList += " NavShapeCircle"; 
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+    parameterBaseElement.querySelector('.nav-link.active').style.height = JCurtRect.width + "px";
+    }
+}
+
+
+
+    parameterBaseElement.style.color = parameters[parameterBaseName+".color"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.color = parameters[parameterBaseName+".color"];
+    }
+    // define element.background-color
+    parameterBaseElement.style.backgroundColor = parameters[parameterBaseName+".background-color"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.backgroundColor = parameters[parameterBaseName+".background-color"];
+    }
+
+    // define element.background-image
+    parameterBaseElement.style.backgroundImage = parameters[parameterBaseName+".background-image"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.backgroundImage = parameters[parameterBaseName+".background-image"];
+    }
+    // define element.padding
+    parameterBaseElement.style.padding = parameters[parameterBaseName+".padding"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.padding = parameters[parameterBaseName+".padding"];
+    }
+    // define element.margin
+    parameterBaseElement.style.margin = parameters[parameterBaseName+".margin"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.margin = parameters[parameterBaseName+".margin"];
+    }
+    // define element.border
+    parameterBaseElement.style.border = parameters[parameterBaseName+".border"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.border = parameters[parameterBaseName+".border"];
+    }
+    // define element.borderRadius
+    parameterBaseElement.style.borderRadius = parameters[parameterBaseName+".border-radius"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.borderRadius = parameters[parameterBaseName+".border-radius"];
+    }
+    // define element.height
+    parameterBaseElement.style.height = parameters[parameterBaseName+".height"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.height = parameters[parameterBaseName+".height"];
+    }
+    // define element.width
+    parameterBaseElement.style.width = parameters[parameterBaseName+".width"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.width = parameters[parameterBaseName+".width"];
+    }
+    // define element.min-height
+    parameterBaseElement.style.minHeight = parameters[parameterBaseName+".min-height"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.minHeight = parameters[parameterBaseName+".min-height"];
+    }
+    // define element.min-width
+    parameterBaseElement.style.minWidth = parameters[parameterBaseName+".min-width"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.minWidth = parameters[parameterBaseName+".min-width"];
+    }
+    // define element.max-height
+    parameterBaseElement.style.maxHeight = parameters[parameterBaseName+".max-height"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.maxHeight = parameters[parameterBaseName+".max-height"];
+    }
+    // define element.max-width
+    parameterBaseElement.style.maxWidth = parameters[parameterBaseName+".max-width"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.maxWidth = parameters[parameterBaseName+".max-width"];
+    }
+    // define element.font
+    parameterBaseElement.style.font = parameters[parameterBaseName+".font"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.font = parameters[parameterBaseName+".font"];
+    }
+    // define element.font-weight
+    parameterBaseElement.style.fontWeight = parameters[parameterBaseName+".font-weight"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.fontWeight = parameters[parameterBaseName+".font-weight"];
+    }
+    // define element.font-family
+    parameterBaseElement.style.fontFamily = parameters[parameterBaseName+".font-family"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.fontFamily = parameters[parameterBaseName+".font-family"];
+    }
+    // define element.font-size
+    parameterBaseElement.style.fontSize = parameters[parameterBaseName+".font-size"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.fontSize = parameters[parameterBaseName+".font-size"];
+    }
+    // define element.z-index
+    parameterBaseElement.style.zIndex = parameters[parameterBaseName+".z-index"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.zIndex = parameters[parameterBaseName+".z-index"];
+    }
+    // define element.opacity
+    parameterBaseElement.style.opacity = parameters[parameterBaseName+".opacity"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.opacity = parameters[parameterBaseName+".opacity"];
+    }
+    // define element.text-align
+    parameterBaseElement.style.textShadow = parameters[parameterBaseName+".text-align"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.textShadow = parameters[parameterBaseName+".text-align"];
+    }
+    // define element.text-shadow
+    parameterBaseElement.style.textShadow = parameters[parameterBaseName+".text-shadow"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.textShadow = parameters[parameterBaseName+".text-shadow"];
+    }
+    // define element.transform
+    parameterBaseElement.style.transform = parameters[parameterBaseName+".transform"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.transform = parameters[parameterBaseName+".transform"];
+    }
+    // define element.box-shadow
+    parameterBaseElement.style.boxShadow = parameters[parameterBaseName+".box-shadow"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.boxShadow = parameters[parameterBaseName+".box-shadow"];
+    }
+
 }
