@@ -408,18 +408,33 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
 
     // add custom decorating to the navigation bar or navbar
     if (BSObject.querySelector('.nav-pills') !== null) {
-
+        navBarIndex = BSObject.querySelector('.nav-pills');
         // remove the bar if it already exists
-        if(BSObject.querySelector('.nav-pills').classList.contains(parameters.navBarBS))
-        BSObject.querySelector('.nav-pills').classList.remove(parameters.navBarBS);
+        if(navBarIndex.classList.contains(parameters.navBarBS))
+        navBarIndexclassList.remove(parameters.navBarBS);
 
-        BSObject.querySelector('.nav-pills').className += " " + parameters.navBarBS;
+        navBarIndex.className += " " + parameters.navBarBS;
+
+        navBarRect = navBarIndex.getBoundingClientRect();
+
+        var navBarFlair = document.createElement("div")
+        navBarFlair.className += " " + parameters.navBarFlairBS;
+
+        navBarFlairRect = navBarFlair.getBoundingClientRect();
+
+        navBarFlairRect.height = navBarRect.height + "px";
+        navBarFlairRect.width = navBarRect.width + "px";
+
+        navBarIndex.prepend(navBarFlair);
+
+        //BSObject.querySelector('.nav-pills').insertBefore(navBarFlair, navBarIndex);
     }
 
 
     // add Flair layer under main div layer
     div.appendChild(divFlair);
     JCurTab.parentElement.appendChild(div);
+
 
     // define styles
 
