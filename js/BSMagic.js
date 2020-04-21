@@ -208,8 +208,29 @@ function BSMagic(parameters) {
 
     //Add buttons if wanted
 
+
     var pills = BSObject.getElementsByClassName('nav-pills')[0];
     var pane = BSObject.getElementsByClassName('tab-pane')[0];
+
+
+    var BSparent = getCommonAncestor(pills, pane);
+
+    //define navBarFlairBS and wrap it around the navBar as a parent
+    var navBarFlair = document.createElement("div")
+    navBarFlair.className += " " + parameters.navBarFlairBS; 
+
+    pills.appendChild(navBarFlair);
+
+    /*
+    BSparent.prepend(navBarFlair);
+    
+    navBarFlair.appendChild(pills);
+
+    */
+   
+
+
+
 
     //Add styling
     var BSparent = getCommonAncestor(pills, pane);
@@ -365,11 +386,11 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
         elements[i].parentNode.removeChild(elements[i]);
     }
 
-    // create new div containing the drawing
+    // create new div containing the drawing (nabTabActiveBS)
     var div = document.createElement("div")
 
-    //create a sub div where "Flair" elements can be used for a secondary decorative overlay or layer on the main extra tab. 
-    var divFlair = document.createElement("div")
+    //create a sub div where "Flair" elements can be used for a secondary decorative overlay or layer on the main extra tab.  (nabTabActiveFlairBS)
+    var divFlair = document.createElement("div") 
     divFlair.className += " " + parameters.navTabActiveFlairBS;
 
     var JCurtRect = JCurTab.getBoundingClientRect();
@@ -411,23 +432,10 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
         navBarIndex = BSObject.querySelector('.nav-pills');
         // remove the bar if it already exists
         if(navBarIndex.classList.contains(parameters.navBarBS))
-        navBarIndexclassList.remove(parameters.navBarBS);
+        navBarIndex.classList.remove(parameters.navBarBS);
 
         navBarIndex.className += " " + parameters.navBarBS;
 
-        navBarRect = navBarIndex.getBoundingClientRect();
-
-        var navBarFlair = document.createElement("div")
-        navBarFlair.className += " " + parameters.navBarFlairBS;
-
-        navBarFlairRect = navBarFlair.getBoundingClientRect();
-
-        navBarFlairRect.height = navBarRect.height + "px";
-        navBarFlairRect.width = navBarRect.width + "px";
-
-        navBarIndex.prepend(navBarFlair);
-
-        //BSObject.querySelector('.nav-pills').insertBefore(navBarFlair, navBarIndex);
     }
 
 
@@ -441,6 +449,8 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
     addStyling(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0],"navTabActiveBS",parameters,JCurTab);
     addStyling(BSObject.getElementsByClassName(parameters.navTabActiveFlairBS)[0],"navTabActiveFlairBS",parameters,JCurTab);
     addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0],"navTabInactiveBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.navBarBS)[0],"navBarBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.navBarFlairBS)[0],"navBarFlairBS",parameters,JCurTab);
 
     
     // now animate the new div to expand to the nex location and then move over and shink or epand to new size
