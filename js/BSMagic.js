@@ -64,7 +64,7 @@ function BSMagic(parameters) {
 
     if (parameters.theme == "Magic1") { //blue oval button with white text
 
-        parameters.addButtons = true;
+        parameters.showBottomNavBS = true;
      //   parameters.navBackground = "NavBackgroundBlue";
         parameters["navTabActiveBS.color"] = "white";
         parameters["navTabActiveBS.background-color"] = "#00bcd4";
@@ -72,7 +72,7 @@ function BSMagic(parameters) {
         //  parameters.navUnderline = true;
         //  parameters.navShadow = true;
     } else if (parameters.theme == "Magic2") { //white square button with blue underline and shadow and blue text
-        parameters.addButtons = true;
+        parameters.showBottomNavBS = true;
     //    parameters.navBackground = "NavShapeSquare2";
         parameters["navTabActiveBS.color"] = "blue";
         parameters["navTabActiveBS.background-color"] = "transparent";
@@ -81,8 +81,33 @@ function BSMagic(parameters) {
         parameters.navShadow = true;
     }
 
+    
     //define if we want navigation buttons added
-    if (parameters.buttonBarBS === undefined) parameters.buttonBarBS = true;
+    if (parameters.showBottomNavBS === undefined) parameters.showBottomNavBS = true;
+
+    //define bottom nav back button
+    if (parameters.backButonBS === undefined) parameters.backButonBS = "backButonBS";
+
+    //define bottom nav back button flair
+    if (parameters.backButonFlairBS === undefined) parameters.backButonFlairBS = "backButonFlairBS";
+
+    //define bottom nav next button
+    if (parameters.nextButtonBS === undefined) parameters.nextButtonBS = "nextButtonBS";
+
+    //define bottom nav next button flair
+    if (parameters.nextButtonFlairBS === undefined) parameters.nextButtonFlairBS = "nextButtonFlairBS";
+
+    //define active tab content
+    if (parameters.tabContentBS === undefined) parameters.tabContentBS = "tabContentBS";
+
+    //define active tab content flair
+    if (parameters.tabContentFlairBS === undefined) parameters.tabContentFlairBS = "tabContentFlairBS";
+
+    //define if we want navigation buttons added
+    if (parameters.buttonBarBS === undefined) parameters.buttonBarBS = "buttonBarBS";
+
+    //define if we want navigation buttons added
+    if (parameters.buttonBarFlairBS === undefined) parameters.buttonBarFlairBS = "buttonBarFlairBS";
 
     //define navigation shape, should be disabled if navTabActiveBS is defined
     if (parameters["navTabActiveBS.shape"] === undefined) parameters["navTabActiveBS.shape"]="square";
@@ -115,19 +140,21 @@ function BSMagic(parameters) {
         //make sure to remove default shape css if you are going to define your own
         parameters["navTabActiveBS.shape"]="";
     }
-    if (parameters.navTabActiveBS === undefined) parameters.navTabActiveBS = "BSNavTab";
+    if (parameters.navTabActiveBS === undefined) parameters.navTabActiveBS = "navTabActiveBS";
 
-    if (parameters.navTabActiveFlairBS === undefined) parameters.navTabActiveFlairBS = "BSNavTabFlair";
+    if (parameters.navTabActiveFlairBS === undefined) parameters.navTabActiveFlairBS = "navTabActiveFlairBS";
 
-    if (parameters.navTabInactiveBS === undefined) parameters.navTabInactiveBS = "BSNavInactiveTab";
+    if (parameters.navTabInactiveBS === undefined) parameters.navTabInactiveBS = "navTabInactiveBS";
 
-    if (parameters.navTabInactiveFlairBS === undefined) parameters.navTabInactiveFlairBS = "BSNavInactiveTabFlair";
+    if (parameters.navTabInactiveFlairBS === undefined) parameters.navTabInactiveFlairBS = "navTabInactiveFlairBS";
 
     if (parameters.navTabTextOffetX === undefined) parameters.navTabTextOffetX = 0;
 
     if (parameters.navTabTextOffetY === undefined) parameters.navTabTextOffetY = 0;
 
-    if (parameters.navBarBS === undefined) parameters.navBarBS = "";
+    if (parameters.navBarBS === undefined) parameters.navBarBS = "navBarBS";
+
+    if (parameters.navBarflairBS === undefined) parameters.navBarflairBS = "navBarflairBS";
 
 
     //create variable to determine if we have vertical tabs
@@ -147,6 +174,19 @@ function BSMagic(parameters) {
 
     // Navbar identified by having class="nav-pills"
     var navpills = BSObject.getElementsByClassName("nav-pills");
+
+    // define navBarBS
+    navpills[0].className += " " + parameters.navBarBS;
+
+    // define tabContentBS - tab content
+    TabContent = BSObject.getElementsByClassName("tab-content")[0];
+    TabContent.className += " " + parameters.tabContentBS;
+    // define tabContentFlairBS and add it to tabContentBS
+    TabContentBS = document.createElement("div")
+    TabContentBS.className += " " + parameters.tabContentFlairBS; 
+    TabContent.appendChild(TabContentBS);
+
+
     // each Navbar item identified by having class="nav-link"
     var navlinks = navpills[0].getElementsByClassName("nav-link");
     // grabs the first tab and sets it as active
@@ -221,16 +261,6 @@ function BSMagic(parameters) {
 
     pills.appendChild(navBarFlair);
 
-    /*
-    BSparent.prepend(navBarFlair);
-    
-    navBarFlair.appendChild(pills);
-
-    */
-   
-
-
-
 
     //Add styling
     var BSparent = getCommonAncestor(pills, pane);
@@ -250,7 +280,7 @@ function BSMagic(parameters) {
         getCommonAncestor(pills, pane).classList += " BSHorizontal";
     }
 
-    if (parameters.buttonBarBS == true) {
+    if (parameters.showBottomNavBS == true) {
         buttonBarBS(getCommonAncestor(pills, pane), parameters);
     }
 
@@ -354,9 +384,10 @@ function BSMagic(parameters) {
 
 
 function buttonBarBS(topContainer, parameters) {
-    var buttombuttons = "<div class='BSMagicButtons col-sm-12' style='justify-content:space-between;'><div class='float-right'> <button type='button' class='btn btn-next btn-fill btn-danger btn-wd square nextButtonBS' name='next' value='Next' >" + parameters.nextText + "</button></div><div class='float-left'><button type='button' class='btn btn-previous btn-fill btn-default btn-wd square backButonBS' name='previous' value='Previous' >" + parameters.prevText + "</button></div><div class='clearfix'></div></div>";
+    console.log("create buttons");
+    var buttombuttons = "<div class='"+parameters.buttonBarBS+" col-sm-12' style='justify-content:space-between;'><div class='"+parameters.buttonBarFlairBS+"'></div> <div class='float-right'> <button type='button' class='"+parameters.nextButtonBS+" btn btn-next btn-fill btn-danger btn-wd square' name='next' value='Next' >" + parameters.nextText + "</button> <div class='"+parameters.nextButtonFlairBS+"'></div>  </div><div class='float-left'><button type='button' class='"+parameters.backButonBS+" btn btn-previous btn-fill btn-default btn-wd square' name='previous' value='Previous' >" + parameters.prevText + "</button>   <div class='"+parameters.backButonFlairBS+"'></div> </div><div class='clearfix'></div></div>";
     topContainer.insertAdjacentHTML('beforeend', buttombuttons);
-    topContainer.getElementsByClassName("BSMagicButtons").item(0).setAttribute('data-parent', parameters.id);
+    topContainer.getElementsByClassName(parameters.buttonBarBS).item(0).setAttribute('data-parent', parameters.id);
     // topContainer.appendChild(buttombuttons);
 }
 
@@ -427,17 +458,6 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
         textOffset.style.left = parseInt(parameters.navTabTextOffetX) + "px";
     }
 
-    // add custom decorating to the navigation bar or navbar
-    if (BSObject.querySelector('.nav-pills') !== null) {
-        navBarIndex = BSObject.querySelector('.nav-pills');
-        // remove the bar if it already exists
-        if(navBarIndex.classList.contains(parameters.navBarBS))
-        navBarIndex.classList.remove(parameters.navBarBS);
-
-        navBarIndex.className += " " + parameters.navBarBS;
-
-    }
-
 
     // add Flair layer under main div layer
     div.appendChild(divFlair);
@@ -446,11 +466,26 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
 
     // define styles
 
+    console.log("call style 1");
+
     addStyling(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0],"navTabActiveBS",parameters,JCurTab);
     addStyling(BSObject.getElementsByClassName(parameters.navTabActiveFlairBS)[0],"navTabActiveFlairBS",parameters,JCurTab);
     addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0],"navTabInactiveBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveFlairBS)[0],"navTabInactiveFlairBS",parameters,JCurTab);
     addStyling(BSObject.getElementsByClassName(parameters.navBarBS)[0],"navBarBS",parameters,JCurTab);
     addStyling(BSObject.getElementsByClassName(parameters.navBarFlairBS)[0],"navBarFlairBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.tabContentBS)[0],"tabContentBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.tabContentFlairBS)[0],"tabContentFlairBS",parameters,JCurTab);
+
+    if(parameters.showBottomNavBS){
+    addStyling(BSObject.getElementsByClassName(parameters.buttonBarBS)[0],"buttonBarBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.buttonBarFlairBS)[0],"buttonBarFlairBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.backButonBS)[0],"backButonBS",parameters,JCurTab);
+    // addStyling(BSObject.getElementsByClassName(parameters.backButonFlairBS)[0],"backButonFlairBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.nextButonBS)[0],"nextButonBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.nextButonFlairBS)[0],"nextButonFlairBS",parameters,JCurTab);
+    }
+    
 
     
     // now animate the new div to expand to the nex location and then move over and shink or epand to new size
@@ -591,7 +626,7 @@ function Initialize(JCurTab, BSObject, parameters) {
      if(BSObject.querySelectorAll(".nav-link:not(.active)"))
      for (const inActive of BSObject.querySelectorAll(".nav-link:not(.active)") ){
 
-        if(!inActive.classList.contains("BSNavTab")){
+        if(!inActive.classList.contains(parameters.navTabActiveBS)){
         inActive.className += " " + parameters.navTabInactiveBS;
 
 
@@ -600,17 +635,33 @@ function Initialize(JCurTab, BSObject, parameters) {
                 addFlair = document.createElement("div")
                 addFlair.classList.remove(parameters.navTabInactiveFlairBS);
                 addFlair.className += " " + parameters.navTabInactiveFlairBS;
+                addStyling(inActive,"navTabInactiveBS",parameters,JCurTab);
                 inActive.appendChild(addFlair);
             }
         }
     }
 
 
-
+console.log("call style 2");
     // define styles
+
     addStyling(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0],"navTabActiveBS",parameters,JCurTab);
     addStyling(BSObject.getElementsByClassName(parameters.navTabActiveFlairBS)[0],"navTabActiveFlairBS",parameters,JCurTab);
-    addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0],"navTabInactiveBS",parameters,JCurTab);
+    //addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0],"navTabInactiveBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveFlairBS)[0],"navTabInactiveFlairBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.navBarBS)[0],"navBarBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.navBarFlairBS)[0],"navBarFlairBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.tabContentBS)[0],"tabContentBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.tabContentFlairBS)[0],"tabContentFlairBS",parameters,JCurTab);
+
+    if(parameters.showBottomNavBS){
+    addStyling(BSObject.getElementsByClassName(parameters.buttonBarBS)[0],"buttonBarBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.buttonBarFlairBS)[0],"buttonBarFlairBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.backButonBS)[0],"backButonBS",parameters,JCurTab);
+    //addStyling(BSObject.getElementsByClassName(parameters.backButonFlairBS)[0],"backButonFlairBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.nextButonBS)[0],"nextButonBS",parameters,JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.nextButonFlairBS)[0],"nextButonFlairBS",parameters,JCurTab);
+    }
 
 
     }
@@ -798,13 +849,59 @@ function submitClicked() {
 
 function addStyling(parameterBaseElement, parameterBaseName,parameters,JCurTab){
 
-    // addStyling(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0],"parameters.navTabActiveBS",parameters);
-    //parameterBaseElement example: parameters.navTabBS
-    //parameterBaseName "parameters.navTabBS" 
-    
     // define current tab shape in case we need to alter it
     var JCurtRect = JCurTab.getBoundingClientRect();
 
+    //add some default values that can be overwritter
+    if(parameterBaseName == "navBarBS"){ 
+        parameterBaseElement.style.position = "relative"; 
+        parameterBaseElement.style.zIndex = "10";
+    }
+    if(parameterBaseName == "navBarFlairBS"){  
+        parameterBaseElement.style.position = "relative"; 
+        parameterBaseElement.style.zIndex = "15";
+        parameterBaseElement.style.pointerEvents = "none";
+    }
+
+    if(parameterBaseName == "navTabInactiveBS"){  
+        parameterBaseElement.style.position = "relative"; 
+        parameterBaseElement.style.zIndex = "50";
+    }
+    if(parameterBaseName == "navTabInactiveFlairBS"){    
+        parameterBaseElement.style.position = "relative"; 
+        parameterBaseElement.style.zIndex = "55";   
+        parameterBaseElement.style.pointerEvents = "none"; 
+    }
+    if(parameterBaseName == "buttonBarBS"){
+        parameterBaseElement.style.position = "relative"; 
+        parameterBaseElement.style.zIndex = "50";
+    }
+    if(parameterBaseName == "buttonBarFlairBS"){
+        parameterBaseElement.style.position = "relative"; 
+        parameterBaseElement.style.zIndex = "55";
+    }
+    
+    if(parameterBaseName == "navTabActiveBS"){    
+        parameterBaseElement.style.position = "fixed"; 
+        parameterBaseElement.style.zIndex = "100";
+    }
+    if(parameterBaseName == "navTabActiveFlairBS"){        
+        parameterBaseElement.style.position = "relative"; 
+        parameterBaseElement.style.zIndex = "105";
+        parameterBaseElement.style.pointerEvents = "none";
+    }
+    
+    if(parameters.showBottomNavBS == true && parameterBaseElement !=null){
+    if(parameterBaseName == "nextButonBS"){parameterBaseElement.style.position = "relative"; parameterBaseElement.style.zIndex = "110"; parameterBaseElement.style.pointerEvents = "bounding-box";}
+    if(parameterBaseName == "nextButonFlairBS"){parameterBaseElement.style.position = "relative"; parameterBaseElement.style.zIndex = "115"; parameterBaseElement.style.pointerEvents = "none";}
+    if(parameterBaseName == "backButonBS"){parameterBaseElement.style.position = "relative"; parameterBaseElement.style.zIndex = "110"; parameterBaseElement.style.pointerEvents = "bounding-box";}
+    if(parameterBaseName == "backButonFlairBS"){parameterBaseElement.style.position = "relative"; parameterBaseElement.style.zIndex = "115"; parameterBaseElement.style.pointerEvents = "none";}
+    }
+    if(parameterBaseName == "tabContentBS"){parameterBaseElement.style.position = "relative"; parameterBaseElement.style.zIndex = "5";}
+    if(parameterBaseName == "tabContentFlairBS"){parameterBaseElement.style.position = "relative"; parameterBaseElement.style.zIndex = "7";}
+
+
+if(parameters.showBottomNavBS == true && parameterBaseElement !=null){   
     // define shape
 if (parameters[parameterBaseName+".shape"] == "square") { 
     //first remove any existing shapes if they exist
@@ -835,7 +932,17 @@ if (parameters[parameterBaseName+".shape"] == "circle") {
 }
 
 
-
+    // define element.align-self (center layer)
+    parameterBaseElement.style.alignSelf = parameters[parameterBaseName+".align-self"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.alignSelf = parameters[parameterBaseName+".align-self"];
+    }
+    // define element.pointer-events (make it so you can click through a layer)
+    parameterBaseElement.style.pointerEvents = parameters[parameterBaseName+".pointer-events"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.pointerEvents = parameters[parameterBaseName+".pointer-events"];
+    }
+    // define element.color
     parameterBaseElement.style.color = parameters[parameterBaseName+".color"];
     if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
         parameterBaseElement.querySelector('.nav-link.active').style.color = parameters[parameterBaseName+".color"];
@@ -870,6 +977,26 @@ if (parameters[parameterBaseName+".shape"] == "circle") {
     parameterBaseElement.style.borderRadius = parameters[parameterBaseName+".border-radius"];
     if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
         parameterBaseElement.querySelector('.nav-link.active').style.borderRadius = parameters[parameterBaseName+".border-radius"];
+    }
+    // define element.left
+    parameterBaseElement.style.left = parameters[parameterBaseName+".left"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.left = parameters[parameterBaseName+".left"];
+    }
+    // define element.top
+    parameterBaseElement.style.top = parameters[parameterBaseName+".top"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.top = parameters[parameterBaseName+".top"];
+    }
+    // define element.right
+    parameterBaseElement.style.right = parameters[parameterBaseName+".right"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.right = parameters[parameterBaseName+".right"];
+    }
+    // define element.bottom
+    parameterBaseElement.style.bottom = parameters[parameterBaseName+".bottom"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.bottom = parameters[parameterBaseName+".bottom"];
     }
     // define element.height
     parameterBaseElement.style.height = parameters[parameterBaseName+".height"];
@@ -951,5 +1078,7 @@ if (parameters[parameterBaseName+".shape"] == "circle") {
     if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
         parameterBaseElement.querySelector('.nav-link.active').style.boxShadow = parameters[parameterBaseName+".box-shadow"];
     }
+
+}
 
 }

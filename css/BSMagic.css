@@ -211,11 +211,11 @@
   }
   */
 
-.BSHorizontal .BSMagicButtons {
+.BSHorizontal .buttonBarBS {
     background-color: #e9ecef;
 }
 
-.BSVertical .BSMagicButtons {
+.BSVertical .buttonBarBS {
     background-color: #e9ecef;
 }
 
