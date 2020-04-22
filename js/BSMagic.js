@@ -136,10 +136,6 @@ function BSMagic(parameters) {
 
     if (parameters.isWizard === undefined) parameters.isWizard = false;
 
-    if (parameters.navTabActiveBS !== undefined) {
-        //make sure to remove default shape css if you are going to define your own
-        parameters["navTabActiveBS.shape"]="";
-    }
     if (parameters.navTabActiveBS === undefined) parameters.navTabActiveBS = "navTabActiveBS";
 
     if (parameters.navTabActiveFlairBS === undefined) parameters.navTabActiveFlairBS = "navTabActiveFlairBS";
@@ -288,19 +284,6 @@ function BSMagic(parameters) {
     CheckTabLocation(JCurTab, BSObject, parameters);
 
 
-
-
-
-
-
-
-    console.log("params");
-//TODO addShapes(parameters,parameters,BSObject);
-
-
-
-
-
     // if parent contain nav-pills that we don't have the nav-link in a wrapper
     if (JCurTab.parentElement.classList.contains("nav-pills")) {
         Initialize(JCurTab, BSObject, parameters); // draw initial bo around starting tab
@@ -312,6 +295,7 @@ function BSMagic(parameters) {
 
     //Add listeners for when tab is clicked
     var elements = BSObject.getElementsByClassName("nav-link");
+
 
 
     //add navigation buttons if wanted
@@ -394,27 +378,30 @@ function BSMagic(parameters) {
     //animate the transition
     JAnimate(JCurTab, JCurTab, BSObject, parameters);
 
+
+
+
 }
 
-function addShapes(obj,parameters,BSObject) {
+function addShapes(parameters,BSObject) {
+    obj = parameters;
     // iterate over properties, increment if a non-prototype property
     for(var key in obj){
         if( key.indexOf(".shape") !== -1){
-            console.log(key);
-            console.log( parameters[key] );
             baseObject = key.replace(".shape", "");
-            console.log(parameters[baseObject]);
-            parameterBaseElement = BSObject.getElementsByClassName(eval(parameters.baseObject));
 
-             //define shapes as a one off declaration and starting point
+parameterBaseElement = BSObject.getElementsByClassName(parameters[baseObject])[0];
+
+
+//define shapes as a one off declaration and starting point
     
 if (parameters[key] == "circle") { 
-    parameterBaseElement.style.position = "absolute";
+    //parameterBaseElement.style.position = "absolute";
     parameterBaseElement.style.textAlign = "center";
     parameterBaseElement.style.padding = "12px";
     parameterBaseElement.style.fontSize = "12px";
     parameterBaseElement.style.height = "45px !important";
-    parameterBaseElement.style.top = "12px";
+  //  parameterBaseElement.style.top = "12px";
     parameterBaseElement.style.fontWeight = "500";
     parameterBaseElement.style.borderRadius = "50%";
     parameterBaseElement.style.maxWidth = "50px";
@@ -423,25 +410,28 @@ if (parameters[key] == "circle") {
     }
     
     if (parameters[key] == "oval") { 
-    parameterBaseElement.style.position = "absolute";
+  //  parameterBaseElement.style.position = "relative";
     parameterBaseElement.style.textAlign = "center";
     parameterBaseElement.style.padding = "12px";
     parameterBaseElement.style.fontSize = "12px";
     parameterBaseElement.style.height = "45px";
-    parameterBaseElement.style.marginTop = "-45px";
-    parameterBaseElement.style.top = "12px";
+  //  parameterBaseElement.style.marginTop = "-45px";
+  //  parameterBaseElement.style.top = "-155px"; //was 12
+  //  parameterBaseElement.style.left = "0px"; //was not here
     parameterBaseElement.style.cursor = "pointer";
     parameterBaseElement.style.fontWeight = "500";
     parameterBaseElement.style.borderRadius = "24px";
+    parameterBaseElement.style.backgroundColor = "green !important";
+
     }
     
     if (parameters[key] == "square") { 
-    parameterBaseElement.style.position = "absolute";
+   // parameterBaseElement.style.position = "absolute";
     parameterBaseElement.style.textAlign = "center";
     parameterBaseElement.style.padding = "12px";
     parameterBaseElement.style.fontSize = "12px";
     parameterBaseElement.style.height = "45px !important";
-    parameterBaseElement.style.top = "12px";
+   // parameterBaseElement.style.top = "12px";
     parameterBaseElement.style.cursor = "pointer";
     parameterBaseElement.style.fontWeight = "500";
     }
@@ -537,6 +527,7 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
     // define styles
 
     console.log("call style 1");
+    addShapes(parameters,BSObject);
 
     addStyling(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0],"navTabActiveBS",parameters,JCurTab);
     addStyling(BSObject.getElementsByClassName(parameters.navTabActiveFlairBS)[0],"navTabActiveFlairBS",parameters,JCurTab);
@@ -712,9 +703,10 @@ function Initialize(JCurTab, BSObject, parameters) {
     }
 
 
-console.log("call style 2");
-    // define styles
+    console.log("call style 2");
+    addShapes(parameters,BSObject);
 
+    // define styles
     addStyling(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0],"navTabActiveBS",parameters,JCurTab);
     addStyling(BSObject.getElementsByClassName(parameters.navTabActiveFlairBS)[0],"navTabActiveFlairBS",parameters,JCurTab);
     addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0],"navTabInactiveBS",parameters,JCurTab);
@@ -732,6 +724,7 @@ console.log("call style 2");
     addStyling(BSObject.getElementsByClassName(parameters.nextButtonBS)[0],"nextButtonBS",parameters,JCurTab);
     addStyling(BSObject.getElementsByClassName(parameters.nextButtonFlairBS)[0],"nextButtonFlairBS",parameters,JCurTab);
     }
+
 
 
     }
