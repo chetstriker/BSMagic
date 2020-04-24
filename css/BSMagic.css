@@ -47,9 +47,7 @@
 }
 
 /* select all tab that aren't active */
-.nav-link:not(.active) {
-    
-}
+.nav-link:not(.active) {}
 
 .customTab .nav-link.active {
     /*margin: 0 -1px;
@@ -101,23 +99,23 @@
     box-shadow: 0 16px 26px -10px rgba(0, 188, 212, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 188, 212, 0.2);
 }
 
-.NavUnderlineBlue  {
+.NavUnderlineBlue {
     border-bottom: 2px solid #00bcd4 !important;
 }
 
-.NavBackgroundBlue  {
+.NavBackgroundBlue {
     background-color: #00bcd4 !important;
 }
 
-.NavBackgroundWhite  {
+.NavBackgroundWhite {
     background-color: #fff !important;
 }
 
-.NavFontBlue  {
+.NavFontBlue {
     color: #00bcd4 !important;
 }
 
-.NavFontWhite  {
+.NavFontWhite {
     color: #fff !important;
 }
 
