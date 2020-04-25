@@ -11,11 +11,14 @@
 // Pure Javascript with dependency on gsam which is also pure javascript and no dependencies
 
 /*
-    * ctrl + shift + z = define;  ctrl + shift + x = document function;  ctrl + shift + c = comment; 
+    * ctrl + shift + z = define;  ctrl + shift + x = document function;  ctrl + shift + c = console; 
 */ 
 
 // TODO - Add slide buttons
 // TODO - clear init and anim calls
+// TODO - create functions for update active tab and update inactive tabs
+
+
 
 // this is a finction to get the next nav-link
 var getNextSibling = function (elem, selector) {
@@ -91,78 +94,10 @@ function BSMagic(parameters) {
         parameters.navShadow = true;
     }
 
-
     /*
-        * #define parameters - these will hold default vaules for parameters if left blank
+        * #assign defualt values for parameters not called 
     */
-    //define if we want navigation buttons added
-    if (parameters.showBottomNavBS === undefined) parameters.showBottomNavBS = true;
-
-    //define bottom nav back button
-    if (parameters.backButtonBS === undefined) parameters.backButtonBS = "backButtonBS";
-
-    //define bottom nav back button flair
-    if (parameters.backButtonFlairBS === undefined) parameters.backButtonFlairBS = "backButtonFlairBS";
-
-    //define bottom nav next button
-    if (parameters.nextButtonBS === undefined) parameters.nextButtonBS = "nextButtonBS";
-
-    //define bottom nav next button flair
-    if (parameters.nextButtonFlairBS === undefined) parameters.nextButtonFlairBS = "nextButtonFlairBS";
-
-    //define active tab content
-    if (parameters.tabContentBS === undefined) parameters.tabContentBS = "tabContentBS";
-
-    //define active tab content flair
-    if (parameters.tabContentFlairBS === undefined) parameters.tabContentFlairBS = "tabContentFlairBS";
-
-    //define if we want navigation buttons added
-    if (parameters.buttonBarBS === undefined) parameters.buttonBarBS = "buttonBarBS";
-
-    //define if we want navigation buttons added
-    if (parameters.buttonBarFlairBS === undefined) parameters.buttonBarFlairBS = "buttonBarFlairBS";
-
-    //define navigation shape, should be disabled if navTabActiveBS is defined
-    if (parameters["navTabActiveBS.shape"] === undefined) parameters["navTabActiveBS.shape"] = "square";
-
-    //define navigation background color
-    if (parameters["navTabActiveBS.background-color"] === undefined) parameters["navTabActiveBS.background-color"] = "blue";
-
-    //define navigation font color
-    if (parameters["navTabActiveBS.color"] === undefined) parameters["navTabActiveBS.color"] = "white";
-
-    //define if we want to underline navigation
-    if (parameters.navUnderline === undefined) parameters.navUnderline = false;
-
-    //define if we want add shadow to navigation
-    if (parameters.navShadow === undefined) parameters.navShadow = false;
-
-    if (parameters.nextText === undefined) parameters.nextText = "NEXT";
-
-    if (parameters.prevText === undefined) parameters.prevText = "PREVIOUS";
-
-    if (parameters.navOffsetX === undefined) parameters.navOffsetX = 0;
-
-    if (parameters.navOffsetY === undefined) parameters.navOffsetY = 0;
-
-    if (parameters.isWizard === undefined) parameters.isWizard = false;
-
-    if (parameters.navTabActiveBS === undefined) parameters.navTabActiveBS = "navTabActiveBS";
-
-    if (parameters.navTabActiveFlairBS === undefined) parameters.navTabActiveFlairBS = "navTabActiveFlairBS";
-
-    if (parameters.navTabInactiveBS === undefined) parameters.navTabInactiveBS = "navTabInactiveBS";
-
-    if (parameters.navTabInactiveFlairBS === undefined) parameters.navTabInactiveFlairBS = "navTabInactiveFlairBS";
-
-    if (parameters.navTabTextOffetX === undefined) parameters.navTabTextOffetX = 0;
-
-    if (parameters.navTabTextOffetY === undefined) parameters.navTabTextOffetY = 0;
-
-    if (parameters.navBarBS === undefined) parameters.navBarBS = "navBarBS";
-
-    if (parameters.navBarflairBS === undefined) parameters.navBarflairBS = "navBarflairBS";
-
+   parameters = parameterDefaults(parameters);
 
     /*
         * #determine if tabs are vertically alignmened and make changes accordingly
@@ -184,29 +119,18 @@ function BSMagic(parameters) {
         vertical = true;
     }
 
-    // Navbar identified by having class="nav-pills"
+
+
+     /*
+        * #map up all the components so we can control and alter them 
+    */
+    defineElements(BSObject,parameters);
+
+
+/*
+    * #calculate the active tab and width of each tab 
+*/
     var navpills = BSObject.getElementsByClassName("nav-pills");
-
-    /*
-        * #map navBarBS 
-    */
-    navpills[0].className += " " + parameters.navBarBS;
-
-    // define tabContentBS - tab content
-    TabContent = BSObject.getElementsByClassName("tab-content")[0];
-    /*
-        * #map tabContentBS 
-    */
-    TabContent.className += " " + parameters.tabContentBS;
-    // define tabContentFlairBS and add it to tabContentBS
-    TabContentBS = document.createElement("div");
-    /*
-        * #map tabContentFlairBS 
-    */
-    TabContentBS.className += " " + parameters.tabContentFlairBS;
-    TabContent.appendChild(TabContentBS);
-
-
     // each Navbar item identified by having class="nav-link"
     var navlinks = navpills[0].getElementsByClassName("nav-link");
     // grabs the first tab and sets it as active
@@ -248,6 +172,7 @@ function BSMagic(parameters) {
         width = element.getBoundingClientRect().width;
         elementHeight = height / jtotal;
 
+
         Array.prototype.forEach.call(navlinks, function (tab) {
             // if parent contain nav-pills that we don't have the nav-link in a wrapper
             if (tab.parentElement.classList.contains("nav-pills")) {
@@ -263,34 +188,14 @@ function BSMagic(parameters) {
 
     }
 
+
     //find the currently active tab
+    
     JCurTab = BSObject.querySelector('.nav-link.active');
-
-    //Add buttons if wanted
-
-
     var pills = BSObject.getElementsByClassName('nav-pills')[0];
     var pane = BSObject.getElementsByClassName('tab-pane')[0];
-
-
-    var BSparent = getCommonAncestor(pills, pane);
-
-    //define navBarFlairBS and wrap it around the navBar as a parent
-    var navBarFlair = document.createElement("div");
-    /*
-        * #map  navBarFlairBS
-    */
-    navBarFlair.className += " " + parameters.navBarFlairBS;
-
-    pills.appendChild(navBarFlair);
-
-
-    //Add styling
-    /*
-        * #map bsmagic
-    */
     BSparent = getCommonAncestor(pills, pane);
-    BSparent.classList += " BSMagic";
+
 
     //add listeners to resize or relocate if scrolling or resizing
     window.addEventListener("resize", function () {
@@ -302,6 +207,19 @@ function BSMagic(parameters) {
         ReFresh(BSObject, parameters);
     });
 
+
+    if (vertical == true) {
+        getCommonAncestor(pills, pane).classList += " BSVertical";
+    } else {
+        getCommonAncestor(pills, pane).classList += " BSHorizontal";
+    }
+
+
+
+    /*
+        * TODO: port over all these 
+    */
+
     if (parameters.navUnderline == true) {
         getCommonAncestor(pills, pane).classList += " NavUnderlineBlue";
     }
@@ -310,11 +228,8 @@ function BSMagic(parameters) {
         getCommonAncestor(pills, pane).classList += " NavBlueShadow";
     }
 
-    if (vertical == true) {
-        getCommonAncestor(pills, pane).classList += " BSVertical";
-    } else {
-        getCommonAncestor(pills, pane).classList += " BSHorizontal";
-    }
+
+
 
     if (parameters.showBottomNavBS == true) {
         buttonBarBS(getCommonAncestor(pills, pane), parameters);
@@ -335,14 +250,10 @@ function BSMagic(parameters) {
 
 
 
-    //Add listeners for when tab is clicked
+    /*
+        * #make the first tab and the first tab content active 
+    */
     elements = BSObject.getElementsByClassName("nav-link");
-
-
-
-    //add navigation buttons if wanted
-
-
     i = 0;
     for (i = 0; i < elements.length; i++) {
         elements[i].addEventListener('click', function () {
@@ -423,6 +334,94 @@ function BSMagic(parameters) {
 
 }
 
+function parameterDefaults(parameters){
+     /*
+        * #define parameters - these will hold default vaules for parameters if left blank
+    */
+    //define if we want navigation buttons added
+    if (parameters.showBottomNavBS === undefined) parameters.showBottomNavBS = true;
+
+    //define if we want navigation buttons added
+    if (parameters.tabBS === undefined) parameters.tabBS = "tabBS";
+
+    //define bottom nav back button
+    if (parameters.backButtonBS === undefined) parameters.backButtonBS = "backButtonBS";
+
+    if (parameters["backButtonBS.margin"] === undefined) parameters["backButtonBS.margin"] = "10px 15px 10px 15px";
+
+    //define bottom nav back button flair
+    if (parameters.backButtonFlairBS === undefined) parameters.backButtonFlairBS = "backButtonFlairBS";
+
+    //define bottom nav next button
+    if (parameters.nextButtonBS === undefined) parameters.nextButtonBS = "nextButtonBS";
+
+
+    if (parameters["nextButtonBS.margin"] === undefined) parameters["nextButtonBS.margin"] = "10px 15px 10px 15px";
+
+
+    //define bottom nav next button flair
+    if (parameters.nextButtonFlairBS === undefined) parameters.nextButtonFlairBS = "nextButtonFlairBS";
+
+    //define active tab content
+    if (parameters.tabContentBS === undefined) parameters.tabContentBS = "tabContentBS";
+
+    //define active tab content
+    if (parameters["tabContentBS.margin"] === undefined) parameters["tabContentBS.margin"] = "0px 0px";
+
+    //define active tab content flair
+    if (parameters.tabContentFlairBS === undefined) parameters.tabContentFlairBS = "tabContentFlairBS";
+
+    //define if we want navigation buttons added
+    if (parameters.buttonBarBS === undefined) parameters.buttonBarBS = "buttonBarBS";
+;
+
+    //define if we want navigation buttons added
+    if (parameters.buttonBarFlairBS === undefined) parameters.buttonBarFlairBS = "buttonBarFlairBS";
+
+    //define navigation shape, should be disabled if navTabActiveBS is defined
+    if (parameters["navTabActiveBS.shape"] === undefined) parameters["navTabActiveBS.shape"] = "square";
+
+    //define navigation background color
+    if (parameters["navTabActiveBS.background-color"] === undefined) parameters["navTabActiveBS.background-color"] = "blue";
+
+    //define navigation font color
+    if (parameters["navTabActiveBS.color"] === undefined) parameters["navTabActiveBS.color"] = "white";
+
+    //define if we want to underline navigation
+    if (parameters.navUnderline === undefined) parameters.navUnderline = false;
+
+    //define if we want add shadow to navigation
+    if (parameters.navShadow === undefined) parameters.navShadow = false;
+
+    if (parameters.nextText === undefined) parameters.nextText = "NEXT";
+
+    if (parameters.prevText === undefined) parameters.prevText = "PREVIOUS";
+
+    if (parameters.navOffsetX === undefined) parameters.navOffsetX = 0;
+
+    if (parameters.navOffsetY === undefined) parameters.navOffsetY = 0;
+
+    if (parameters.isWizard === undefined) parameters.isWizard = false;
+
+    if (parameters.navTabActiveBS === undefined) parameters.navTabActiveBS = "navTabActiveBS";
+
+    if (parameters.navTabActiveFlairBS === undefined) parameters.navTabActiveFlairBS = "navTabActiveFlairBS";
+
+    if (parameters.navTabInactiveBS === undefined) parameters.navTabInactiveBS = "navTabInactiveBS";
+
+    if (parameters.navTabInactiveFlairBS === undefined) parameters.navTabInactiveFlairBS = "navTabInactiveFlairBS";
+
+    if (parameters.navTabTextOffetX === undefined) parameters.navTabTextOffetX = 0;
+
+    if (parameters.navTabTextOffetY === undefined) parameters.navTabTextOffetY = 0;
+
+    if (parameters.navBarBS === undefined) parameters.navBarBS = "navBarBS";
+
+    if (parameters.navBarflairBS === undefined) parameters.navBarflairBS = "navBarflairBS";
+
+    return parameters;
+}
+
 function addShapes (parameters, BSObject) {
     obj = parameters;
     // iterate over properties, increment if a non-prototype property
@@ -483,9 +482,118 @@ function addShapes (parameters, BSObject) {
 }
 
 
+/**
+ * @description  this will tag all element locations for our manipulation
+ * @author Jason Stover
+ * @date 2020-04-24
+ * @param {*} BSObject
+ * @param {*} parameters
+ */
+function defineElements(BSObject,parameters){
+
+    
+
+   /*
+       * #map navBarBS
+   */
+   BSObject.getElementsByClassName("nav-pills")[0].className += " " + parameters.navBarBS;
+
+    /*
+        * #map tabContentBS
+    */
+   BSObject.getElementsByClassName("tab-content")[0].className += " " + parameters.tabContentBS;
+   // define tabContentFlairBS and add it to tabContentBS
+   TabContentBS = document.createElement("div");
+   /*
+       * #map tabContentFlairBS 
+   */
+   TabContentBS.className += " " + parameters.tabContentFlairBS;
+   BSObject.getElementsByClassName("tab-content")[0].appendChild(TabContentBS);
+   navBarFlair = document.createElement("div");
+   /*
+       * #map navBarFlairBS
+   */
+   navBarFlair.className += " " + parameters.navBarFlairBS;
+   BSObject.getElementsByClassName('nav-pills')[0].appendChild(navBarFlair);
+   BSparent = getCommonAncestor( BSObject.getElementsByClassName('nav-pills')[0],  BSObject.getElementsByClassName('tab-pane')[0]);
+
+  // BSObject.getElementsByClassName('nav-tabs')
+   /*
+       * TODO: add parameter for this to decorate the full outside of tab component
+   */
+   BSparent.classList += " BSMagic";
+
+    // create new div containing the drawing (nabTabActiveBS)
+    var div = document.createElement("div");
+    //create a sub div where "Flair" elements can be used for a secondary decorative overlay or layer on the main extra tab.  (nabTabActiveFlairBS)
+    var divFlair = document.createElement("div");
+    /*
+        * #map navTabActiveFlairBS
+    */
+    divFlair.className += " " + parameters.navTabActiveFlairBS;
+    /*
+        * #map navTabActiveBS
+    */
+   div.className += " " + parameters.navTabActiveBS;
+    // add Flair layer under main div layer
+    div.appendChild(divFlair);
+    BSObject.getElementsByClassName("nav-link")[0].parentElement.appendChild(div);
+
+    // define navTabInactiveBS
+    if (BSObject.querySelectorAll(".nav-link:not(.active)"))
+    for (const inActive of BSObject.querySelectorAll(".nav-link:not(.active)")) {
+
+        if (!inActive.classList.contains(parameters.navTabActiveBS)) {
+            /*
+                * #map navTabInactiveBS
+            */
+            inActive.className += " " + parameters.navTabInactiveBS;
+
+
+            //define navTabInactiveFlairBS, a sub div where "Flair" elements can be used for a secondary decorative overlay or layer on the main extra tab. 
+            if (inActive.getElementsByClassName(parameters.navTabInactiveFlairBS).length == 0) {
+                addFlair = document.createElement("div");
+                addFlair.classList.remove(parameters.navTabInactiveFlairBS);
+                /*
+                    * #map navTabInactiveFlairBS
+                */
+                addFlair.className += " " + parameters.navTabInactiveFlairBS;
+                addStyling(inActive, "navTabInactiveBS", parameters, BSObject.querySelector('.nav-link.active'));
+                inActive.appendChild(addFlair);
+            }
+        }
+    }
+
+    /*
+        * #map tabBS 
+    */
+   var divBase = document.createElement("div");
+   divBase.className += " " + parameters.tabBS;
+   baseRect = BSparent.getBoundingClientRect();
+   divBase.style.position = "absolute";
+   divBase.style.width = baseRect.width+"px";
+   divBase.style.height = baseRect.height+"px";
+   BSparent.prepend(divBase);
+
+     /*
+            * #fix margin offsets by making sure add direct children of ID have -15 margin on left and right side
+    */
+     //  fixHorz = BSObject.getElementsByClassName(parameters.tabBS);
+     //  fixHorz[0].style.margin = "0 -15px 0 -15px";
+
+       
+    for (const chld of BSObject.children) {
+
+        chld.style.margin = "0 -15px 0 -15px";
+      
+    }
+
+}
+
+
 function buttonBarBS(topContainer, parameters) {
     console.log("create buttons");
-    var buttombuttons = "<div class='" + parameters.buttonBarBS + " col-sm-12' style='justify-content:space-between;'><div class='" + parameters.buttonBarFlairBS + "'></div> <div class='float-right'> <button type='button' class='" + parameters.nextButtonBS + " btn btn-next btn-fill btn-danger btn-wd square' name='next' value='Next' >" + parameters.nextText + "</button> <div class='" + parameters.nextButtonFlairBS + "'></div>  </div><div class='float-left'><button type='button' class='" + parameters.backButtonBS + " btn btn-previous btn-fill btn-default btn-wd square' name='previous' value='Previous' >" + parameters.prevText + "</button>   <div class='" + parameters.backButtonFlairBS + "'></div> </div><div class='clearfix'></div></div>";
+    var buttombuttons = "<div class='" + parameters.buttonBarBS + "' style='justify-content:space-between;'><div class='" + parameters.buttonBarFlairBS + "'></div> <div class='float-right'> <button type='button' class='" + parameters.nextButtonBS + " btn btn-next btn-fill btn-danger btn-wd square' name='next' value='Next' >" + parameters.nextText + "</button> <div class='" + parameters.nextButtonFlairBS + "'></div>  </div><div class='float-left'><button type='button' class='" + parameters.backButtonBS + " btn btn-previous btn-fill btn-default btn-wd square' name='previous' value='Previous' >" + parameters.prevText + "</button>   <div class='" + parameters.backButtonFlairBS + "'></div> </div><div class='clearfix'></div></div>";
     topContainer.insertAdjacentHTML('beforeend', buttombuttons);
     topContainer.getElementsByClassName(parameters.buttonBarBS).item(0).setAttribute('data-parent', parameters.id);
     // topContainer.appendChild(buttombuttons);
@@ -495,6 +603,8 @@ function buttonBarBS(topContainer, parameters) {
 // animate moving box from last tab to new tab
 function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
     console.log("janimate - should just be to add animation");
+
+
 
     //fix selection in nav-items not in a wrapper
     if (JCurTab.parentElement.classList.contains("nav-pills"))
@@ -507,6 +617,9 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
     else
         JNewTab = JNewTab.parentElement;
 
+    /*
+        * #update which tab is active
+    */
     // remove old box first so we don't create duplicates, possibly can remove later
     var i, elements = BSObject.getElementsByClassName(parameters.navTabActiveBS);
     for (i = elements.length; i--;) {
@@ -554,6 +667,7 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
     div.className += " " + parameters.navTabActiveBS;
     div.innerHTML = JNewTab.innerHTML;
 
+
     if (div.children.length > 0) {
         div.children[0].style.left = parseInt(parameters.navTabTextOffetX) + "px";
         div.children[0].style.top = parseInt(parameters.navTabTextOffetY) + "px";
@@ -572,12 +686,31 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
     JCurTab.parentElement.appendChild(div);
 
 
-    // define styles
+    /*
+        * #Fix tabJS offsets 
+    */
+   BSparent = getCommonAncestor( BSObject.getElementsByClassName('nav-pills')[0],  BSObject.getElementsByClassName('tab-pane')[0]);
+   baseRect = BSparent.getBoundingClientRect();
+   divBase = BSObject.getElementsByClassName(parameters.tabBS)[0];
+   divBase.style.position = "absolute";
+   divBase.style.width = baseRect.width+"px";
+   /*
+       * #Fix buttonBarBS akignment
+   */
+   BSObject.getElementsByClassName(parameters.buttonBarBS)[0].style.width = baseRect.width+"px";
+   //BSObject.getElementsByClassName(parameters.buttonBarBS)[0].style.left = BSObject.getBoundingClientRect().left+"px";
+   //BSObject.getElementsByClassName(parameters.buttonBarBS)[0].style.top = (BSObject.getBoundingClientRect().top+BSObject.getBoundingClientRect().height)+"px";
+  
+   divBase.style.height = baseRect.height+"px";
 
+
+
+    // define styles
     console.log("call addShapes - anim");
     addShapes(parameters, BSObject);
 
-    console.log("call addStyling 1 - anim");
+    console.log("call addStyling 1 - anim"); 
+   
     addStyling(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0], "navTabActiveBS", parameters, JCurTab);
     addStyling(BSObject.getElementsByClassName(parameters.navTabActiveFlairBS)[0], "navTabActiveFlairBS", parameters, JCurTab);
     addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0], "navTabInactiveBS", parameters, JCurTab);
@@ -595,6 +728,7 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
         addStyling(BSObject.getElementsByClassName(parameters.nextButtonBS)[0], "nextButtonBS", parameters, JCurTab);
         addStyling(BSObject.getElementsByClassName(parameters.nextButtonFlairBS)[0], "nextButtonFlairBS", parameters, JCurTab);
     }
+    addStyling(BSObject.getElementsByClassName(parameters.tabBS)[0], "tabBS", parameters, JCurTab);
 
 
 
@@ -632,12 +766,19 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
 
 function Initialize(JCurTab, BSObject, parameters) {
 
+    // this mainly just resizes tabs again, updates which tabs are active and inactive and refreshes the drawing
+
     console.log("initialize - should just be to identify hooks");
     var vertical = false;
     //see if we have vertical tabs
     if (BSObject.getElementsByClassName('nav-pills')[0].classList.contains('flex-column')) {
         vertical = true;
     }
+
+
+    /*
+        * #recalculate all tab widths again
+    */
     // Navbar identified by having class="nav-pills"
     var navpills = BSObject.getElementsByClassName("nav-pills");
     // each Navbar item identified by having class="nav-link"
@@ -703,27 +844,10 @@ function Initialize(JCurTab, BSObject, parameters) {
         div.appendChild(divFlair);
         navpills[0].appendChild(div);
 
-        // update alterations needed to selections and classes
-        if (BSObject.querySelector('.nav-link.active').children.length > 0) {
-            textOffset = BSObject.querySelector('.nav-link.active').children[0];
-            textOffset.style.top = parseInt(parameters.navTabTextOffetY) + "px";
-            textOffset.style.left = parseInt(parameters.navTabTextOffetX) + "px";
-            textOffset.classList.remove(parameters.navTabInactiveBS);
-        }
-
-
-        // add custom decorating to the navigation bar or navbar
-        // remove the bar if it already exists
-        // define navBarBS
-        if (BSObject.querySelector('.nav-pills').classList.contains(parameters.navBarBS)) {
-            BSObject.querySelector('.nav-pills').classList.remove(parameters.navBarBS);
-            /*
-                * #map navBarBS
-            */
-            BSObject.querySelector('.nav-pills').className += " " + parameters.navBarBS;
-        }
-
-
+  
+        /*
+            * #define which tabs an Inactive again as it changes each time we select a different one. 
+        */
         // delete any existing classes navTabInactiveBS
         BSObject.classList.remove(parameters.navTabInactiveBS);
         if (BSObject.querySelectorAll("." + parameters.navTabInactiveBS))
@@ -771,11 +895,14 @@ function Initialize(JCurTab, BSObject, parameters) {
             }
 
 
+
         console.log("call addShapes - init");
         addShapes(parameters, BSObject);
 
         console.log("call addSyling 2 - init");
+        
         // define styles
+        
         addStyling(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0], "navTabActiveBS", parameters, JCurTab);
         addStyling(BSObject.getElementsByClassName(parameters.navTabActiveFlairBS)[0], "navTabActiveFlairBS", parameters, JCurTab);
         addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0], "navTabInactiveBS", parameters, JCurTab);
@@ -793,6 +920,7 @@ function Initialize(JCurTab, BSObject, parameters) {
             addStyling(BSObject.getElementsByClassName(parameters.nextButtonBS)[0], "nextButtonBS", parameters, JCurTab);
             addStyling(BSObject.getElementsByClassName(parameters.nextButtonFlairBS)[0], "nextButtonFlairBS", parameters, JCurTab);
         }
+        addStyling(BSObject.getElementsByClassName(parameters.tabBS)[0], "tabBS", parameters, JCurTab);
 
 
 
@@ -1203,6 +1331,8 @@ function addStyling(parameterBaseElement, parameterBaseName, parameters, JCurTab
     // define element.box-shadow
     parameterBaseElement.style.boxShadow = parameters[parameterBaseName + ".box-shadow"];
     if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        if(parameterBaseName == "navTabInactiveBS")
+        console.log("addStyling -> parameterBaseName", parameters[parameterBaseName + ".box-shadow"]);
         parameterBaseElement.querySelector('.nav-link.active').style.boxShadow = parameters[parameterBaseName + ".box-shadow"];
     }
 
