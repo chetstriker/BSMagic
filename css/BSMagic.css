@@ -71,7 +71,7 @@
     height: 52px !important;
     text-align: center;
     padding: 12px;
-    font-size: 12px;
+    /* font-size: 12px; */
     text-transform: uppercase;
     -webkit-font-smoothing: subpixel-antialiased;
     position: relative;

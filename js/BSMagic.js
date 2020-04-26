@@ -131,8 +131,6 @@ function BSMagic(parameters) {
     * #calculate the active tab and width of each tab 
 */
     var navpills = BSObject.getElementsByClassName("nav-pills");
-    // each Navbar item identified by having class="nav-link"
-    var navlinks = navpills[0].getElementsByClassName("nav-link");
     // grabs the first tab and sets it as active
     var JCurTab = navpills[0].getElementsByClassName("nav-link")[0];
     JCurTab.className += " active";
@@ -152,15 +150,29 @@ function BSMagic(parameters) {
     }
 
     //divide the navbar width into equal space for each tab (Horizonal)
+    // each Navbar item identified by having class="nav-link"
+    var navlinks = navpills[0].getElementsByClassName("nav-link");
     var jtotal = navlinks.length;
     jwidth = 100 / jtotal;
 
     Array.prototype.forEach.call(navlinks, function (tab) {
         // if parent contain nav-pills that we don't have the nav-link in a wrapper
-        if (tab.parentElement.classList.contains("nav-pills"))
+        if (tab.parentElement.classList.contains("nav-pills")){
             tab.style.width = jwidth + '%';
-        else
+            btnCopy = BSObject.querySelectorAll(".nav-link.active")[0];
+            navrect = btnCopy.getBoundingClientRect();
+            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.top = navrect.top;
+            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.left = navrect.left;
+            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.width = navrect.width;
+        }
+        else{
             tab.parentElement.style.width = jwidth + '%';
+            btnCopy = BSObject.querySelectorAll(".nav-link.active")[0];
+            navrect = btnCopy.getBoundingClientRect();
+            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.top = navrect.top;
+            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.left = navrect.left;
+            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.width = navrect.width;
+        }
     });
 
 
@@ -201,10 +213,12 @@ function BSMagic(parameters) {
     window.addEventListener("resize", function () {
         console.log("call refresh from resize");
         ReFresh(BSObject, parameters);
+        JAnimate(JCurTab,JCurTab,BSObject, parameters);
     });
     window.addEventListener("scroll", function () {
         console.log("call refresh from scroll");
         ReFresh(BSObject, parameters);
+        JAnimate(JCurTab,JCurTab,BSObject, parameters);
     });
 
 
@@ -437,11 +451,11 @@ function addShapes (parameters, BSObject) {
             if (parameters[key] == "circle") {
                 //parameterBaseElement.style.position = "absolute";
                 parameterBaseElement.style.textAlign = "center";
-                parameterBaseElement.style.padding = "12px";
-                parameterBaseElement.style.fontSize = "12px";
+                parameterBaseElement.style.padding = "12px 0 12px 0";
+               // parameterBaseElement.style.fontSize = "12px";
                 parameterBaseElement.style.height = "45px !important";
                 //  parameterBaseElement.style.top = "12px";
-                parameterBaseElement.style.fontWeight = "500";
+                //parameterBaseElement.style.fontWeight = "500";
                 parameterBaseElement.style.borderRadius = "50%";
                 parameterBaseElement.style.maxWidth = "50px";
                 parameterBaseElement.style.maxHeight = "50px";
@@ -451,14 +465,14 @@ function addShapes (parameters, BSObject) {
             if (parameters[key] == "oval") {
                 //  parameterBaseElement.style.position = "relative";
                 parameterBaseElement.style.textAlign = "center";
-                parameterBaseElement.style.padding = "12px";
-                parameterBaseElement.style.fontSize = "12px";
+                parameterBaseElement.style.padding = "12px 0 12px 0";
+              //  parameterBaseElement.style.fontSize = "12px";
                 parameterBaseElement.style.height = "45px";
                 //  parameterBaseElement.style.marginTop = "-45px";
                 //  parameterBaseElement.style.top = "-155px"; //was 12
                 //  parameterBaseElement.style.left = "0px"; //was not here
                 parameterBaseElement.style.cursor = "pointer";
-                parameterBaseElement.style.fontWeight = "500";
+//parameterBaseElement.style.fontWeight = "500";
                 parameterBaseElement.style.borderRadius = "24px";
                 parameterBaseElement.style.backgroundColor = "green !important";
 
@@ -467,12 +481,12 @@ function addShapes (parameters, BSObject) {
             if (parameters[key] == "square") {
                 // parameterBaseElement.style.position = "absolute";
                 parameterBaseElement.style.textAlign = "center";
-                parameterBaseElement.style.padding = "12px";
-                parameterBaseElement.style.fontSize = "12px";
+                parameterBaseElement.style.padding = "12px 0 12px 0";
+              //  parameterBaseElement.style.fontSize = "12px";
                 parameterBaseElement.style.height = "45px !important";
                 // parameterBaseElement.style.top = "12px";
                 parameterBaseElement.style.cursor = "pointer";
-                parameterBaseElement.style.fontWeight = "500";
+                //parameterBaseElement.style.fontWeight = "500";
             }
 
 
@@ -522,6 +536,7 @@ function defineElements(BSObject,parameters){
        * TODO: add parameter for this to decorate the full outside of tab component
    */
    BSparent.classList += " BSMagic";
+   BSparent.style.margin = "0 0 0 0";
 
     // create new div containing the drawing (nabTabActiveBS)
     var div = document.createElement("div");
@@ -538,6 +553,7 @@ function defineElements(BSObject,parameters){
     // add Flair layer under main div layer
     div.appendChild(divFlair);
     BSObject.getElementsByClassName("nav-link")[0].parentElement.appendChild(div);
+    
 
     // define navTabInactiveBS
     if (BSObject.querySelectorAll(".nav-link:not(.active)"))
@@ -564,6 +580,47 @@ function defineElements(BSObject,parameters){
         }
     }
 
+
+    /*
+            * #fix margin offsets by making sure add direct children of ID have -15 margin on left and right side
+    */
+     //  fixHorz = BSObject.getElementsByClassName(parameters.tabBS);
+     //  fixHorz[0].style.margin = "0 -15px 0 -15px";
+
+     if(BSObject.getElementsByClassName("BSMagic")[0] !== undefined){
+        BSObject.getElementsByClassName("BSMagic")[0].style.margin = "0 0 0 0";
+        for (const chld of BSObject.getElementsByClassName("BSMagic")[0].children) {
+            chld.style.margin = "0 -15px 0 -15px";
+            if(chld.classList.contains("col-3")){
+                chld.style.padding = "0 0 0 0";
+                chld.style.margin = "0px 15px 0px -15px";
+            }
+            else if(chld.classList.contains("col-9")){
+                chld.style.padding = "0 15px 0 15px";
+              //  chld.style.margin = "0 0 0 0";
+                chld.style.margin = "0px 15px 0px -15px";
+            }
+        }
+    }
+    else{
+        BSObject.style.margin = "0 0 0 0";
+        for (const chld of BSObject.children) {
+            chld.style.margin = "0 -15px 0 -15px";
+            if(chld.classList.contains("col-3")){
+                chld.style.padding = "0 0 0 0";
+                chld.style.margin = "0px 15px 0px -15px";
+            }
+            else if(chld.classList.contains("col-9")){
+                chld.style.padding = "0 15px 0 15px";
+              //  chld.style.margin = "0 0 0 0";
+                chld.style.margin = "0px 15px 0px -15px";
+            }
+        }
+    }
+
+
+
+    
     /*
         * #map tabBS 
     */
@@ -575,18 +632,7 @@ function defineElements(BSObject,parameters){
    divBase.style.height = baseRect.height+"px";
    BSparent.prepend(divBase);
 
-     /*
-            * #fix margin offsets by making sure add direct children of ID have -15 margin on left and right side
-    */
-     //  fixHorz = BSObject.getElementsByClassName(parameters.tabBS);
-     //  fixHorz[0].style.margin = "0 -15px 0 -15px";
-
-       
-    for (const chld of BSObject.children) {
-
-        chld.style.margin = "0 -15px 0 -15px";
-      
-    }
+   
 
 }
 
@@ -596,6 +642,8 @@ function buttonBarBS(topContainer, parameters) {
     var buttombuttons = "<div class='" + parameters.buttonBarBS + "' style='justify-content:space-between;'><div class='" + parameters.buttonBarFlairBS + "'></div> <div class='float-right'> <button type='button' class='" + parameters.nextButtonBS + " btn btn-next btn-fill btn-danger btn-wd square' name='next' value='Next' >" + parameters.nextText + "</button> <div class='" + parameters.nextButtonFlairBS + "'></div>  </div><div class='float-left'><button type='button' class='" + parameters.backButtonBS + " btn btn-previous btn-fill btn-default btn-wd square' name='previous' value='Previous' >" + parameters.prevText + "</button>   <div class='" + parameters.backButtonFlairBS + "'></div> </div><div class='clearfix'></div></div>";
     topContainer.insertAdjacentHTML('beforeend', buttombuttons);
     topContainer.getElementsByClassName(parameters.buttonBarBS).item(0).setAttribute('data-parent', parameters.id);
+
+    
     // topContainer.appendChild(buttombuttons);
 }
 
@@ -685,6 +733,16 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
     div.appendChild(divFlair);
     JCurTab.parentElement.appendChild(div);
 
+    /*
+        * #Fix tab count 
+    */
+    //now remove the nav-link class beneath so total tab count isn't incorrect
+    if(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].children[0] !== undefined){
+        tabActiveChild = BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].children[0];
+        console.log("tabActiveChild");
+        tabActiveChild.classList.remove("nav-link");
+    }
+
 
     /*
         * #Fix tabJS offsets 
@@ -694,13 +752,134 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
    divBase = BSObject.getElementsByClassName(parameters.tabBS)[0];
    divBase.style.position = "absolute";
    divBase.style.width = baseRect.width+"px";
+   
+
    /*
-       * #Fix buttonBarBS akignment
+        * #Fix navBarBS offsets 
+    */
+   BSparent = getCommonAncestor( BSObject.getElementsByClassName('nav-pills')[0],  BSObject.getElementsByClassName('tab-pane')[0]);
+   baseRect = BSparent.getBoundingClientRect();
+   vertical = false;
+   if (BSObject.getElementsByClassName('nav-pills')[0].classList.contains('flex-column')) {
+    vertical = true;
+    }
+
+   if(vertical == false){
+    navBarBSBase = BSObject.getElementsByClassName(parameters.navBarBS)[0];
+    navBarBSBase.style.width = baseRect.width+"px";
+   }
+   
+   /*
+       * #Fix navTabActiveBS alignment
    */
-   BSObject.getElementsByClassName(parameters.buttonBarBS)[0].style.width = baseRect.width+"px";
-   //BSObject.getElementsByClassName(parameters.buttonBarBS)[0].style.left = BSObject.getBoundingClientRect().left+"px";
-   //BSObject.getElementsByClassName(parameters.buttonBarBS)[0].style.top = (BSObject.getBoundingClientRect().top+BSObject.getBoundingClientRect().height)+"px";
-  
+  //divide the navbar width into equal space for each tab (Horizonal)
+    // each Navbar item identified by having class="nav-link"
+    
+    var navlinks = BSObject.getElementsByClassName("nav-pills")[0].getElementsByClassName("nav-link");
+    // need to get count of nav-link under nav-pills but without nav-link parent of navTabActiveBS
+    var jtotal = navlinks.length;
+    jwidth = 100 / jtotal;
+
+    Array.prototype.forEach.call(navlinks, function (tab) {
+        // if parent contain nav-pills that we don't have the nav-link in a wrapper
+        if (tab.parentElement.classList.contains("nav-pills")){
+            tab.style.width = jwidth + '%';
+            btnCopy = BSObject.querySelectorAll(".nav-link.active")[0];
+            navrect = btnCopy.getBoundingClientRect();
+            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.top = navrect.top;
+            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.left = navrect.left;
+            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.width = navrect.width;
+        }
+        else{
+            tab.parentElement.style.width = jwidth + '%';
+            btnCopy = BSObject.querySelectorAll(".nav-link.active")[0];
+            navrect = btnCopy.getBoundingClientRect();
+            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.top = navrect.top;
+            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.left = navrect.left;
+            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.width = navrect.width;
+        }
+    });
+
+
+    //make vertical alignment even if using vertical tabs
+    if (vertical == true) {
+
+        element = BSObject.getElementsByClassName('flex-column')[0];
+        height = element.getBoundingClientRect().height;
+        width = element.getBoundingClientRect().width;
+        elementHeight = height / jtotal;
+
+
+        Array.prototype.forEach.call(navlinks, function (tab) {
+            // if parent contain nav-pills that we don't have the nav-link in a wrapper
+            if (tab.parentElement.classList.contains("nav-pills")) {
+                tab.style.height = elementHeight + 'px';
+                tab.style.width = width + 'px';
+                tab.style.textAlign = "center";
+
+               
+            } else {
+                tab.parentElement.style.height = elementHeight + 'px';
+                tab.parentElement.style.width = width + 'px';
+                tab.parentElement.style.textAlign = "center";
+            }
+        });
+
+    }
+    
+
+  //BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.position = "relative";
+  //BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.width = baseRect.width+"px";
+
+
+
+    /*
+            * #fix tabBS children margin offsets by making sure add direct children of ID have -15 margin on left and right side
+    */
+     //  fixHorz = BSObject.getElementsByClassName(parameters.tabBS);
+     //  fixHorz[0].style.margin = "0 -15px 0 -15px";
+
+    if(BSObject.getElementsByClassName("BSMagic")[0] !== undefined){
+        BSObject.getElementsByClassName("BSMagic")[0].style.margin = "0 0 0 0";
+        for (const chld of BSObject.getElementsByClassName("BSMagic")[0].children) {
+            chld.style.margin = "0 -15px 0 -15px";
+            if(chld.classList.contains("col-3")){
+                chld.style.padding = "0 0 0 0";
+                chld.style.margin = "0px 15px 0px -15px";
+            }
+            else if(chld.classList.contains("col-9")){
+               // chld.style.padding = "0 0 0 0";
+                chld.style.padding = "0 15px 0 15px";
+              //  chld.style.margin = "0 0 0 0";
+                chld.style.margin = "0px 15px 0px -15px";
+            }
+        }
+    }
+    else{
+        BSObject.style.margin = "0 0 0 0";
+        for (const chld of BSObject.children) {
+            chld.style.margin = "0 -15px 0 -15px";
+            if(chld.classList.contains("col-3")){
+                chld.style.padding = "0 0 0 0";
+                chld.style.margin = "0px 15px 0px -15px";
+            }
+            else if(chld.classList.contains("col-9")){
+                //chld.style.padding = "0 0 0 0";
+                chld.style.padding = "0 15px 0 15px";
+              //  chld.style.margin = "0 0 0 0";
+                chld.style.margin = "0px 15px 0px -15px";
+            }
+        }
+    }
+
+    /*
+       * #Fix buttonBarBS alignment
+   */
+    tabBSRect = BSObject.getElementsByClassName(parameters.tabBS)[0].getBoundingClientRect();
+   BSObject.getElementsByClassName(parameters.buttonBarBS)[0].style.position = "relative";
+   BSObject.getElementsByClassName(parameters.buttonBarBS)[0].style.width = tabBSRect.width+"px";
+    if(vertical == true){BSObject.getElementsByClassName(parameters.buttonBarBS)[0].style.margin = "0px -30px 0 -15px";}
+
    divBase.style.height = baseRect.height+"px";
 
 
@@ -787,6 +966,7 @@ function Initialize(JCurTab, BSObject, parameters) {
     var jtotal = navlinks.length;
     jwidth = 100 / jtotal;
 
+    
     if (vertical == true) {
 
         element = BSObject.getElementsByClassName('flex-column')[0];
@@ -894,6 +1074,8 @@ function Initialize(JCurTab, BSObject, parameters) {
                 }
             }
 
+
+            
 
 
         console.log("call addShapes - init");
