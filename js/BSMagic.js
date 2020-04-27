@@ -78,20 +78,83 @@ function BSMagic(parameters) {
     if (parameters.theme == "Magic1") { //blue oval button with white text
 
         parameters.showBottomNavBS = true;
-        //   parameters.navBackground = "NavBackgroundBlue";
         parameters["navTabActiveBS.color"] = "white";
         parameters["navTabActiveBS.background-color"] = "#00bcd4";
         parameters["navTabActiveBS.shape"] = "oval";
         //  parameters.navUnderline = true;
         //  parameters.navShadow = true;
-    } else if (parameters.theme == "Magic2") { //white square button with blue underline and shadow and blue text
+    } else if (parameters.theme == "Magic2") { // Glass - white square button with blue underline and shadow and blue text
         parameters.showBottomNavBS = true;
-        //    parameters.navBackground = "NavShapeSquare2";
-        parameters["navTabActiveBS.color"] = "blue";
-        parameters["navTabActiveBS.background-color"] = "transparent";
-        parameters["navTabActiveBS.shape"] = "square";
-        parameters.navUnderline = true;
-        parameters.navShadow = true;
+
+    parameters["tabBS.boxShadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
+
+        // NavShapeSquare2
+    parameters["navTabActiveBS.height"] = "52px !important";
+    parameters["navTabActiveBS.text-align"] = "center";
+    parameters["navTabActiveBS.padding"] = "12px";
+    parameters["navTabActiveBS.font-weight"] = "500";
+    parameters["navTabActiveBS.border-radius"] = "10px";
+    parameters["navTabActiveBS.box-shadow"] = "0px 2px 11px -10px rgba(0, 188, 212, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), inset 1px 6px 0px 0px rgba(0, 188, 212, 0.2)";
+
+    parameters["navTabActiveBS.color"] = "blue";
+    parameters["navTabActiveBS.background-color"] = "transparent";
+    parameters["navTabActiveBS.shape"] = "square";
+    parameters.navUnderline = true;
+    parameters.navShadow = true;
+   
+    parameters["buttonBarBS.color"] = "#b6c4d2";
+    parameters["buttonBarBS.text-shadow"] = "0px 3px 3px rgba(255,255,255,0.5)";
+    parameters["buttonBarBS.background-color"] = "#f4f6f9";
+    parameters["buttonBarBS.box-shadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
+
+
+    //   .nav-pills2 
+    parameters["navBarBS.background-color"] = "transparent";
+    parameters["navBarBS.box-shadow"] = "0 16px 26px -10px rgba(0, 188, 212, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 188, 212, 0.2)";
+
+    //   .customTabFlair
+    parameters["navTabActiveFlairBS.margin"] = "0px -1px";
+    parameters["navTabActiveFlairBS.border-top"] = "3px solid #f0a5a5";
+    parameters["navTabActiveFlairBS.border-radius"] = "30px";
+    parameters["navTabActiveFlairBS.width"] = "20%";
+    parameters["navTabActiveFlairBS.margin"] = "-2% 0% 0% 40%";
+    parameters["navTabActiveFlairBS.box-shadow"] = "0 0px 0px rgba(0, 0, 0, 0.25), 0px 4px 12px 2px rgba(0, 0, 0, 0.22)";
+    parameters["navTabActiveFlairBS.box-shadow"] = "unset !important";
+
+
+       
+
+    }
+    else if(parameters.theme == "Magic3"){
+        parameters["tabBS.boxShadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
+        parameters["navBarBS.boxShadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
+        parameters["navBarFlairBS.box-shadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
+        parameters["navBarFlairBS.width"] =  100;
+        parameters["navBarFlairBS.height"] =  5;
+        parameters["navTabActiveBS.shape"] =  "oval";
+        parameters["navBarFlairBS.background-color"] =  "purple";
+        parameters["navTabActiveBS.box-shadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
+        parameters["navTabInactiveBS.box-shadow"] = "initial";
+        parameters["navTabActiveBS.color"] =  "#b6c4d2";
+        parameters["navTabActiveBS.text-shadow"] = "0px 3px 3px rgba(255,255,255,0.5)";
+        parameters["navTabActiveBS.background-color"] =  "#f4f6f9";
+        parameters["navTabActiveBS.font-size"] =  "25px";
+        parameters["navTabActiveBS.padding"] =  "4px 0 0 0";
+        parameters["navTabActiveBS.color"] = "rgb(14, 95, 175)";
+        parameters["buttonBarBS.color"] =  "#b6c4d2";
+        parameters["buttonBarBS.text-shadow"] = "0px 3px 3px rgba(255,255,255,0.5)";
+        parameters["buttonBarBS.background-color"] =  "#f4f6f9";
+        parameters["buttonBarBS.box-shadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
+        parameters["nextButtonBS.color"] = "#b6c4d2";
+        parameters["nextButtonBS.text-shadow"] = "0px 3px 3px rgba(255,255,255,0.5)";
+        parameters["nextButtonBS.background-color"] =  "#f4f6f9";
+        parameters["nextButtonBS.box-shadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
+        parameters["tabContentBS.color"] = "rgb(14, 95, 175)";
+        parameters["tabContentBS.font-size"] =  "medium";
+        parameters["tabContentBS.text-shadow"] = "0px 3px 3px rgba(255,255,255,0.5)";
+        parameters["tabContentBS.background-color"] =  "#f4f6f9";
+        parameters["tabContentBS.box-shadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
+        parameters["nextButtonBS.color"] = "rgb(14, 95, 175)";
     }
 
     /*
@@ -106,12 +169,17 @@ function BSMagic(parameters) {
     var vertical = false;
 
     // convert nav-tabs to nav-pills
+    if(parameters.id == "JTab3"){
+        console.log("are these nav-tabs changing to nav-pills?");
+    }
+
     var i, elements = BSObject.getElementsByClassName('nav-tabs');
     for (i = elements.length; i--;) {
         elements[i].className += " nav-pills";
         elements[i].style.setProperty("background-color", "transparent");
 
         elements[i].classList.remove("nav-tabs");
+        
     }
 
     //see if we have vertical tabs
@@ -132,7 +200,11 @@ function BSMagic(parameters) {
 */
     var navpills = BSObject.getElementsByClassName("nav-pills");
     // grabs the first tab and sets it as active
-    var JCurTab = navpills[0].getElementsByClassName("nav-link")[0];
+    if(navpills[0].getElementsByClassName("nav-link")[0] !== undefined)
+     JCurTab = navpills[0].getElementsByClassName("nav-link")[0];
+     else
+     JCurTab = navpills[0];
+
     JCurTab.className += " active";
 
     //find and number all tabs
@@ -151,7 +223,7 @@ function BSMagic(parameters) {
 
     //divide the navbar width into equal space for each tab (Horizonal)
     // each Navbar item identified by having class="nav-link"
-    var navlinks = navpills[0].getElementsByClassName("nav-link");
+    var navlinks = getInactiveTabs(BSObject,parameters);
     var jtotal = navlinks.length;
     jwidth = 100 / jtotal;
 
@@ -164,6 +236,7 @@ function BSMagic(parameters) {
             BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.top = navrect.top;
             BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.left = navrect.left;
             BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.width = navrect.width;
+            removeStyles(getActiveTab(BSObject, parameters)[0]);
         }
         else{
             tab.parentElement.style.width = jwidth + '%';
@@ -172,9 +245,11 @@ function BSMagic(parameters) {
             BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.top = navrect.top;
             BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.left = navrect.left;
             BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.width = navrect.width;
+            removeStyles(getActiveTab(BSObject, parameters)[0]);
         }
     });
 
+   
 
     //make vertical alignment even if using vertical tabs
     if (vertical == true) {
@@ -203,7 +278,7 @@ function BSMagic(parameters) {
 
     //find the currently active tab
     
-    JCurTab = BSObject.querySelector('.nav-link.active');
+  //  JCurTab = BSObject.querySelector('.nav-link.active');
     var pills = BSObject.getElementsByClassName('nav-pills')[0];
     var pane = BSObject.getElementsByClassName('tab-pane')[0];
     BSparent = getCommonAncestor(pills, pane);
@@ -273,7 +348,7 @@ function BSMagic(parameters) {
         elements[i].addEventListener('click', function () {
             var JCurTab = BSObject.querySelector('.nav-link.active');
             var JNewTab = this;
-
+            removeStyles(getActiveTab(BSObject, parameters)[0]);
             //check if we are on the first or last tab
             CheckTabLocation(JNewTab, BSObject, parameters);
 
@@ -303,6 +378,7 @@ function BSMagic(parameters) {
         });
     }
 
+
     //Add listeners for when next button is clicked
      elements = BSObject.getElementsByClassName("nextButtonBS");
     for ( i = 0; i < elements.length; i++) {
@@ -310,8 +386,8 @@ function BSMagic(parameters) {
             var JCurTab = BSObject.querySelector('.nav-link.active');
             var nextTabNumber = parseInt(JCurTab.getAttribute('data-tab')) + 1;
             var JNewTab = BSObject.querySelectorAll('[data-tab="' + nextTabNumber + '"]')[0];
-
-            //check if we are on the first or last tab
+            removeStyles(getActiveTab(BSObject, parameters)[0]);
+             //check if we are on the first or last tab
             CheckTabLocation(JNewTab, BSObject, parameters);
 
 
@@ -328,8 +404,8 @@ function BSMagic(parameters) {
             var JCurTab = BSObject.querySelector('.nav-link.active');
             var prevTabNumber = parseInt(JCurTab.getAttribute('data-tab')) - 1;
             var JPrevTab = BSObject.querySelectorAll('[data-tab="' + prevTabNumber + '"]')[0];
-
-
+            removeStyles(getActiveTab(BSObject, parameters)[0]);
+         
             //check if we are on the first or last tab
             CheckTabLocation(JPrevTab, BSObject, parameters);
 
@@ -449,7 +525,6 @@ function addShapes (parameters, BSObject) {
             //define shapes as a one off declaration and starting point
 
             if (parameters[key] == "circle") {
-                //parameterBaseElement.style.position = "absolute";
                 parameterBaseElement.style.textAlign = "center";
                 parameterBaseElement.style.padding = "12px 0 12px 0";
                // parameterBaseElement.style.fontSize = "12px";
@@ -463,7 +538,6 @@ function addShapes (parameters, BSObject) {
             }
 
             if (parameters[key] == "oval") {
-                //  parameterBaseElement.style.position = "relative";
                 parameterBaseElement.style.textAlign = "center";
                 parameterBaseElement.style.padding = "12px 0 12px 0";
               //  parameterBaseElement.style.fontSize = "12px";
@@ -479,7 +553,6 @@ function addShapes (parameters, BSObject) {
             }
 
             if (parameters[key] == "square") {
-                // parameterBaseElement.style.position = "absolute";
                 parameterBaseElement.style.textAlign = "center";
                 parameterBaseElement.style.padding = "12px 0 12px 0";
               //  parameterBaseElement.style.fontSize = "12px";
@@ -549,15 +622,24 @@ function defineElements(BSObject,parameters){
     /*
         * #map navTabActiveBS
     */
+   getInactiveTabs(BSObject,parameters);
    div.className += " " + parameters.navTabActiveBS;
     // add Flair layer under main div layer
     div.appendChild(divFlair);
+
+
+    if(BSObject.getElementsByClassName("nav-link")[0] !== undefined)
     BSObject.getElementsByClassName("nav-link")[0].parentElement.appendChild(div);
-    
+    else
+    BSObject.parentElement.appendChild(div);
+
+    act = getActiveTab(BSObject, parameters);
+    removeStyles(act[0]);
 
     // define navTabInactiveBS
-    if (BSObject.querySelectorAll(".nav-link:not(.active)"))
-    for (const inActive of BSObject.querySelectorAll(".nav-link:not(.active)")) {
+    inactiveList = getInactiveTabs(BSObject,parameters);
+  //  if (BSObject.querySelectorAll(".nav-link:not(.active)"))
+    for (const inActive of inactiveList) {
 
         if (!inActive.classList.contains(parameters.navTabActiveBS)) {
             /*
@@ -575,6 +657,7 @@ function defineElements(BSObject,parameters){
                 */
                 addFlair.className += " " + parameters.navTabInactiveFlairBS;
                 addStyling(inActive, "navTabInactiveBS", parameters, BSObject.querySelector('.nav-link.active'));
+                removeStyles(getActiveTab(BSObject, parameters)[0]);
                 inActive.appendChild(addFlair);
             }
         }
@@ -627,14 +710,117 @@ function defineElements(BSObject,parameters){
    var divBase = document.createElement("div");
    divBase.className += " " + parameters.tabBS;
    baseRect = BSparent.getBoundingClientRect();
-   divBase.style.position = "absolute";
    divBase.style.width = baseRect.width+"px";
    divBase.style.height = baseRect.height+"px";
    BSparent.prepend(divBase);
 
-   
+   getInactiveTabs(BSObject, parameters);
 
 }
+
+
+function getInactiveTabs(BSObject, parameters){
+
+    //YOU can identify active tabs with class-"active" under a (navBarBS or nav-pills)
+        var rtnObject = [];
+         navpills = BSObject.getElementsByClassName("nav-pills");
+        // if not found, search for data-toggle="tab"
+        if(navpills[0].getElementsByClassName("nav-link").length > 0)
+         navlinks = navpills[0].getElementsByClassName("nav-link");
+        else
+         navlinks = BSObject.querySelectorAll("[data-toggle=\"tab\"]");
+
+         // add nav-link identifier so we can find them easier going forward
+             for (const nl of navlinks) {
+                 
+                nl.classList.add("nav-link");
+                if(nl.parentElement.classList.contains("active")){
+                    if(nl.classList.contains("active")){
+                        nl.classList.remove("active");
+                    }
+                    nl.classList.add("active");
+                    if(nl.classList.contains("navTabInactiveBS")){
+                        nl.classList.remove("navTabInactiveBS");
+                    }
+                    rtnObject.push(nl);
+                }
+                if(nl.classList.contains("active")){
+                    if(nl.classList.contains("active")){
+                        nl.classList.remove("active");
+                    }
+                    nl.classList.add("active");
+                    if(nl.classList.contains("navTabInactiveBS")){
+                        nl.classList.remove("navTabInactiveBS");
+                    }
+                    rtnObject.push(nl);
+                }
+                if(!nl.classList.contains("active")){
+                    if(nl.classList.contains("navTabInactiveBS")){
+                        nl.classList.remove("navTabInactiveBS");
+                    }
+                    nl.classList.add("navTabInactiveBS");
+                    if(nl.classList.contains("active")){
+                        nl.classList.remove("active");
+                    }
+                    rtnObject.push(nl);
+                }
+            }
+        
+    
+        return rtnObject;
+    
+    }
+
+
+    function getActiveTab(BSObject, parameters){
+
+        //YOU can identify active tabs with class-"active" under a (navBarBS or nav-pills)
+            var rtnObject = [];
+             navpills = BSObject.getElementsByClassName("nav-pills");
+            // if not found, search for data-toggle="tab"
+            if(navpills[0].getElementsByClassName("nav-link").length > 0)
+             navlinks = navpills[0].getElementsByClassName("nav-link");
+            else{
+             navlinks = BSObject.querySelectorAll("[data-toggle=\"tab\"]");
+            }
+             // add nav-link identifier so we can find them easier going forward
+                 for (const nl of navlinks) {
+                    nl.classList.add("nav-link");
+                    if(nl.parentElement.classList.contains("active")){
+                        if(nl.classList.contains("active")){
+                            nl.classList.remove("active");
+                        }
+                        nl.classList.add("active");
+                        if(nl.classList.contains("navTabInactiveBS")){
+                            nl.classList.remove("navTabInactiveBS");
+                        }
+                        rtnObject.push(nl);
+                    }
+                    if(nl.classList.contains("active")){
+                        if(nl.classList.contains("active")){
+                            nl.classList.remove("active");
+                        }
+                        nl.classList.add("active");
+                        if(nl.classList.contains("navTabInactiveBS")){
+                            nl.classList.remove("navTabInactiveBS");
+                        }
+                        rtnObject.push(nl);
+                    }
+                    if(!nl.classList.contains("active")){
+                        if(nl.classList.contains("navTabInactiveBS")){
+                            nl.classList.remove("navTabInactiveBS");
+                        }
+                        nl.classList.add("navTabInactiveBS");
+                        if(nl.classList.contains("active")){
+                            nl.classList.remove("active");
+                        }
+                       // rtnObject.push(nl);
+                    }
+                }
+        
+            return rtnObject;
+        
+        }
 
 
 function buttonBarBS(topContainer, parameters) {
@@ -723,6 +909,8 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
 
 
     if (BSObject.querySelector('.nav-link.active').children.length > 0) {
+
+        removeStyles(getActiveTab(BSObject, parameters)[0]);
         textOffset = BSObject.querySelector('.nav-link.active').children[0];
         textOffset.style.top = parseInt(parameters.navTabTextOffetY) + "px";
         textOffset.style.left = parseInt(parameters.navTabTextOffetX) + "px";
@@ -775,7 +963,7 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
   //divide the navbar width into equal space for each tab (Horizonal)
     // each Navbar item identified by having class="nav-link"
     
-    var navlinks = BSObject.getElementsByClassName("nav-pills")[0].getElementsByClassName("nav-link");
+    var navlinks = getInactiveTabs(BSObject,parameters);
     // need to get count of nav-link under nav-pills but without nav-link parent of navTabActiveBS
     var jtotal = navlinks.length;
     jwidth = 100 / jtotal;
@@ -789,6 +977,7 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
             BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.top = navrect.top;
             BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.left = navrect.left;
             BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.width = navrect.width;
+            removeStyles(getActiveTab(BSObject, parameters)[0]);
         }
         else{
             tab.parentElement.style.width = jwidth + '%';
@@ -797,6 +986,7 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
             BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.top = navrect.top;
             BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.left = navrect.left;
             BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.width = navrect.width;
+            removeStyles(getActiveTab(BSObject, parameters)[0]);
         }
     });
 
@@ -827,9 +1017,6 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
 
     }
     
-
-  //BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.position = "relative";
-  //BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.width = baseRect.width+"px";
 
 
 
@@ -961,8 +1148,24 @@ function Initialize(JCurTab, BSObject, parameters) {
     // Navbar identified by having class="nav-pills"
     var navpills = BSObject.getElementsByClassName("nav-pills");
     // each Navbar item identified by having class="nav-link"
-    var navlinks = navpills[0].getElementsByClassName("nav-link");
+
+    // if not found, search for data-toggle="tab"
+    if(navpills[0].getElementsByClassName("nav-link").length > 0)
+     navlinks = navpills[0].getElementsByClassName("nav-link");
+    else{
+     navlinks = BSObject.querySelectorAll("[data-toggle=\"tab\"]");
+     // add nav-link identifier so we can find them easier going forward
+
+     for (const nl of navlinks) {
+        nl.className += " nav-link";
+    }
+
+
+    }
+
+
     //make vertical alignment even if using vertical tabs
+    navlinks = getInactiveTabs(BSObject,parameters);
     var jtotal = navlinks.length;
     jwidth = 100 / jtotal;
 
@@ -1047,6 +1250,7 @@ function Initialize(JCurTab, BSObject, parameters) {
         if (BSObject.querySelectorAll(".nav-link.active"))
             for (const inActive of BSObject.querySelectorAll(".nav-link.active")) {
                 inActive.classList.remove(parameters.navTabInactiveBS);
+                removeStyles(getActiveTab(BSObject, parameters)[0]);
             }
 
         // define navTabInactiveBS
@@ -1121,6 +1325,8 @@ function ReFresh(BSObject, parameters) {
     console.log("In Refresh");
     //find the currently active tab
     JCurTab = BSObject.querySelector('.nav-link.active');
+    removeStyles(getActiveTab(BSObject, parameters)[0]);
+
 
     // remove old box first so we don't create duplicates, possibly can remove later
     var i, elements = BSObject.getElementsByClassName(parameters.navTabActiveBS);
@@ -1182,6 +1388,70 @@ function NextTab(JCurTab, JNewTab, BSObject, parameters) {
 
 }
 
+
+function removeStyles(inActive){
+//inActive.style.visibility = "hidden";
+
+//inActive.style.alignSelf = null;
+//inActive.style.alignSelf = '';
+//inActive.style.height = null;
+//inActive.style.width = null;
+//inActive.style.height = '';
+//inActive.style.width = '';
+
+inActive.style.color = null;
+inActive.style.backgroundColor = null;
+inActive.style.backgroundImage = null;
+inActive.style.padding = null;
+inActive.style.margin = null;
+inActive.style.border = null;
+inActive.style.borderRadius = null;
+inActive.style.minHeight = null;
+inActive.style.maxHeight = null;
+inActive.style.minWidth = null;
+inActive.style.maxWidth = null;
+inActive.style.fontWeight = null;
+inActive.style.font = null;
+inActive.style.fontFamily = null;
+inActive.style.fontSize = null;
+inActive.style.zIndex = null;
+inActive.style.opacity = null;
+inActive.style.textAlign = null;
+inActive.style.textShadow = null;
+inActive.style.transform = null;
+inActive.style.boxShadow = null;
+inActive.style.pointerEvents = null;
+inActive.style.top = null;
+inActive.style.bottom = null;
+inActive.style.left = null;
+inActive.style.right = null;
+inActive.style.color = '';
+inActive.style.backgroundColor = '';
+inActive.style.backgroundImage = '';
+inActive.style.padding = '';
+inActive.style.margin = '';
+inActive.style.border = '';
+inActive.style.borderRadius = '';
+inActive.style.minHeight = '';
+inActive.style.maxHeight = '';
+inActive.style.minWidth = '';
+inActive.style.maxWidth = '';
+inActive.style.fontWeight = '';
+inActive.style.font = '';
+inActive.style.fontFamily = '';
+inActive.style.fontSize = '';
+inActive.style.zIndex = '';
+inActive.style.opacity = '';
+inActive.style.textAlign = '';
+inActive.style.textShadow = '';
+inActive.style.transform = '';
+inActive.style.boxShadow = '';
+inActive.style.pointerEvents = '';
+inActive.style.top = '';
+inActive.style.bottom = '';
+inActive.style.left = '';
+inActive.style.right = '';
+}
 
 //when forward button is pressed
 function BackTab(JCurTab, JNewTab, BSObject, parameters) {
@@ -1388,12 +1658,14 @@ function addStyling(parameterBaseElement, parameterBaseName, parameters, JCurTab
     parameterBaseElement.style.backgroundColor = parameters[parameterBaseName + ".background-color"];
     if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
         parameterBaseElement.querySelector('.nav-link.active').style.backgroundColor = parameters[parameterBaseName + ".background-color"];
+        removeStyles(getActiveTab(document.getElementById(parameters.id), parameters)[0]);
     }
 
     // define element.background-image
     parameterBaseElement.style.backgroundImage = parameters[parameterBaseName + ".background-image"];
     if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
         parameterBaseElement.querySelector('.nav-link.active').style.backgroundImage = parameters[parameterBaseName + ".background-image"];
+        removeStyles(getActiveTab(document.getElementById(parameters.id), parameters)[0]);
     }
     // define element.padding
     parameterBaseElement.style.padding = parameters[parameterBaseName + ".padding"];
@@ -1409,6 +1681,26 @@ function addStyling(parameterBaseElement, parameterBaseName, parameters, JCurTab
     parameterBaseElement.style.border = parameters[parameterBaseName + ".border"];
     if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
         parameterBaseElement.querySelector('.nav-link.active').style.border = parameters[parameterBaseName + ".border"];
+    }
+    // define element.borderTop
+    parameterBaseElement.style.borderTop = parameters[parameterBaseName + ".border-top"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.borderTop = parameters[parameterBaseName + ".border-top"];
+    }
+    // define element.borderBottom
+    parameterBaseElement.style.borderBottom = parameters[parameterBaseName + ".border-buttom"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.borderBottom = parameters[parameterBaseName + ".border-buttom"];
+    }
+    // define element.borderLeft
+    parameterBaseElement.style.borderLeft = parameters[parameterBaseName + ".border-left"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.borderLeft = parameters[parameterBaseName + ".border-left"];
+    }
+    // define element.borderRight
+    parameterBaseElement.style.borderRight = parameters[parameterBaseName + ".border-right"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.borderRight = parameters[parameterBaseName + ".border-right"];
     }
     // define element.borderRadius
     parameterBaseElement.style.borderRadius = parameters[parameterBaseName + ".border-radius"];
@@ -1516,6 +1808,7 @@ function addStyling(parameterBaseElement, parameterBaseName, parameters, JCurTab
         if(parameterBaseName == "navTabInactiveBS")
         console.log("addStyling -> parameterBaseName", parameters[parameterBaseName + ".box-shadow"]);
         parameterBaseElement.querySelector('.nav-link.active').style.boxShadow = parameters[parameterBaseName + ".box-shadow"];
+        removeStyles(getActiveTab(document.getElementById(parameters.id), parameters)[0]);
     }
 
 
