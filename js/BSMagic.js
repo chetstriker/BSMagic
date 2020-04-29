@@ -911,7 +911,7 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
         * #map navTabActiveBS
     */
     div.className += " " + parameters.navTabActiveBS;
-    div.innerHTML = JNewTab.innerHTML;
+    div.innerHTML = JNewTab.cloneNode(true).innerHTML;
 
 
     if (div.children.length > 0) {
@@ -1115,15 +1115,7 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
     addStyling(BSObject.getElementsByClassName(parameters.tabContentFlairBS)[0], "tabContentFlairBS", parameters, JCurTab);
     addStyling(BSObject.getElementsByClassName(parameters.tabContentBS)[0], "tabContentBS", parameters, JCurTab);
 
-    if(BSObject.querySelectorAll(".nav-link.active")[0]){
-        // if we have an extra layer between navTabActiveBS and navTabActiveFlairBS, remove the styles from it, so it doen't inherit duplicate values from navTabActiveBS
-        console.log("W FOUND OME!!");
-        clearStyles = BSObject.querySelectorAll(".nav-link.active")[0];
-        console.log(BSObject.querySelectorAll(".nav-link.active"));
-        if(clearStyles.length>0)
-        removeStyles(clearStyles);
-    }
-
+ 
 
     // now animate the new div to expand to the nex location and then move over and shink or epand to new size
     // first check if GSAP is installed
@@ -1137,8 +1129,8 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
         tl.staggerFromTo(BSObject.getElementsByClassName(parameters.navTabActiveBS), 0.5, {
             y: JCurTab.top,
             x: JCurTab.left,
-            width: Math.abs(FullWidth),
-            height: Math.abs(FullHeight),
+            width: JCurtRect.width, //Math.abs(FullWidth),
+            height: JCurtRect.height, //Math.abs(FullHeight),
         }, {
             y: JNewRect.top - JCurtRect.top,
             x: JNewRect.left - JCurtRect.left,
