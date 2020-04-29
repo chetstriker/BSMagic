@@ -54,7 +54,7 @@
                         <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
                             role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
                         <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
-                            role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                            role="tab" aria-controls="v-pills-profile" aria-selected="false">'<span style="" class="glyphicon glyphicon-chevron-right">Profile</span></a>
                         <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
                             role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
                         <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings"
@@ -336,17 +336,7 @@
                             src="https://cdnjs.cloudFlare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
 
                         <script>
-                            BSMagic({
-                                "id": "JTab1",
-                                "theme":"Magic2",
-                               // "navBarBS": "nav-pills2",
-                               //"showBottomNavBS":false,
-                             //   "navUnderline": true,
-                             //   "navShadow": true,
-                                "nextText": '<span style="" class="glyphicon glyphicon-chevron-right"></span>',
-                                "prevText": "<span style='color:white;' class='glyphicon glyphicon-chevron-left'></span>"
-                            });
-
+                           
                             BSMagic({
                                 "id": "JTab2",
                                 "theme":"Magic2",
@@ -376,6 +366,17 @@
                                 // "navTabInactiveBS.font-weight":"bold",
                                 // "navTabInactiveFlairBS":"customTabFlair", 
                                 */
+                            });
+
+                            BSMagic({
+                                "id": "JTab1",
+                                "theme":"Magic2",
+                               // "navBarBS": "nav-pills2",
+                               //"showBottomNavBS":false,
+                             //   "navUnderline": true,
+                             //   "navShadow": true,
+                                "nextText": '<span style="" class="glyphicon glyphicon-chevron-right"></span>',
+                                "prevText": "<span style='color:white;' class='glyphicon glyphicon-chevron-left'></span>"
                             });
 
       

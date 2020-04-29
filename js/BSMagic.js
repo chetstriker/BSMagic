@@ -163,7 +163,7 @@ function BSMagic(parameters) {
    parameters = parameterDefaults(parameters);
 
     /*
-        * #determine if tabs are vertically alignmened and make changes accordingly
+        * #determine if tabs are vertically aligned and make changes accordingly
     */
     //create variable to determine if we have vertical tabs
     var vertical = false;
@@ -495,7 +495,11 @@ function parameterDefaults(parameters){
 
     if (parameters.navTabActiveBS === undefined) parameters.navTabActiveBS = "navTabActiveBS";
 
+    if (parameters["navTabActiveBS.box-shadow"] === undefined) parameters["navTabActiveBS.box-shadow"] = "";
+
     if (parameters.navTabActiveFlairBS === undefined) parameters.navTabActiveFlairBS = "navTabActiveFlairBS";
+
+    if (parameters["navTabActiveFlairBS.box-shadow"] === undefined) parameters["navTabActiveFlairBS.box-shadow"] = "";
 
     if (parameters.navTabInactiveBS === undefined) parameters.navTabInactiveBS = "navTabInactiveBS";
 
@@ -765,6 +769,14 @@ function getInactiveTabs(BSObject, parameters){
                     rtnObject.push(nl);
                 }
             }
+
+
+            if(BSObject.querySelectorAll(".navTabActiveBS .nav-link.active")[0]){
+                // if we have an extra layer between navTabActiveBS and navTabActiveFlairBS, remove the styles from it, so it doen't inherit duplicate values from navTabActiveBS
+                clearStyles = BSObject.querySelectorAll(".navTabActiveBS .nav-link.active")[0];
+                removeStyles(clearStyles);
+            }
+            
         
     
         return rtnObject;
@@ -1077,25 +1089,40 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
 
     console.log("call addStyling 1 - anim"); 
    
-    addStyling(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0], "navTabActiveBS", parameters, JCurTab);
-    addStyling(BSObject.getElementsByClassName(parameters.navTabActiveFlairBS)[0], "navTabActiveFlairBS", parameters, JCurTab);
-    addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0], "navTabInactiveBS", parameters, JCurTab);
-    addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveFlairBS)[0], "navTabInactiveFlairBS", parameters, JCurTab);
-    addStyling(BSObject.getElementsByClassName(parameters.navBarBS)[0], "navBarBS", parameters, JCurTab);
-    addStyling(BSObject.getElementsByClassName(parameters.navBarFlairBS)[0], "navBarFlairBS", parameters, JCurTab);
-    addStyling(BSObject.getElementsByClassName(parameters.tabContentBS)[0], "tabContentBS", parameters, JCurTab);
-    addStyling(BSObject.getElementsByClassName(parameters.tabContentFlairBS)[0], "tabContentFlairBS", parameters, JCurTab);
-
     if (parameters.showBottomNavBS) {
-        addStyling(BSObject.getElementsByClassName(parameters.buttonBarBS)[0], "buttonBarBS", parameters, JCurTab);
-        addStyling(BSObject.getElementsByClassName(parameters.buttonBarFlairBS)[0], "buttonBarFlairBS", parameters, JCurTab);
-        addStyling(BSObject.getElementsByClassName(parameters.backButtonBS)[0], "backButtonBS", parameters, JCurTab);
+
         addStyling(BSObject.getElementsByClassName(parameters.backButtonFlairBS)[0], "backButtonFlairBS", parameters, JCurTab);
-        addStyling(BSObject.getElementsByClassName(parameters.nextButtonBS)[0], "nextButtonBS", parameters, JCurTab);
+        addStyling(BSObject.getElementsByClassName(parameters.backButtonBS)[0], "backButtonBS", parameters, JCurTab);
+     
         addStyling(BSObject.getElementsByClassName(parameters.nextButtonFlairBS)[0], "nextButtonFlairBS", parameters, JCurTab);
+        addStyling(BSObject.getElementsByClassName(parameters.nextButtonBS)[0], "nextButtonBS", parameters, JCurTab); 
+
+        addStyling(BSObject.getElementsByClassName(parameters.buttonBarFlairBS)[0], "buttonBarFlairBS", parameters, JCurTab);
+        addStyling(BSObject.getElementsByClassName(parameters.buttonBarBS)[0], "buttonBarBS", parameters, JCurTab);
     }
+
     addStyling(BSObject.getElementsByClassName(parameters.tabBS)[0], "tabBS", parameters, JCurTab);
 
+    addStyling(BSObject.getElementsByClassName(parameters.navBarFlairBS)[0], "navBarFlairBS", parameters, JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.navBarBS)[0], "navBarBS", parameters, JCurTab);
+
+    addStyling(BSObject.getElementsByClassName(parameters.navTabActiveFlairBS)[0], "navTabActiveFlairBS", parameters, JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0], "navTabActiveBS", parameters, JCurTab);
+    
+    addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveFlairBS)[0], "navTabInactiveFlairBS", parameters, JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0], "navTabInactiveBS", parameters, JCurTab);
+   
+    addStyling(BSObject.getElementsByClassName(parameters.tabContentFlairBS)[0], "tabContentFlairBS", parameters, JCurTab);
+    addStyling(BSObject.getElementsByClassName(parameters.tabContentBS)[0], "tabContentBS", parameters, JCurTab);
+
+    if(BSObject.querySelectorAll(".nav-link.active")[0]){
+        // if we have an extra layer between navTabActiveBS and navTabActiveFlairBS, remove the styles from it, so it doen't inherit duplicate values from navTabActiveBS
+        console.log("W FOUND OME!!");
+        clearStyles = BSObject.querySelectorAll(".nav-link.active")[0];
+        console.log(BSObject.querySelectorAll(".nav-link.active"));
+        if(clearStyles.length>0)
+        removeStyles(clearStyles);
+    }
 
 
     // now animate the new div to expand to the nex location and then move over and shink or epand to new size
@@ -1212,7 +1239,34 @@ function Initialize(JCurTab, BSObject, parameters) {
         * #map navTabActiveBS
     */
     div.className += " " + parameters.navTabActiveBS;
-    div.innerHTML = JCurTab.innerHTML;
+
+    /*
+        * # TODO: FIX CONTENTS OF ACTIVE TAB 
+    */
+
+var elems =JCurTab.cloneNode(true).children;
+var count = elems.length;
+
+if(count > 0)
+for (var i = 0; i < count; i++) {
+  val = elems[i];
+  val.removeAttribute('id');
+  val.removeAttribute('class');
+  div.innerHTML += val.outerHTML;
+}
+else{
+  val = JCurTab.cloneNode(true);
+  val.removeAttribute('id');
+  val.removeAttribute('class');
+  div.innerHTML += val.outerHTML;
+}
+
+
+  // div.innerText = JCurTab.innerText;
+   console.log("ACTIVE");
+  
+   
+ //   div.innerHTML = JCurTab.innerHTML;
 
      navpills = BSObject.getElementsByClassName("nav-pills");
     if (parameters.isWizard) {
@@ -1289,24 +1343,31 @@ function Initialize(JCurTab, BSObject, parameters) {
         
         // define styles
         
-        addStyling(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0], "navTabActiveBS", parameters, JCurTab);
-        addStyling(BSObject.getElementsByClassName(parameters.navTabActiveFlairBS)[0], "navTabActiveFlairBS", parameters, JCurTab);
-        addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0], "navTabInactiveBS", parameters, JCurTab);
-        addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveFlairBS)[0], "navTabInactiveFlairBS", parameters, JCurTab);
-        addStyling(BSObject.getElementsByClassName(parameters.navBarBS)[0], "navBarBS", parameters, JCurTab);
-        addStyling(BSObject.getElementsByClassName(parameters.navBarFlairBS)[0], "navBarFlairBS", parameters, JCurTab);
-        addStyling(BSObject.getElementsByClassName(parameters.tabContentBS)[0], "tabContentBS", parameters, JCurTab);
-        addStyling(BSObject.getElementsByClassName(parameters.tabContentFlairBS)[0], "tabContentFlairBS", parameters, JCurTab);
-
         if (parameters.showBottomNavBS) {
-            addStyling(BSObject.getElementsByClassName(parameters.buttonBarBS)[0], "buttonBarBS", parameters, JCurTab);
-            addStyling(BSObject.getElementsByClassName(parameters.buttonBarFlairBS)[0], "buttonBarFlairBS", parameters, JCurTab);
-            addStyling(BSObject.getElementsByClassName(parameters.backButtonBS)[0], "backButtonBS", parameters, JCurTab);
+
             addStyling(BSObject.getElementsByClassName(parameters.backButtonFlairBS)[0], "backButtonFlairBS", parameters, JCurTab);
-            addStyling(BSObject.getElementsByClassName(parameters.nextButtonBS)[0], "nextButtonBS", parameters, JCurTab);
+            addStyling(BSObject.getElementsByClassName(parameters.backButtonBS)[0], "backButtonBS", parameters, JCurTab);
+         
             addStyling(BSObject.getElementsByClassName(parameters.nextButtonFlairBS)[0], "nextButtonFlairBS", parameters, JCurTab);
+            addStyling(BSObject.getElementsByClassName(parameters.nextButtonBS)[0], "nextButtonBS", parameters, JCurTab); 
+    
+            addStyling(BSObject.getElementsByClassName(parameters.buttonBarFlairBS)[0], "buttonBarFlairBS", parameters, JCurTab);
+            addStyling(BSObject.getElementsByClassName(parameters.buttonBarBS)[0], "buttonBarBS", parameters, JCurTab);
         }
+    
         addStyling(BSObject.getElementsByClassName(parameters.tabBS)[0], "tabBS", parameters, JCurTab);
+    
+        addStyling(BSObject.getElementsByClassName(parameters.navBarFlairBS)[0], "navBarFlairBS", parameters, JCurTab);
+        addStyling(BSObject.getElementsByClassName(parameters.navBarBS)[0], "navBarBS", parameters, JCurTab);
+    
+        addStyling(BSObject.getElementsByClassName(parameters.navTabActiveFlairBS)[0], "navTabActiveFlairBS", parameters, JCurTab);
+        addStyling(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0], "navTabActiveBS", parameters, JCurTab);
+        
+        addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveFlairBS)[0], "navTabInactiveFlairBS", parameters, JCurTab);
+        addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0], "navTabInactiveBS", parameters, JCurTab);
+       
+        addStyling(BSObject.getElementsByClassName(parameters.tabContentFlairBS)[0], "tabContentFlairBS", parameters, JCurTab);
+        addStyling(BSObject.getElementsByClassName(parameters.tabContentBS)[0], "tabContentBS", parameters, JCurTab);
 
 
 
