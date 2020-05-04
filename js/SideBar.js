@@ -1,6 +1,5 @@
 function getBSAlignmentBar(control){
 
-
     rheader = '<header class="bs-canvas-header p-3 bg-primary overflow-auto"> ' + 
     '<button type="button" class="bs-canvas-close float-left close" aria-label="Close" onClick="closeSideBar()"><span aria-hidden="true" class="text-light">&times;</span></button> ' + 
     '<h4 class="d-inline-block text-light mb-0 float-right">Alignment</h4> ' + 
@@ -13,7 +12,39 @@ function getBSAlignmentBar(control){
     rtn = rheader + rcontent + rfooter;
     
     $('#bs-canvas-right').html(rtn);
-    }
+}
+
+function getBSMarginBar(control){
+
+    rheader = '<header class="bs-canvas-header p-3 bg-primary overflow-auto"> ' + 
+    '<button type="button" class="bs-canvas-close float-left close" aria-label="Close" onClick="closeSideBar()"><span aria-hidden="true" class="text-light">&times;</span></button> ' + 
+    '<h4 class="d-inline-block text-light mb-0 float-right">Margin</h4> ' + 
+    '</header><div class="bs-canvas-content px-3 py-5"><hr> ';
+    
+    rcontent = getBSMTop(control) + getBSMBottom(control) + getBSMLeft(control) + getBSMRight(control);
+    
+    rfooter = '</div> ';
+    
+    rtn = rheader + rcontent + rfooter;
+    
+    $('#bs-canvas-right').html(rtn);
+}
+
+function getBSPaddingBar(control){
+
+    rheader = '<header class="bs-canvas-header p-3 bg-primary overflow-auto"> ' + 
+    '<button type="button" class="bs-canvas-close float-left close" aria-label="Close" onClick="closeSideBar()"><span aria-hidden="true" class="text-light">&times;</span></button> ' + 
+    '<h4 class="d-inline-block text-light mb-0 float-right">Paddingment</h4> ' + 
+    '</header><div class="bs-canvas-content px-3 py-5"><hr> ';
+    
+    rcontent = getBSPTop(control) + getBSPBottom(control) + getBSPLeft(control) + getBSPRight(control);
+    
+    rfooter = '</div> ';
+    
+    rtn = rheader + rcontent + rfooter;
+    
+    $('#bs-canvas-right').html(rtn);
+}
 
     function getBSWidthBar(control){
 
@@ -184,7 +215,7 @@ rtn = '<div class="uk-width-1-1">' +
 '<label class="uk-form-label "><span class="uk-badge uk-label-info" ' + 
 'id="BSTop">0</span> Top: </label> ' + 
 '<input id="range" class="uk-width-expand uk-form-controls  " type="range" ' + 
-'value="0" min="-100" max="100" step="1" ' + 
+'value="0" min="-500" max="500" step="1" ' + 
 'oninput="document.getElementById(\'BSTop\').innerHTML = this.value; document.getElementsByClassName(\''+control+'\')[0].style.top = this.value+\'px\';     var myParams = {}; jsonKey  = \'id\'; myParams[jsonKey] = document.getElementsByClassName(\'BSMagic\')[0].parentElement.id; jsonKey = [document.getElementById(\'BSObjectSelector\').value + \'.top\']; myParams[jsonKey] = this.value+\'px\'; adjustParameters(myParams); "></div>  <hr>';
 return rtn;
 }
@@ -194,7 +225,7 @@ function getBSBottom(control){
     '<label class="uk-form-label "><span class="uk-badge uk-label-info" ' + 
     'id="BSBottom">0</span> Bottom: </label> ' + 
     '<input id="range" class="uk-width-expand uk-form-controls  " type="range" ' + 
-    'value="0" min="-100" max="100" step="1" ' + 
+    'value="0" min="-500" max="500" step="1" ' + 
     'oninput="document.getElementById(\'BSBottom\').innerHTML = this.value; document.getElementsByClassName(\''+control+'\')[0].style.bottom = this.value+\'px\';    var myParams = {}; jsonKey  = \'id\'; myParams[jsonKey] = document.getElementsByClassName(\'BSMagic\')[0].parentElement.id; jsonKey = [document.getElementById(\'BSObjectSelector\').value + \'.bottom\']; myParams[jsonKey] = this.value+\'px\'; adjustParameters(myParams); "></div>  <hr>';
     return rtn;
     }
@@ -260,7 +291,47 @@ function getBSBottom(control){
                 return rtn;
             }
 
+            function getBSPTop(control){
+                rtn = '<div class="uk-width-1-1">' +
+                '<label class="uk-form-label "><span class="uk-badge uk-label-info" ' + 
+                'id="BSPTop">0</span> Top: </label> ' + 
+                '<input id="range" class="uk-width-expand uk-form-controls  " type="range" ' + 
+                'value="0" min="-100" max="100" step="1" ' + 
+                'oninput="document.getElementById(\'BSPTop\').innerHTML = this.value; document.getElementsByClassName(\''+control+'\')[0].style.paddingTop = this.value+\'px\';     var myParams = {}; jsonKey  = \'id\'; myParams[jsonKey] = document.getElementsByClassName(\'BSMagic\')[0].parentElement.id; jsonKey = [document.getElementById(\'BSObjectSelector\').value + \'.padding-top\']; myParams[jsonKey] = this.value+\'px\'; adjustParameters(myParams); "></div>  <hr>';
+                return rtn;
+                }
+                
+            function getBSPBottom(control){
+                    rtn = '<div class="uk-width-1-1">' +
+                    '<label class="uk-form-label "><span class="uk-badge uk-label-info" ' + 
+                    'id="BSPBottom">0</span> Bottom: </label> ' + 
+                    '<input id="range" class="uk-width-expand uk-form-controls  " type="range" ' + 
+                    'value="0" min="-100" max="100" step="1" ' + 
+                    'oninput="document.getElementById(\'BSPBottom\').innerHTML = this.value; document.getElementsByClassName(\''+control+'\')[0].style.paddingBottom = this.value+\'px\';    var myParams = {}; jsonKey  = \'id\'; myParams[jsonKey] = document.getElementsByClassName(\'BSMagic\')[0].parentElement.id; jsonKey = [document.getElementById(\'BSObjectSelector\').value + \'.padding-bottom\']; myParams[jsonKey] = this.value+\'px\'; adjustParameters(myParams); "></div>  <hr>';
+                    return rtn;
+                    }
+                
+            function getBSPLeft(control){
+                        rtn = '<div class="uk-width-1-1">' +
+                        '<label class="uk-form-label "><span class="uk-badge uk-label-info" ' + 
+                        'id="BSPLeft">0</span> Left: </label> ' + 
+                        '<input id="range" class="uk-width-expand uk-form-controls  " type="range" ' + 
+                        'value="0" min="-100" max="100" step="1" ' + 
+                        'oninput="document.getElementById(\'BSPLeft\').innerHTML = this.value; document.getElementsByClassName(\''+control+'\')[0].style.paddingLeft = this.value+\'px\';    var myParams = {}; jsonKey  = \'id\'; myParams[jsonKey] = document.getElementsByClassName(\'BSMagic\')[0].parentElement.id; jsonKey = [document.getElementById(\'BSObjectSelector\').value + \'.padding-left\']; myParams[jsonKey] = this.value+\'px\'; adjustParameters(myParams); "></div>  <hr>';
+                        return rtn;
+                    }
+                
+            function getBSPRight(control){
+                        rtn = '<div class="uk-width-1-1">' +
+                        '<label class="uk-form-label "><span class="uk-badge uk-label-info" ' + 
+                        'id="BSPRight">0</span> Right: </label> ' + 
+                        '<input id="range" class="uk-width-expand uk-form-controls  " type="range" ' + 
+                        'value="0" min="-100" max="100" step="1" ' + 
+                        'oninput="document.getElementById(\'BSPRight\').innerHTML = this.value; document.getElementsByClassName(\''+control+'\')[0].style.paddingRight = this.value+\'px\';   var myParams = {}; jsonKey  = \'id\'; myParams[jsonKey] = document.getElementsByClassName(\'BSMagic\')[0].parentElement.id; jsonKey = [document.getElementById(\'BSObjectSelector\').value + \'.padding-right\']; myParams[jsonKey] = this.value+\'px\'; adjustParameters(myParams); "</div>  <hr>';
+                        return rtn;
+                    }
 
+                    
 
     function getBSWidth(control){
         rtn = '<div class="uk-width-1-1">' +
@@ -528,7 +599,18 @@ $('#btnHeight').on('click', function() {
     getBSHeightBar(document.getElementById('BSObjectSelector').value);
 });
 
-// adjustParameters({"id": "JTab2","nextButtonBS.background-color": "green"});
+// Open up the Margin sidebar
+$('#btnMargin').on('click', function() {
+    
+    getBSMarginBar(document.getElementById('BSObjectSelector').value);
+});
+
+// Open up the Padding sidebar
+$('#btnPadding').on('click', function() {
+    
+    getBSPaddingBar(document.getElementById('BSObjectSelector').value);
+});
+
 
 
 
