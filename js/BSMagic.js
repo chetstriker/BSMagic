@@ -19,6 +19,9 @@
 // TODO - create functions for update active tab and update inactive tabs
 
 
+var GlobalBSObject;
+var Globalparamaters;
+
 
 // this is a finction to get the next nav-link
 var getNextSibling = function (elem, selector) {
@@ -132,7 +135,7 @@ function BSMagic(parameters) {
         parameters["navBarFlairBS.width"] =  100;
         parameters["navBarFlairBS.height"] =  5;
         parameters["navTabActiveBS.shape"] =  "oval";
-        parameters["navBarFlairBS.background-color"] =  "purple";
+      //  parameters["navBarFlairBS.background-color"] =  "purple";
         parameters["navTabActiveBS.box-shadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
         parameters["navTabInactiveBS.box-shadow"] = "initial";
         parameters["navTabActiveBS.color"] =  "#b6c4d2";
@@ -419,8 +422,8 @@ function BSMagic(parameters) {
     //animate the transition
     JAnimate(JCurTab, JCurTab, BSObject, parameters);
 
-
-
+    GlobalBSObject=BSObject;
+    Globalparamaters=parameters;
 
 }
 
@@ -463,7 +466,6 @@ function parameterDefaults(parameters){
 
     //define if we want navigation buttons added
     if (parameters.buttonBarBS === undefined) parameters.buttonBarBS = "buttonBarBS";
-;
 
     //define if we want navigation buttons added
     if (parameters.buttonBarFlairBS === undefined) parameters.buttonBarFlairBS = "buttonBarFlairBS";
@@ -573,6 +575,36 @@ function addShapes (parameters, BSObject) {
 }
 
 
+
+/**
+ * @description Ued to manipulate parameters after creation
+ * @author Jason Stover
+ * @date 2020-05-02
+ * @param {*} parameterIn
+ */
+function adjustParameters(parameterIn){
+   
+    // first grab the object to change (their might be more than one)
+    var BSObject = document.getElementById(parameterIn.id);
+
+    // grab all keys that have changed
+   var m1_change_key = Object.keys(parameterIn);
+    // overwrite existing parameters with changes
+for (var i = 0; i < m1_change_key.length; i++) {
+    Globalparamaters[m1_change_key[i]] = parameterIn[m1_change_key[i]];
+}
+
+
+
+ console.log( JSON.stringify(Globalparamaters));
+  //   parameters = GlobalParameter.paramaters.map((item, i) => Object.assign({}, item, parameterIn[i]));
+
+
+   ReFresh(BSObject,Globalparamaters);
+}
+
+
+
 /**
  * @description  this will tag all element locations for our manipulation
  * @author Jason Stover
@@ -623,6 +655,7 @@ function defineElements(BSObject,parameters){
         * #map navTabActiveFlairBS
     */
     divFlair.className += " " + parameters.navTabActiveFlairBS;
+    
     /*
         * #map navTabActiveBS
     */
@@ -969,41 +1002,15 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
     navBarBSBase.style.width = baseRect.width+"px";
    }
    
-   /*
-       * #Fix navTabActiveBS alignment
-   */
-  //divide the navbar width into equal space for each tab (Horizonal)
-    // each Navbar item identified by having class="nav-link"
-    
+ 
+
+
+    //make vertical alignment even if using vertical tabs
     var navlinks = getInactiveTabs(BSObject,parameters);
     // need to get count of nav-link under nav-pills but without nav-link parent of navTabActiveBS
     var jtotal = navlinks.length;
     jwidth = 100 / jtotal;
-
-    Array.prototype.forEach.call(navlinks, function (tab) {
-        // if parent contain nav-pills that we don't have the nav-link in a wrapper
-        if (tab.parentElement.classList.contains("nav-pills")){
-            tab.style.width = jwidth + '%';
-            btnCopy = BSObject.querySelectorAll(".nav-link.active")[0];
-            navrect = btnCopy.getBoundingClientRect();
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.top = navrect.top;
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.left = navrect.left;
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.width = navrect.width;
-            removeStyles(getActiveTab(BSObject, parameters)[0]);
-        }
-        else{
-            tab.parentElement.style.width = jwidth + '%';
-            btnCopy = BSObject.querySelectorAll(".nav-link.active")[0];
-            navrect = btnCopy.getBoundingClientRect();
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.top = navrect.top;
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.left = navrect.left;
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.width = navrect.width;
-            removeStyles(getActiveTab(BSObject, parameters)[0]);
-        }
-    });
-
-
-    //make vertical alignment even if using vertical tabs
+    
     if (vertical == true) {
 
         element = BSObject.getElementsByClassName('flex-column')[0];
@@ -1812,22 +1819,22 @@ function addStyling(parameterBaseElement, parameterBaseName, parameters, JCurTab
     }
     // define element.font
     parameterBaseElement.style.font = parameters[parameterBaseName + ".font"];
-    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null &&  parameters[parameterBaseName + ".font"] !== null) {
         parameterBaseElement.querySelector('.nav-link.active').style.font = parameters[parameterBaseName + ".font"];
     }
     // define element.font-weight
     parameterBaseElement.style.fontWeight = parameters[parameterBaseName + ".font-weight"];
-    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null && parameters[parameterBaseName + ".font-weight"] !== null) {
         parameterBaseElement.querySelector('.nav-link.active').style.fontWeight = parameters[parameterBaseName + ".font-weight"];
     }
     // define element.font-family
     parameterBaseElement.style.fontFamily = parameters[parameterBaseName + ".font-family"];
-    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
-        parameterBaseElement.querySelector('.nav-link.active').style.fontFamily = parameters[parameterBaseName + ".font-family"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null && parameters[parameterBaseName + ".font-family"] !== null) {
+      //  parameterBaseElement.querySelector('.nav-link.active').style.fontFamily = parameters[parameterBaseName + ".font-family"];
     }
     // define element.font-size
     parameterBaseElement.style.fontSize = parameters[parameterBaseName + ".font-size"];
-    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null && parameters[parameterBaseName + ".font-size"] !== null) {
         parameterBaseElement.querySelector('.nav-link.active').style.fontSize = parameters[parameterBaseName + ".font-size"];
     }
     // define element.z-index

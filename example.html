@@ -20,8 +20,19 @@
 
     <link href="css/BSMagic.css" rel="stylesheet">
 
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit-icons.min.js"></script>
+
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.min.js"
+        integrity="sha256-CJWfUCeP3jLdUMVNUll6yQx37gh9AKmXTRxvRf7jzro=" crossorigin="anonymous"></script>
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
         integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous">
     </script>
@@ -33,314 +44,257 @@
         integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous">
     </script>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.2.0/css/bootstrap-colorpicker.min.css" integrity="sha256-17wSnqdRI9sWIxEZ1cMPunDErwMYQ4ZPzCkSaxjSSoE=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/3.2.0/js/bootstrap-colorpicker.min.js" integrity="sha256-19qa1MlD0p/BW6q3H2YKzDTA3XyrylkqYUlWWAqoAvc=" crossorigin="anonymous"></script>
+
+<script type=" text/javascript" src="js/SideBar.js"></script>
+
     <meta name="google-site-verification" content="XWdWfRGGiNbrVjOryYFie-Po4Ji-hUDT2wCm-qP03O8" />
 </head>
 
 <body id="home2">
+    <div class="bs-canvas-overlay bs-canvas-anim bg-dark position-fixed w-100 h-100"></div>
+    <div class="row" style="width:100%; Height: 100%; position:abosulte; left:0px;top: 0px;">
+        <div class="col-9 h-100 row align-items-center" style="width: 100%; height: 100vh;">
+            <div class="col" style="padding-top: 30%">
 
-    </br>
-
-    </br>
-
-
-   
-    <div class="row col-sm-12">
-        <center>
-        <div class="bd-example bd-example-tabs col-sm-9" id="JTab1">
-            <div class="row">
-                <div class="col-3">
-                    <div class="nav flex-column flex-grow-1 flex-fill nav-pills" role="tablist" style="height: 200px;"
-                        aria-orientation="vertical">
-                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
-                            role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
-                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
-                            role="tab" aria-controls="v-pills-profile" aria-selected="false">'<span style="" class="glyphicon glyphicon-chevron-right">Profile</span></a>
-                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
-                            role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
-                        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings"
-                            role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
-                    </div>
-                </div>
-                <div class="col-9">
-                    <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-                            aria-labelledby="v-pills-home-tab">
-                            <p>Cillum ad ut irure tempor velit nostrud occaecat ullamco aliqua anim Lorem sint. Veniam
-                                sint duis incididunt do esse magna mollit excepteur laborum qui. Id id reprehenderit sit
-                                est eu aliqua occaecat quis et velit excepteur
-                                laborum mollit dolore eiusmod. Ipsum dolor in occaecat commodo et voluptate minim
-                                reprehenderit mollit pariatur. Deserunt non laborum enim et cillum eu deserunt excepteur
-                                ea incididunt minim occaecat.</p>
+            <div class="row col-sm-12">
+                <center>
+                    <div class="bd-example bd-example-tabs col-sm-9" id="JTab1">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="nav flex-column flex-grow-1 flex-fill nav-pills" role="tablist"
+                                    style="height: 200px;" aria-orientation="vertical">
+                                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill"
+                                        href="#v-pills-home" role="tab" aria-controls="v-pills-home"
+                                        aria-selected="true">Home</a>
+                                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill"
+                                        href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
+                                        aria-selected="false">'<span style=""
+                                            class="glyphicon glyphicon-chevron-right">Profile</span></a>
+                                    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill"
+                                        href="#v-pills-messages" role="tab" aria-controls="v-pills-messages"
+                                        aria-selected="false">Messages</a>
+                                    <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill"
+                                        href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
+                                        aria-selected="false">Settings</a>
+                                </div>
+                            </div>
+                            <div class="col-9">
+                                <div class="tab-content" id="v-pills-tabContent">
+                                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                                        aria-labelledby="v-pills-home-tab">
+                                        <p>Cillum ad ut irure tempor velit nostrud occaecat ullamco aliqua anim Lorem
+                                            sint. Veniam
+                                            sint duis incididunt do esse magna mollit excepteur laborum qui. Id id
+                                            reprehenderit sit
+                                            est eu aliqua occaecat quis et velit excepteur
+                                            laborum mollit dolore eiusmod. Ipsum dolor in occaecat commodo et voluptate
+                                            minim
+                                            reprehenderit mollit pariatur. Deserunt non laborum enim et cillum eu
+                                            deserunt excepteur
+                                            ea incididunt minim occaecat.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                                        aria-labelledby="v-pills-profile-tab">
+                                        <p>Culpa dolor voluptate do laboris laboris irure reprehenderit id incididunt
+                                            duis pariatur
+                                            mollit aute magna pariatur consectetur. Eu veniam duis non ut dolor deserunt
+                                            commodo et
+                                            minim in quis laboris ipsum velit id veniam. Quis
+                                            ut consectetur adipisicing officia excepteur non sit. Ut et elit aliquip
+                                            labore Lorem
+                                            enim eu. Ullamco mollit occaecat dolore ipsum id officia mollit qui esse
+                                            anim eiusmod do
+                                            sint minim consectetur qui.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                                        aria-labelledby="v-pills-messages-tab">
+                                        <p>Fugiat id quis dolor culpa eiusmod anim velit excepteur proident dolor aute
+                                            qui magna. Ad
+                                            proident laboris ullamco esse anim Lorem Lorem veniam quis Lorem irure
+                                            occaecat velit
+                                            nostrud magna nulla. Velit et et proident Lorem
+                                            do ea tempor officia dolor. Reprehenderit Lorem aliquip labore est magna
+                                            commodo est ea
+                                            veniam consectetur.</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
+                                        aria-labelledby="v-pills-settings-tab">
+                                        <p>Eu dolore ea ullamco dolore Lorem id cupidatat excepteur reprehenderit
+                                            consectetur elit
+                                            id dolor proident in cupidatat officia. Voluptate excepteur commodo labore
+                                            nisi cillum
+                                            duis aliqua do. Aliqua amet qui mollit consectetur
+                                            nulla mollit velit aliqua veniam nisi id do Lorem deserunt amet. Culpa
+                                            ullamco sit
+                                            adipisicing labore officia magna elit nisi in aute tempor commodo eiusmod.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                            aria-labelledby="v-pills-profile-tab">
-                            <p>Culpa dolor voluptate do laboris laboris irure reprehenderit id incididunt duis pariatur
-                                mollit aute magna pariatur consectetur. Eu veniam duis non ut dolor deserunt commodo et
-                                minim in quis laboris ipsum velit id veniam. Quis
-                                ut consectetur adipisicing officia excepteur non sit. Ut et elit aliquip labore Lorem
-                                enim eu. Ullamco mollit occaecat dolore ipsum id officia mollit qui esse anim eiusmod do
-                                sint minim consectetur qui.</p>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
-                            aria-labelledby="v-pills-messages-tab">
-                            <p>Fugiat id quis dolor culpa eiusmod anim velit excepteur proident dolor aute qui magna. Ad
-                                proident laboris ullamco esse anim Lorem Lorem veniam quis Lorem irure occaecat velit
-                                nostrud magna nulla. Velit et et proident Lorem
-                                do ea tempor officia dolor. Reprehenderit Lorem aliquip labore est magna commodo est ea
-                                veniam consectetur.</p>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
-                            aria-labelledby="v-pills-settings-tab">
-                            <p>Eu dolore ea ullamco dolore Lorem id cupidatat excepteur reprehenderit consectetur elit
-                                id dolor proident in cupidatat officia. Voluptate excepteur commodo labore nisi cillum
-                                duis aliqua do. Aliqua amet qui mollit consectetur
-                                nulla mollit velit aliqua veniam nisi id do Lorem deserunt amet. Culpa ullamco sit
-                                adipisicing labore officia magna elit nisi in aute tempor commodo eiusmod.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-        </div>
-    </center>
-
-         <!--           
-        <div class=" bd-example-tabs col-sm-6" id="regular" style="">
-            <div class="row">
-                <div class="col-3">
-                    <div class="nav flex-column flex-grow-1 flex-fill nav-pills" role="tablist" style="height: 200px;"
-                        aria-orientation="vertical">
-                        <a class="nav-link active" id="v-pills-home-tab1" data-toggle="pill" href="#v-pills-home1"
-                            role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
-                        <a class="nav-link" id="v-pills-profile-tab1" data-toggle="pill" href="#v-pills-profile1"
-                            role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
-                        <a class="nav-link" id="v-pills-messages-tab1" data-toggle="pill" href="#v-pills-messages1"
-                            role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
-                        <a class="nav-link" id="v-pills-settings-tab1" data-toggle="pill" href="#v-pills-settings1"
-                            role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
                     </div>
-                </div>
-                <div class="col-9">
-                    <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-home1" role="tabpanel"
-                            aria-labelledby="v-pills-home-tab1">
-                            <p>Cillum ad ut irure tempor velit nostrud occaecat ullamco aliqua anim Lorem sint. Veniam
-                                sint duis incididunt do esse magna mollit excepteur laborum qui. Id id reprehenderit sit
-                                est eu aliqua occaecat quis et velit excepteur
-                                laborum mollit dolore eiusmod. Ipsum dolor in occaecat commodo et voluptate minim
-                                reprehenderit mollit pariatur. Deserunt non laborum enim et cillum eu deserunt excepteur
-                                ea incididunt minim occaecat.</p>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-profile1" role="tabpanel"
-                            aria-labelledby="v-pills-profile-tab1">
-                            <p>Culpa dolor voluptate do laboris laboris irure reprehenderit id incididunt duis pariatur
-                                mollit aute magna pariatur consectetur. Eu veniam duis non ut dolor deserunt commodo et
-                                minim in quis laboris ipsum velit id veniam. Quis
-                                ut consectetur adipisicing officia excepteur non sit. Ut et elit aliquip labore Lorem
-                                enim eu. Ullamco mollit occaecat dolore ipsum id officia mollit qui esse anim eiusmod do
-                                sint minim consectetur qui.</p>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-messages1" role="tabpanel"
-                            aria-labelledby="v-pills-messages-tab1">
-                            <p>Fugiat id quis dolor culpa eiusmod anim velit excepteur proident dolor aute qui magna. Ad
-                                proident laboris ullamco esse anim Lorem Lorem veniam quis Lorem irure occaecat velit
-                                nostrud magna nulla. Velit et et proident Lorem
-                                do ea tempor officia dolor. Reprehenderit Lorem aliquip labore est magna commodo est ea
-                                veniam consectetur.</p>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-settings1" role="tabpanel"
-                            aria-labelledby="v-pills-settings-tab1">
-                            <p>Eu dolore ea ullamco dolore Lorem id cupidatat excepteur reprehenderit consectetur elit
-                                id dolor proident in cupidatat officia. Voluptate excepteur commodo labore nisi cillum
-                                duis aliqua do. Aliqua amet qui mollit consectetur
-                                nulla mollit velit aliqua veniam nisi id do Lorem deserunt amet. Culpa ullamco sit
-                                adipisicing labore officia magna elit nisi in aute tempor commodo eiusmod.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </center>
 
-        </div>
-       
-
-
-    </div>
-
-    </br>
-
-    </br>
-
-    <div class="row col-sm-12" style="text-align: center;">
-        <div class="col-sm-6">
-            <B>After adding BSMagic</B>
-            </br>
-            <div style="background-color:rgb(77, 77, 78);  color:rgb(1, 238, 255); border-radius: 20px;">
-                <code ">BSMagic({
-                " id ": " JTab1 ",
-                " buttonBarBS ": true,
-                " navShape ": " square ",
-                " navBackground ": " white ",
-                " navFontColor ": " blue ",
-                " navUnderline ": true,
-                " navShadow ": true,
-                " nextText ": " &ltspan style='color:white;' class='glyphicon glyphicon-chevron-right' &gt&lt/span&gt ",
-                " prevText ": " "&ltspan style='color:white;' class='glyphicon glyphicon-chevron-left'&gt&lt/span&gt" ,
-                    });</code> </div> </div> <div class="col-sm-6" style="text-align: center;">
-                    <b>Default BootStrap Tabs</b>
-            </div>
-        </div>
-  -->
-  </div>
-        </br>
-        </br>
-    </br>
-
-       
-        <div class="row col-sm-12">
-            <center>
-            <div class="bd-example-tabs col-sm-9" id="JTab2">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                            aria-controls="home" aria-selected="true">A</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                            aria-controls="profile" aria-selected="false">B</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-                            aria-controls="contact" aria-selected="false">C</a>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="homes" role="tabpanel" aria-labelledby="home-tab">
-                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown
-                            aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan
-                            helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
-                            synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia
-                            cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
-                        </p>
-                    </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
-                            Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan
-                            four loko farm-to-table craft beer twee. Qui photo booth
-                            letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR.
-                            Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS
-                            salvia yr, vero magna velit sapiente labore
-                            stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut
-                            DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher
-                            vero sint qui sapiente accusamus tattooed
-                            echo park.</p>
-                    </div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                        <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic
-                            lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork
-                            tattooed craft beer, iphone skateboard locavore carles
-                            etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid
-                            8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel
-                            fixie etsy retro mlkshk vice blog. Scenester cred
-                            you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable
-                            tofu synth chambray yr.</p>
-                    </div>
-                </div>
-            </div>
-        </center>
-            <!-- 
-            <div class=" bd-example-tabs col-sm-6" id="none" style="">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="home-tab1" data-toggle="tab" href="#home1" role="tab"
-                            aria-controls="home" aria-selected="true">A</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="profile-tab2" data-toggle="tab" href="#profile2" role="tab"
-                            aria-controls="profile" aria-selected="false">B</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="contact-tab3" data-toggle="tab" href="#contact3" role="tab"
-                            aria-controls="contact" aria-selected="false">C</a>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home1" role="tabpanel" aria-labelledby="home-tab1">
-                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown
-                            aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan
-                            helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
-                            synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia
-                            cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
-                        </p>
-                    </div>
-                    <div class="tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile-tab2">
-                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
-                            Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan
-                            four loko farm-to-table craft beer twee. Qui photo booth
-                            letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR.
-                            Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS
-                            salvia yr, vero magna velit sapiente labore
-                            stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut
-                            DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher
-                            vero sint qui sapiente accusamus tattooed
-                            echo park.</p>
-                    </div>
-                    <div class="tab-pane fade" id="contact3" role="tabpanel" aria-labelledby="contact-tab3">
-                        <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic
-                            lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork
-                            tattooed craft beer, iphone skateboard locavore carles
-                            etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid
-                            8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel
-                            fixie etsy retro mlkshk vice blog. Scenester cred
-                            you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable
-                            tofu synth chambray yr.</p>
-                    </div>
-                </div>
+            
             </div>
             
 
+<!-- 
+            <div class="row col-sm-12">
+                <center>
+                    <div class="bd-example-tabs col-sm-9" id="JTab2">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                    aria-controls="home" aria-selected="true">A</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                                    aria-controls="profile" aria-selected="false">B</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                                    aria-controls="contact" aria-selected="false">C</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="homes" role="tabpanel"
+                                aria-labelledby="home-tab">
+                                <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu
+                                    stumptown
+                                    aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles
+                                    vegan
+                                    helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
+                                    synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip
+                                    placeat salvia
+                                    cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi
+                                    qui.
+                                </p>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee
+                                    squid.
+                                    Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson
+                                    artisan
+                                    four loko farm-to-table craft beer twee. Qui photo booth
+                                    letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
+                                    cillum PBR.
+                                    Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar
+                                    helvetica VHS
+                                    salvia yr, vero magna velit sapiente labore
+                                    stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts
+                                    beard ut
+                                    DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr
+                                    butcher
+                                    vero sint qui sapiente accusamus tattooed
+                                    echo park.</p>
+                            </div>
+                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's
+                                    organic
+                                    lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify
+                                    pitchfork
+                                    tattooed craft beer, iphone skateboard locavore carles
+                                    etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify
+                                    squid
+                                    8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork
+                                    biodiesel
+                                    fixie etsy retro mlkshk vice blog. Scenester cred
+                                    you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork
+                                    sustainable
+                                    tofu synth chambray yr.</p>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+ -->           
+            </div>
+
+        </div>
+
+        <div id="sideBar" class="col-3" style="background-color: rgb(247, 247, 247); width: 100%; height: 100vh;">
+
+            <input id="BSObjectSelector" value="navTabActiveBS" style="display:none;"> </input>
+
+            <ul class="uk-width-1-1" uk-accordion>
+
+                <li id="btnAlignment" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right" class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
+                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Alignment</a>
+                </li>
+
+                <li id="btnWidth" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right" class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
+                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Width</a>
+                </li>
+
+                <li id="btnHeight" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right" class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
+                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Height</a>
+                </li>
+
+                <li class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
+                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Padding</a>
+                </li>
+
+                <li class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
+                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Margin</a>
+                </li>
+
+                <li class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
+                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Border</a>
+                </li>
+
+                <li class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
+                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Font</a>
+                </li>
+
+                <li class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
+                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Text Shadow</a>
+                </li>
+
+                <li id="btnBoxShadow" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right" class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
+                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Box Shadow</a>
+                </li>
+
+                <li id="btnBackgroundColor" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right" class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
+                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Background Color</a>
+                </li>
+
+                <li id="btnColor" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right" class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
+                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Text Color</a>
+                </li>
+
+                
+                <!--   THIS IS WHERE OUR SIDEBAR WILL BE PLACED -->
+                <div id="bs-canvas-right" class="bs-canvas bs-canvas-anim bs-canvas-right position-fixed bg-light h-100">
+                     
+                </div>
+
+
+
 
 
 
         </div>
 
-        </br>
 
-        <div class="row col-sm-12" style="text-align: center;">
-            <div class="col-sm-6">
-                <B>After adding BSMagic</B>
-                </br>
-                <div style="background-color:rgb(77, 77, 78);  color:rgb(1, 238, 255); border-radius: 20px;">
-                    <code ">BSMagic({
-                " id ": " JTab2 ",
-                " buttonBarBS ": true,
-                " navShape ": " oval ",
-                " navFontColor ": " white ",
-        });</code></div>
     </div>
-    <div class=" col-sm-6 " style=" text-align: center; ">
-        <b>Default BootStrap Tabs</b>
-    </div>
-    -->
-</div>
 
 
 
-
-
-
-
-  
     <script type=" text/javascript" src="js/BSMagic.js"></script>
+    
 
-                        <script type="text/javascript"
-                            src="https://cdnjs.cloudFlare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudFlare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
 
-                        <script>
-                           
-                            BSMagic({
-                                "id": "JTab2",
-                                "theme":"Magic2",
-                                /*
+    <script>
+
+/*
+        BSMagic({
+            "id": "JTab2",
+            "theme": "Magic3",
+            
                              //   "showBottomNavBS":false,
                                 "tabBS.box-shadow":"-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2",
                                 "navTabActiveBS": "NavShapeSquare2",
@@ -365,26 +319,22 @@
                                 //  "navTabInactiveBS.background-color":"green",
                                 // "navTabInactiveBS.font-weight":"bold",
                                 // "navTabInactiveFlairBS":"customTabFlair", 
-                                */
-                            });
+                                
+        });
+        */
 
-                            BSMagic({
-                                "id": "JTab1",
-                                "theme":"Magic2",
-                               // "navBarBS": "nav-pills2",
-                               //"showBottomNavBS":false,
-                             //   "navUnderline": true,
-                             //   "navShadow": true,
-                                "nextText": '<span style="" class="glyphicon glyphicon-chevron-right"></span>',
-                                "prevText": "<span style='color:white;' class='glyphicon glyphicon-chevron-left'></span>"
-                            });
-
-      
-
-                    
-                       
-                            
-                </script>
+        BSMagic({
+            "id": "JTab1",
+        //    "theme": "Magic3",
+        //    "navTabActiveBS.color": "blue",
+            // "navBarBS": "nav-pills2",
+            //"showBottomNavBS":false,
+            //   "navUnderline": true,
+            //   "navShadow": true,
+        //    "nextText": '<span style="" class="glyphicon glyphicon-chevron-right"></span>',
+       //     "prevText": "<span style='color:white;' class='glyphicon glyphicon-chevron-left'></span>"
+        });
+    </script>
 
 
 </body>
