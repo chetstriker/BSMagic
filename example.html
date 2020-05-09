@@ -20,6 +20,8 @@
 
     <link href="css/BSMagic.css" rel="stylesheet">
 
+    <link href="css/style.css" rel="stylesheet">
+
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/css/uikit.min.css" />
 
@@ -52,237 +54,252 @@
     <meta name="google-site-verification" content="XWdWfRGGiNbrVjOryYFie-Po4Ji-hUDT2wCm-qP03O8" />
 </head>
 
+
+
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow"
+    style="background-color: #3E92EE !important; margin: 0 !important; border: 0 !important; height:90px; margin-bottom: -90px !important;">
+    <span><img src="img/logo.gif" height="100px" />
+      <h5 class="my-0 mr-md-auto font-weight-normal"></h5>
+    </span>
+    <nav class="my-2 my-md-0 mr-md-3">
+      <!--
+           <?php global $NAV; echo $NAV; ?>
+        <a class="lupdate p-2 text-dark" href="#"><b><?php global $LATEST; $DT=json_decode($LATEST); $mydate=date_create($DT[0][0]);ECHO "LAST UPDATED: ".date_format($mydate,"m/d/Y h:i a"); ?> </b></a>
+      -->
+
+    </nav>
+    <!--  <a class="btn btn-outline-primary" href="#">LOG IN</a> -->
+  </div>
+
+
+
 <body id="home2">
     <div class="bs-canvas-overlay bs-canvas-anim bg-dark position-fixed w-100 h-100"></div>
-    <div class="row" style="width:100%; Height: 100%; position:abosulte; left:0px;top: 0px;">
-        <div class="col-9 h-100 row align-items-center" style="width: 100%; height: 100vh;">
-            <div class="col" style="padding-top: 20%">
 
-            <div class="row col-sm-12">
-                <center>
-                    <div class="bd-example bd-example-tabs col-sm-9" id="JTab1">
-                        <div class="row">
-                            <div class="col-3">
-                                <div class="nav flex-column flex-grow-1 flex-fill nav-pills" role="tablist"
-                                    style="height: 200px;" aria-orientation="vertical">
-                                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill"
-                                        href="#v-pills-home" role="tab" aria-controls="v-pills-home"
-                                        aria-selected="true">Home</a>
-                                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill"
-                                        href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
-                                        aria-selected="false">'<span style=""
-                                            class="glyphicon glyphicon-chevron-right">Profile</span></a>
-                                    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill"
-                                        href="#v-pills-messages" role="tab" aria-controls="v-pills-messages"
-                                        aria-selected="false">Messages</a>
-                                    <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill"
-                                        href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
-                                        aria-selected="false">Settings</a>
-                                </div>
-                            </div>
-                            <div class="col-9">
-                                <div class="tab-content" id="v-pills-tabContent">
-                                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-                                        aria-labelledby="v-pills-home-tab">
-                                        <p>Cillum ad ut irure tempor velit nostrud occaecat ullamco aliqua anim Lorem
-                                            sint. Veniam
-                                            sint duis incididunt do esse magna mollit excepteur laborum qui. Id id
-                                            reprehenderit sit
-                                            est eu aliqua occaecat quis et velit excepteur
-                                            laborum mollit dolore eiusmod. Ipsum dolor in occaecat commodo et voluptate
-                                            minim
-                                            reprehenderit mollit pariatur. Deserunt non laborum enim et cillum eu
-                                            deserunt excepteur
-                                            ea incididunt minim occaecat.</p>
-                                    </div>
-                                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                                        aria-labelledby="v-pills-profile-tab">
-                                        <p>Culpa dolor voluptate do laboris laboris irure reprehenderit id incididunt
-                                            duis pariatur
-                                            mollit aute magna pariatur consectetur. Eu veniam duis non ut dolor deserunt
-                                            commodo et
-                                            minim in quis laboris ipsum velit id veniam. Quis
-                                            ut consectetur adipisicing officia excepteur non sit. Ut et elit aliquip
-                                            labore Lorem
-                                            enim eu. Ullamco mollit occaecat dolore ipsum id officia mollit qui esse
-                                            anim eiusmod do
-                                            sint minim consectetur qui.</p>
-                                    </div>
-                                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
-                                        aria-labelledby="v-pills-messages-tab">
-                                        <p>Fugiat id quis dolor culpa eiusmod anim velit excepteur proident dolor aute
-                                            qui magna. Ad
-                                            proident laboris ullamco esse anim Lorem Lorem veniam quis Lorem irure
-                                            occaecat velit
-                                            nostrud magna nulla. Velit et et proident Lorem
-                                            do ea tempor officia dolor. Reprehenderit Lorem aliquip labore est magna
-                                            commodo est ea
-                                            veniam consectetur.</p>
-                                    </div>
-                                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
-                                        aria-labelledby="v-pills-settings-tab">
-                                        <p>Eu dolore ea ullamco dolore Lorem id cupidatat excepteur reprehenderit
-                                            consectetur elit
-                                            id dolor proident in cupidatat officia. Voluptate excepteur commodo labore
-                                            nisi cillum
-                                            duis aliqua do. Aliqua amet qui mollit consectetur
-                                            nulla mollit velit aliqua veniam nisi id do Lorem deserunt amet. Culpa
-                                            ullamco sit
-                                            adipisicing labore officia magna elit nisi in aute tempor commodo eiusmod.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                    </div>
-                </center>
 
+
+    <div class="wrapper d-flex align-items-stretch">
+
+
+        <div class="wrapperL">
+            <nav id="sidebarL" class="h-100  row" style=" padding-top:90px; background-image: url(img/bg-blue.jpg);">
+    
+    
+            <div class="uk-margin">
+                <label style="font-size: 16px; color: white; text-align:center; min-width: 186px;" class="uk-form-label "> Adjust Component: </label>
+                <br>
             
-            </div>
-            
-
-<!-- 
-            <div class="row col-sm-12">
-                <center>
-                    <div class="bd-example-tabs col-sm-9" id="JTab2">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                    aria-controls="home" aria-selected="true">A</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                    aria-controls="profile" aria-selected="false">B</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-                                    aria-controls="contact" aria-selected="false">C</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="homes" role="tabpanel"
-                                aria-labelledby="home-tab">
-                                <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu
-                                    stumptown
-                                    aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles
-                                    vegan
-                                    helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
-                                    synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip
-                                    placeat salvia
-                                    cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi
-                                    qui.
-                                </p>
-                            </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee
-                                    squid.
-                                    Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson
-                                    artisan
-                                    four loko farm-to-table craft beer twee. Qui photo booth
-                                    letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
-                                    cillum PBR.
-                                    Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar
-                                    helvetica VHS
-                                    salvia yr, vero magna velit sapiente labore
-                                    stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts
-                                    beard ut
-                                    DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr
-                                    butcher
-                                    vero sint qui sapiente accusamus tattooed
-                                    echo park.</p>
-                            </div>
-                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                                <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's
-                                    organic
-                                    lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify
-                                    pitchfork
-                                    tattooed craft beer, iphone skateboard locavore carles
-                                    etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify
-                                    squid
-                                    8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork
-                                    biodiesel
-                                    fixie etsy retro mlkshk vice blog. Scenester cred
-                                    you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork
-                                    sustainable
-                                    tofu synth chambray yr.</p>
-                            </div>
-                        </div>
-                    </div>
-                </center>
- -->           
-            </div>
-
-        </div>
-
-        <div id="sideBar" class="col-3" style="background-color: rgb(247, 247, 247); width: 100%; height: 100vh;">
-
-            <input id="BSObjectSelector" value="navTabActiveBS" style="display:none;"> </input>
-
-            <ul class="uk-width-1-1" uk-accordion>
-
-                <li id="btnAlignment" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right" class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
-                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Alignment</a>
-                </li>
-
-                <li id="btnWidth" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right" class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
-                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Width</a>
-                </li>
-
-                <li id="btnHeight" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right" class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
-                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Height</a>
-                </li>
-
-                <li id="btnPadding" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right" class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
-                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Padding</a>
-                </li>
-
-                <li id="btnMargin" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right" class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
-                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Margin</a>
-                </li>
-
-                <li id="btnBorder" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right" class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
-                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Border</a>
-                </li>
-
-                <li id="btnFont" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right" class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
-                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Font</a>
-                </li>
-
-                <li id="btnTextShadow" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right" class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
-                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Text Shadow</a>
-                </li>
-
-                <li id="btnBoxShadow" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right" class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
-                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Box Shadow</a>
-                </li>
-
-                <li id="btnBackgroundColor" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right" class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
-                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Background Color</a>
-                </li>
-
-                <li id="btnColor" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right" class="uk-box-shadow-large uk-box-shadow-hover-medium" style="padding: 15px;">
-                    <a class=" uk-legend uk-text-primary uk-text-center" href="#">Text Color</a>
-                </li>
-
+                    <select id="BSObjectSelector" size="16" style="margin-left: 23px; background-color: rgba(250,250,250,0.50);">
+                        <option value="tabBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Tab Form</option>
+                        <option value="navBarBS"  onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Nav Bar</option>
+                        <option value="tabContentBS"  onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Tab Content</option>
+                        <option value="navTabActiveBS"  onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Active Tab</option>
+                        <option value="navTabInactiveBS"  onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Inactive Tabs</option>
+                        <option value="buttonBarBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Button Bar</option>
+                        <option value="nextButtonBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Next Button</option>
+                        <option value="backButtonBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Back Button</option>
+                        <option value="tabFlairBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Tab Form Layer 2</option>
+                        <option value="navBarFlairBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Nav Bar Layer 2</option>
+                        <option value="tabContentFlairBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Tab Content Layer 2</option>
+                        <option value="navTabActiveFlairBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Active Tab Layer 2</option>
+                        <option value="navTabInactiveFlairBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Inactive Tabs Layer 2</option>
+                        <option value="buttonBarFlairBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Button Bar Layer 2</option>
+                        <option value="nextButtonFlairBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Next Button Layer 2</option>
+                        <option value="backButtonFlairBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Back Button Layer 2</option>
+                    </select>
+    
                 
-                <!--   THIS IS WHERE OUR SIDEBAR WILL BE PLACED -->
-                <div id="bs-canvas-right" class="bs-canvas bs-canvas-anim bs-canvas-right position-fixed bg-light h-100">
-                     
+            </div>
+    
+            <div class="uk-margin">
+                <label style="font-size: 16px; color: white; text-align:center; min-width: 186px;" class="uk-form-label "> Orientation: </label>
+                <br>
+                <div uk-form-custom="target: > * > span:first-child"  style="font-size: 16px; color: white; min-width: 186px;">
+                    <select id="BSHorVert">
+                        <option value="Vertical">Vertical</option>
+                        <option value="Horizontal">Horizontal</option>
+                    </select>
+                    <button class="uk-button uk-button-default" style="padding-left: 14px; min-width: 151px; max-width: 171px; background-color: rgba(250,250,250,0.50); margin-left: 24px;" type="button" tabindex="-1">
+                        <span></span>
+                        <span uk-icon="icon: chevron-down"></span>
+                    </button>
                 </div>
-
-
-
-
-
-
-        </div>
-
-
+            </div>
+    
+            <div class="uk-margin">
+                <label style="font-size: 16px; color: white; text-align:center; min-width: 186px;" class="uk-form-label "> Show Button Bar: </label>
+                <br>
+                <div uk-form-custom="target: > * > span:first-child" style="min-width: 186px;">
+                    <select id="BSBBarOn">
+                        <option value=true>On</option>
+                        <option value=false>Off</option>
+                    </select>
+                    <button class="uk-button uk-button-default" style="padding-left: 14px; min-width: 151px; max-width: 171px; background-color: rgba(250,250,250,0.50); margin-left: 24px;" type="button" tabindex="-1">
+                        <span></span>
+                        <span uk-icon="icon: chevron-down"></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
     </div>
 
 
 
+        <nav id="sidebar" class="order-last" style="padding-top: 35px; background-image: url(img/bg-blue.jpg);">
+            <div class="custom-menu">
+            </div>
+          
+            <h1><a href="example.html" class="logo">BSMagic <span>Better Tabs</span></a></h1>
+            <ul class="list-unstyled components mb-5">
+
+                <li id="btnAlignment" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right">
+                    <a href="#"><span class="fa fa-home mr-3"></span>Alignment</a>
+                </li>
+               
+                <li id="btnWidth" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right">
+                    <a href="#"><span class="fa fa-home mr-3"></span>Width</a>
+                </li>
+               
+                <li id="btnHeight" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right">
+                    <a href="#"><span class="fa fa-home mr-3"></span>Height</a>
+                </li>
+               
+                <li id="btnPadding" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right">
+                    <a href="#"><span class="fa fa-home mr-3"></span>Padding</a>
+                </li>
+               
+                <li id="btnMargin" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right">
+                    <a href="#"><span class="fa fa-home mr-3"></span>Margin</a>
+                </li>
+               
+                <li id="btnBorder" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right">
+                    <a href="#"><span class="fa fa-home mr-3"></span>Border</a>
+                </li>
+               
+                <li id="btnFont" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right">
+                    <a href="#"><span class="fa fa-home mr-3"></span>Font</a>
+                </li>
+               
+                <li id="btnTextShadow" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right">
+                    <a href="#"><span class="fa fa-home mr-3"></span>Text Shadow</a>
+                </li>
+               
+                <li id="btnBoxShadow" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right">
+                    <a href="#"><span class="fa fa-home mr-3"></span>Box Shadow</a>
+                </li>
+               
+                <li id="btnBackgroundColor" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right">
+                    <a href="#"><span class="fa fa-home mr-3"></span>Background Color</a>
+                </li>
+               
+                <li id="btnColor" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right">
+                    <a href="#"><span class="fa fa-home mr-3"></span>Text Color</a>
+                </li>
+
+
+            </ul>
+
+
+<!--
+            <div id="sideBar" class="row" style="min-width:440px; background-color: rgb(247, 247, 247); height: 100vh;">
+
+                <div id="sideBarLeft" class="col-6" style="min-width: 186px; background-color: rgb(247, 247, 247); height: 100vh;">
+                    <div class="uk-margin">
+                        <label style="text-align:center; min-width: 186px;" class="uk-form-label "> Adjust Component: </label>
+                        <br>
+                    
+                            <select id="BSObjectSelector" size="16" style="min-width:267px;">
+                                <option value="tabBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Tab Form</option>
+                                <option value="navBarBS"  onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Nav Bar</option>
+                                <option value="tabContentBS"  onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Tab Content</option>
+                                <option value="navTabActiveBS"  onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Active Tab</option>
+                                <option value="navTabInactiveBS"  onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Inactive Tabs</option>
+                                <option value="buttonBarBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Button Bar</option>
+                                <option value="nextButtonBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Next Button</option>
+                                <option value="backButtonBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Back Button</option>
+                                <option value="tabFlairBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Tab Form Layer 2</option>
+                                <option value="navBarFlairBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Nav Bar Layer 2</option>
+                                <option value="tabContentFlairBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Tab Content Layer 2</option>
+                                <option value="navTabActiveFlairBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Active Tab Layer 2</option>
+                                <option value="navTabInactiveFlairBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Inactive Tabs Layer 2</option>
+                                <option value="buttonBarFlairBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Button Bar Layer 2</option>
+                                <option value="nextButtonFlairBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Next Button Layer 2</option>
+                                <option value="backButtonFlairBS" onmouseover="OnOver(this)" onmouseleave="OnLeave(this)">Back Button Layer 2</option>
+                            </select>
+         
+                        
+                    </div>
+    
+                    <div class="uk-margin">
+                        <label style="text-align:center; min-width: 186px;" class="uk-form-label "> Orientation: </label>
+                        <br>
+                        <div uk-form-custom="target: > * > span:first-child"  style="min-width: 186px;">
+                            <select id="BSHorVert">
+                                <option value="Vertical">Vertical</option>
+                                <option value="Horizontal">Horizontal</option>
+                            </select>
+                            <button class="uk-button uk-button-default" style="min-width: 186px;" type="button" tabindex="-1">
+                                <span></span>
+                                <span uk-icon="icon: chevron-down"></span>
+                            </button>
+                        </div>
+                    </div>
+    
+                    <div class="uk-margin">
+                        <label style="text-align:center; min-width: 186px;" class="uk-form-label "> Show Button Bar: </label>
+                        <br>
+                        <div uk-form-custom="target: > * > span:first-child" style="min-width: 186px;">
+                            <select id="BSBBarOn">
+                                <option value=true>On</option>
+                                <option value=false>Off</option>
+                            </select>
+                            <button class="uk-button uk-button-default" style="min-width: 186px;" type="button" tabindex="-1">
+                                <span></span>
+                                <span uk-icon="icon: chevron-down"></span>
+                            </button>
+                        </div>
+                    </div>
+    
+                </div>
+
+            </div>
+        -->
+
+
+
+
+        
+            </nav>
+
+
+        <div id="content" class="p-4 p-md-5 pt-5">  
+      <!-- <div class="col-sm-8 pull-left h-100 row align-items-center" style="width: 100%; height: 100vh;"> -->  
+            <div class="col" style="padding-top: 20%" id="insertTab">
+
+            
+            
+
+
+            </div>
+
+        </div>
+
+        
+        
+
+           
+                <!--   THIS IS WHERE OUR SIDEBAR WILL BE PLACED -->
+            <div id="bs-canvas-right" class="bs-canvas bs-canvas-anim bs-canvas-right position-fixed bg-light h-100"></div>
+
+
+         </div>
+
+    </div>
+
+    <script>
+        document.getElementById('insertTab').innerHTML=htmlVertical;
+    </script>
     <script type=" text/javascript" src="js/BSMagic.js"></script>
     
 
@@ -323,8 +340,8 @@
         });
         */
 
-        BSMagic({
-            "id": "JTab1",
+        BSMagic(//{
+          //  "id": "JTab1",
         //    "theme": "Magic3",
         //    "navTabActiveBS.color": "blue",
             // "navBarBS": "nav-pills2",
@@ -333,7 +350,17 @@
             //   "navShadow": true,
         //    "nextText": '<span style="" class="glyphicon glyphicon-chevron-right"></span>',
        //     "prevText": "<span style='color:white;' class='glyphicon glyphicon-chevron-left'></span>"
-        });
+    //   {"id":"JTab1","showBottomNavBS":true,"tabBS":"tabBS","backButtonBS":"backButtonBS","backButtonBS.margin":"10px 15px 10px 15px","backButtonFlairBS":"backButtonFlairBS","nextButtonBS":"nextButtonBS","nextButtonBS.margin":"10px 15px 10px 15px","nextButtonFlairBS":"nextButtonFlairBS","tabContentBS":"tabContentBS","tabContentBS.margin":"0px 0px","tabContentFlairBS":"tabContentFlairBS","buttonBarBS":"buttonBarBS","buttonBarFlairBS":"buttonBarFlairBS","navTabActiveBS.shape":"square","navTabActiveBS.background-color":"rgb(86, 224, 137)","navTabActiveBS.color":"white","navUnderline":false,"navShadow":false,"nextText":"NEXT","prevText":"PREVIOUS","navOffsetX":0,"navOffsetY":0,"isWizard":false,"navTabActiveBS":"navTabActiveBS","navTabActiveBS.box-shadow":"inset 0px -31px 18px 6px rgba(81, 192, 147, 0.3)","navTabActiveFlairBS":"navTabActiveFlairBS","navTabActiveFlairBS.box-shadow":"0px 4px 6px 2px rgba(200, 246, 255, 0.7)","navTabInactiveBS":"navTabInactiveBS","navTabInactiveFlairBS":"navTabInactiveFlairBS","navTabTextOffetX":0,"navTabTextOffetY":0,"navBarBS":"navBarBS","navBarflairBS":"navBarflairBS","navTabActiveFlairBS.border-top":"0px solid rgb(247, 242, 242)","navTabActiveFlairBS.border-left":"0px solid rgb(247, 242, 242)","navTabActiveFlairBS.border-bottom":"3px solid rgb(247, 242, 242)","navTabActiveFlairBS.border-right":"0px solid rgb(247, 242, 242)","navTabActiveFlairBS.border-radius":"20px 20px 20px 20px ","navTabActiveFlairBS.padding-left":"20px","navTabActiveFlairBS.padding-right":"20px","navTabActiveFlairBS.margin-left":"40px","navTabActiveFlairBS.margin-right":"40px","navTabActiveBS.border-top":"5px solid rgb(108, 193, 217)","navTabActiveBS.border-left":"0px solid rgb(108, 193, 217)","navTabActiveBS.border-bottom":"0px solid rgb(108, 193, 217)","navTabActiveBS.border-right":"0px solid rgb(108, 193, 217)","navTabActiveBS.border-radius":"0px 0px 0px 0px ","navTabActiveBS.padding-top":"15px","navTabActiveBS.margin-left":"0px","navTabActiveBS.padding-left":"0px","navTabActiveBS.min-width":"0px","navTabActiveBS.max-width":"394px","navTabActiveBS.padding-bottom":"15px","tabBS.box-shadow":"0px 0px 20px 2px rgba(146, 162, 208, 0.61)","navBarBS.box-shadow":"0px 0px 20px 2px rgba(93, 173, 196, 0.62)","tabContentBS.box-shadow":"inset 0px 0px 49px 2px rgba(60, 159, 188, 0.53)","tabContentBS.padding-bottom":"50px","tabContentBS.padding-left":"25px","tabContentBS.padding-right":"25px","tabContentBS.padding-top":"25px","navTabInactiveBS.box-shadow":"inset 0px 0px 37px 2px rgba(152, 193, 217, 0.52)","buttonBarBS.background-color":"rgb(61, 177, 221)","buttonBarBS.border-top":"5px solid rgb(44, 101, 165)","buttonBarBS.border-left":"0px solid rgb(44, 101, 165)","buttonBarBS.border-bottom":"0px solid rgb(44, 101, 165)","buttonBarBS.border-right":"0px solid rgb(44, 101, 165)","buttonBarBS.border-radius":"0px 0px 20px 20px ","buttonBarBS.box-shadow":"inset 0px 0px 8px 2px rgb(255, 255, 255)","buttonBarFlairBS.border-top":"0px solid rgb(242, 248, 245)","buttonBarFlairBS.border-left":"0px solid rgb(242, 248, 245)","buttonBarFlairBS.border-bottom":"5px solid rgb(242, 248, 245)","buttonBarFlairBS.border-right":"0px solid rgb(242, 248, 245)","buttonBarFlairBS.border-radius":"0px 0px 20px 20px ","buttonBarFlairBS.padding-top":"0px","buttonBarFlairBS.padding-bottom":"0px","buttonBarFlairBS.margin-top":"0px","buttonBarFlairBS.margin-bottom":"11px","buttonBarFlairBS.top":"41px","nextButtonBS.background-color":"rgb(255, 161, 0)","nextButtonBS.border-top":"2px solid rgb(242, 248, 245)","nextButtonBS.border-left":"2px solid rgb(242, 248, 245)","nextButtonBS.border-bottom":"2px solid rgb(242, 248, 245)","nextButtonBS.border-right":"2px solid rgb(242, 248, 245)","nextButtonBS.border-radius":"0px 0px 20px 20px ","tabBS.border-top":"3px solid rgba(49, 160, 198, 0.26)","tabBS.border-left":"3px solid rgba(49, 160, 198, 0.26)","tabBS.border-bottom":"0px solid rgba(49, 160, 198, 0.26)","tabBS.border-right":"3px solid rgba(49, 160, 198, 0.26)","tabBS.border-radius":"0px 0px 20px 20px "}
+       // }
+    {"id":"JTab1","showBottomNavBS":true,"tabBS":"tabBS","backButtonBS":"backButtonBS","backButtonBS.margin":"10px 15px 10px 15px","backButtonFlairBS":"backButtonFlairBS","nextButtonBS":"nextButtonBS","nextButtonBS.margin":"10px 15px 10px 15px","nextButtonFlairBS":"nextButtonFlairBS","tabContentBS":"tabContentBS","tabContentBS.margin":"0px 0px","tabContentFlairBS":"tabContentFlairBS","buttonBarBS":"buttonBarBS","buttonBarFlairBS":"buttonBarFlairBS","navTabActiveBS.shape":"square","navTabActiveBS.background-color":"rgb(86, 224, 137)","navTabActiveBS.color":"white","navUnderline":false,"navShadow":false,"nextText":"NEXT","prevText":"PREVIOUS","navOffsetX":0,"navOffsetY":0,"isWizard":false,"navTabActiveBS":"navTabActiveBS","navTabActiveBS.box-shadow":"inset 0px -31px 18px 6px rgba(81, 192, 147, 0.3)","navTabActiveFlairBS":"navTabActiveFlairBS","navTabActiveFlairBS.box-shadow":"0px 4px 6px 2px rgba(200, 246, 255, 0.7)","navTabInactiveBS":"navTabInactiveBS","navTabInactiveFlairBS":"navTabInactiveFlairBS","navTabTextOffetX":0,"navTabTextOffetY":0,"navBarBS":"navBarBS","navBarflairBS":"navBarflairBS","navTabActiveFlairBS.border-top":"0px solid rgb(247, 242, 242)","navTabActiveFlairBS.border-left":"0px solid rgb(247, 242, 242)","navTabActiveFlairBS.border-bottom":"3px solid rgb(247, 242, 242)","navTabActiveFlairBS.border-right":"0px solid rgb(247, 242, 242)","navTabActiveFlairBS.border-radius":"20px 20px 20px 20px ","navTabActiveFlairBS.padding-left":"20px","navTabActiveFlairBS.padding-right":"20px","navTabActiveFlairBS.margin-left":"40px","navTabActiveFlairBS.margin-right":"40px","navTabActiveBS.border-top":"0px none rgb(255,0,0)","navTabActiveBS.border-left":"0px none rgb(255,0,0)","navTabActiveBS.border-bottom":"0px none rgb(255,0,0)","navTabActiveBS.border-right":"0px none rgb(255,0,0)","navTabActiveBS.border-radius":"5px 5px 0px 0px ","navTabActiveBS.padding-top":"15px","navTabActiveBS.margin-left":"0px","navTabActiveBS.padding-left":"0px","navTabActiveBS.min-width":"0px","navTabActiveBS.max-width":"394px","navTabActiveBS.padding-bottom":"15px","tabBS.box-shadow":"0px 0px 20px 2px rgba(146, 162, 208, 0.61)","navBarBS.box-shadow":"0px 0px 20px 2px rgba(93, 173, 196, 0.62)","tabContentBS.box-shadow":"inset 0px 0px 49px 2px rgba(60, 159, 188, 0.53)","tabContentBS.padding-bottom":"50px","tabContentBS.padding-left":"25px","tabContentBS.padding-right":"25px","tabContentBS.padding-top":"25px","navTabInactiveBS.box-shadow":"inset 0px 0px 37px 2px rgba(152, 193, 217, 0.52)","buttonBarBS.background-color":"rgb(61, 177, 221)","buttonBarBS.border-top":"3px solid rgba(120, 117, 117, 0.38)","buttonBarBS.border-left":"3px solid rgba(120, 117, 117, 0.38)","buttonBarBS.border-bottom":"3px solid rgba(120, 117, 117, 0.38)","buttonBarBS.border-right":"3px solid rgba(120, 117, 117, 0.38)","buttonBarBS.border-radius":"0px 0px 20px 20px ","buttonBarBS.box-shadow":"inset 0px 0px 8px 2px rgb(255, 255, 255)","buttonBarFlairBS.border-top":"0px solid rgb(242, 248, 245)","buttonBarFlairBS.border-left":"0px solid rgb(242, 248, 245)","buttonBarFlairBS.border-bottom":"5px solid rgb(242, 248, 245)","buttonBarFlairBS.border-right":"0px solid rgb(242, 248, 245)","buttonBarFlairBS.border-radius":"0px 0px 20px 20px ","buttonBarFlairBS.padding-top":"0px","buttonBarFlairBS.padding-bottom":"0px","buttonBarFlairBS.margin-top":"0px","buttonBarFlairBS.margin-bottom":"11px","buttonBarFlairBS.top":"41px","nextButtonBS.background-color":"rgb(90, 196, 91)","nextButtonBS.border-top":"3px solid rgba(255, 255, 255, 0.99)","nextButtonBS.border-left":"3px solid rgba(255, 255, 255, 0.99)","nextButtonBS.border-bottom":"3px solid rgba(255, 255, 255, 0.99)","nextButtonBS.border-right":"3px solid rgba(255, 255, 255, 0.99)","nextButtonBS.border-radius":"20px 20px 20px 0px ","tabBS.border-top":"3px solid rgba(120, 117, 117, 0.38)","tabBS.border-left":"3px solid rgba(120, 117, 117, 0.38)","tabBS.border-bottom":"3px solid rgba(120, 117, 117, 0.38)","tabBS.border-right":"3px solid rgba(120, 117, 117, 0.38)","tabBS.border-radius":"20px 20px 20px 20px ","navBarBS.padding-top":"0px","navBarBS.padding-bottom":"0px","navBarBS.padding-left":"0px","navBarBS.padding-right":"0px","navBarBS.margin-top":"15px","navBarBS.margin-bottom":"46px","navBarBS.margin-left":"19px","navBarBS.margin-right":"0px","navTabInactiveBS.top":"0px","navBarBS.top":"24px","tabContentBS.border-top":"0px solid rgba(255, 255, 255, 0.12)","tabContentBS.border-left":"0px solid rgba(255, 255, 255, 0.12)","tabContentBS.border-bottom":"0px solid rgba(255, 255, 255, 0.12)","tabContentBS.border-right":"0px solid rgba(255, 255, 255, 0.12)","tabContentBS.border-radius":"0px 15px 15px 0px ","navBarBS.border-top":"3px none rgba(120, 117, 117, 0.4)","navBarBS.border-left":"3px none rgba(120, 117, 117, 0.4)","navBarBS.border-bottom":"3px none rgba(120, 117, 117, 0.4)","navBarBS.border-right":"3px none rgba(120, 117, 117, 0.4)","navBarBS.border-radius":"0px 0px 20px 20px "}
+      
+     // {"id":"JTab1","showBottomNavBS":false,"tabBS":"tabBS","backButtonBS":"backButtonBS","backButtonBS.margin":"10px 15px 10px 15px","backButtonFlairBS":"backButtonFlairBS","nextButtonBS":"nextButtonBS","nextButtonBS.margin":"10px 15px 10px 15px","nextButtonFlairBS":"nextButtonFlairBS","tabContentBS":"tabContentBS","tabContentBS.margin":"0px 0px","tabContentFlairBS":"tabContentFlairBS","buttonBarBS":"buttonBarBS","buttonBarFlairBS":"buttonBarFlairBS","navTabActiveBS.shape":"square","navTabActiveBS.background-color":"rgb(215, 224, 42)","navTabActiveBS.color":"white","navUnderline":false,"navShadow":false,"nextText":"NEXT","prevText":"PREVIOUS","navOffsetX":0,"navOffsetY":0,"isWizard":false,"navTabActiveBS":"navTabActiveBS","navTabActiveBS.box-shadow":"0px 0px 0px 0px rgba(255, 255, 255, 0)","navTabActiveFlairBS":"navTabActiveFlairBS","navTabActiveFlairBS.box-shadow":"0px 0px 0px 0px rgb(255, 255, 255)","navTabInactiveBS":"navTabInactiveBS","navTabInactiveFlairBS":"navTabInactiveFlairBS","navTabTextOffetX":0,"navTabTextOffetY":0,"navBarBS":"navBarBS","navBarflairBS":"navBarflairBS","navTabActiveFlairBS.border-top":"10px dotted rgba(226, 58, 58, 0.98)","navTabActiveFlairBS.border-left":"0px dotted rgba(226, 58, 58, 0.98)","navTabActiveFlairBS.border-bottom":"0px dotted rgba(226, 58, 58, 0.98)","navTabActiveFlairBS.border-right":"0px dotted rgba(226, 58, 58, 0.98)","navTabActiveFlairBS.border-radius":"0px 0px 0px 0px ","navTabActiveFlairBS.padding-left":"20px","navTabActiveFlairBS.padding-right":"20px","navTabActiveFlairBS.margin-left":"40px","navTabActiveFlairBS.margin-right":"40px","navTabActiveBS.border-top":"5px solid rgb(32, 212, 22)","navTabActiveBS.border-left":"8px solid rgb(32, 212, 22)","navTabActiveBS.border-bottom":"0px solid rgb(32, 212, 22)","navTabActiveBS.border-right":"6px solid rgb(32, 212, 22)","navTabActiveBS.border-radius":"43px 43px 0px 0px ","navTabActiveBS.padding-top":"15px","navTabActiveBS.margin-left":"0px","navTabActiveBS.padding-left":"0px","navTabActiveBS.min-width":"0px","navTabActiveBS.max-width":"394px","navTabActiveBS.padding-bottom":"15px","tabBS.box-shadow":"0px -21px 1px 0px rgb(255, 252, 0)","navBarBS.box-shadow":"0px 0px 20px 2px rgba(93, 173, 196, 0.62)","tabContentBS.box-shadow":"inset 0px 0px 49px 2px rgba(60, 159, 188, 0.53)","tabContentBS.padding-bottom":"50px","tabContentBS.padding-left":"25px","tabContentBS.padding-right":"25px","tabContentBS.padding-top":"25px","navTabInactiveBS.box-shadow":"0px 0px 0px 0px rgba(255, 255, 255, 0.43)","buttonBarBS.background-color":"rgb(61, 177, 221)","buttonBarBS.border-top":"3px solid rgba(120, 117, 117, 0.38)","buttonBarBS.border-left":"3px solid rgba(120, 117, 117, 0.38)","buttonBarBS.border-bottom":"3px solid rgba(120, 117, 117, 0.38)","buttonBarBS.border-right":"3px solid rgba(120, 117, 117, 0.38)","buttonBarBS.border-radius":"0px 0px 20px 20px ","buttonBarBS.box-shadow":"inset 0px 0px 8px 2px rgb(255, 255, 255)","buttonBarFlairBS.border-top":"0px solid rgb(242, 248, 245)","buttonBarFlairBS.border-left":"0px solid rgb(242, 248, 245)","buttonBarFlairBS.border-bottom":"5px solid rgb(242, 248, 245)","buttonBarFlairBS.border-right":"0px solid rgb(242, 248, 245)","buttonBarFlairBS.border-radius":"0px 0px 20px 20px ","buttonBarFlairBS.padding-top":"0px","buttonBarFlairBS.padding-bottom":"0px","buttonBarFlairBS.margin-top":"0px","buttonBarFlairBS.margin-bottom":"11px","buttonBarFlairBS.top":"41px","nextButtonBS.background-color":"rgb(90, 196, 91)","nextButtonBS.border-top":"3px solid rgba(255, 255, 255, 0.99)","nextButtonBS.border-left":"3px solid rgba(255, 255, 255, 0.99)","nextButtonBS.border-bottom":"3px solid rgba(255, 255, 255, 0.99)","nextButtonBS.border-right":"3px solid rgba(255, 255, 255, 0.99)","nextButtonBS.border-radius":"20px 20px 20px 0px ","tabBS.border-top":"13px solid rgb(221, 71, 62)","tabBS.border-left":"0px solid rgb(221, 71, 62)","tabBS.border-bottom":"42px solid rgb(221, 71, 62)","tabBS.border-right":"0px solid rgb(221, 71, 62)","tabBS.border-radius":"0px 0px 0px 0px ","navBarBS.padding-top":"0px","navBarBS.padding-bottom":"0px","navBarBS.padding-left":"0px","navBarBS.padding-right":"0px","navBarBS.margin-top":"15px","navBarBS.margin-bottom":"46px","navBarBS.margin-left":"19px","navBarBS.margin-right":"0px","navTabInactiveBS.top":"0px","navBarBS.top":"24px","tabContentBS.border-top":"0px solid rgba(255, 255, 255, 0.12)","tabContentBS.border-left":"0px solid rgba(255, 255, 255, 0.12)","tabContentBS.border-bottom":"0px solid rgba(255, 255, 255, 0.12)","tabContentBS.border-right":"0px solid rgba(255, 255, 255, 0.12)","tabContentBS.border-radius":"0px 15px 15px 0px ","navBarBS.border-top":"3px none rgba(120, 117, 117, 0.4)","navBarBS.border-left":"3px none rgba(120, 117, 117, 0.4)","navBarBS.border-bottom":"3px none rgba(120, 117, 117, 0.4)","navBarBS.border-right":"3px none rgba(120, 117, 117, 0.4)","navBarBS.border-radius":"0px 0px 20px 20px ","tabBS.background-color":"rgba(211, 222, 83, 0.22)","navBarBS.background-color":"rgba(255, 255, 255, 0)","tabFlairBS.border-top":"5px solid rgb(215, 218, 51)","tabFlairBS.border-left":"0px solid rgb(215, 218, 51)","tabFlairBS.border-bottom":"29px solid rgb(215, 218, 51)","tabFlairBS.border-right":"0px solid rgb(215, 218, 51)","tabFlairBS.border-radius":"0px 0px 0px 0px ","navTabActiveFlairBS.background-color":"rgba(255, 255, 255, 0)","navTabActiveFlairBS.padding-bottom":"0px","navTabActiveFlairBS.padding-top":"0px","navTabActiveFlairBS.margin-bottom":"-5px","navTabActiveFlairBS.top":"-48px","navTabActiveFlairBS.width":"100px","navTabActiveFlairBS.left":"-20px","navTabInactiveBS.background-color":"rgb(228, 236, 84)","navTabInactiveBS.border-top":"21px solid rgb(83, 145, 77)","navTabInactiveBS.border-left":"0px solid rgb(83, 145, 77)","navTabInactiveBS.border-bottom":"0px solid rgb(83, 145, 77)","navTabInactiveBS.border-right":"0px solid rgb(83, 145, 77)","navTabInactiveBS.border-radius":"50px 50px 0px 0px ","navTabInactiveFlairBS.border-top":"0px dotted rgb(147, 113, 26)","navTabInactiveFlairBS.border-left":"0px dotted rgb(147, 113, 26)","navTabInactiveFlairBS.border-bottom":"42px dotted rgb(147, 113, 26)","navTabInactiveFlairBS.border-right":"0px dotted rgb(147, 113, 26)","navTabInactiveFlairBS.border-radius":"0px 0px 0px 0px ","navTabInactiveFlairBS.left":"83px","navTabInactiveFlairBS.background-color":"rgba(255, 255, 255, 0)","navTabInactiveFlairBS.box-shadow":"0px 0px 11px 0px rgba(255, 255, 255, 0.04)","navTabInactiveFlairBS.top":"53px"}
+
+      
+    );
+
+
+        
     </script>
 
 

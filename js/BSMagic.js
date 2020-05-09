@@ -17,6 +17,8 @@
 // TODO - Add slide buttons
 // TODO - clear init and anim calls
 // TODO - create functions for update active tab and update inactive tabs
+// TODO - Around 790 is key, getInactiveTabs wrong 1270 and 1100 possibly to fix (A node) under navTabActiveBS for text and font. Currently they aren't detected even though in browser?
+
 
 
 var GlobalBSObject;
@@ -265,15 +267,56 @@ function BSMagic(parameters) {
 
         Array.prototype.forEach.call(navlinks, function (tab) {
             // if parent contain nav-pills that we don't have the nav-link in a wrapper
+            if(!tab.classList.contains('active')){
             if (tab.parentElement.classList.contains("nav-pills")) {
                 tab.style.height = elementHeight + 'px';
                 tab.style.width = width + 'px';
                 tab.style.textAlign = "center";
+
+                tab.style.color = parameters["navTabInactiveBS.color"];
+                tab.style.font = parameters["navTabInactiveBS.font"];
+                tab.style.fontSize = parameters["navTabInactiveBS.font-size"];
+                tab.style.fontWeight = parameters["navTabInactiveBS.font-weight"];
+                tab.style.textShadow = parameters["navTabInactiveBS.text-shadow"];
+                
             } else {
                 tab.parentElement.style.height = elementHeight + 'px';
                 tab.parentElement.style.width = width + 'px';
                 tab.parentElement.style.textAlign = "center";
+
+                tab.parentElement.style.color = parameters["navTabInactiveBS.color"];
+                tab.parentElement.style.font = parameters["navTabInactiveBS.font"];
+                tab.parentElement.style.fontSize = parameters["navTabInactiveBS.font-size"];
+                tab.parentElement.style.fontWeight = parameters["navTabInactiveBS.font-weight"];
+                tab.parentElement.style.textShadow = parameters["navTabInactiveBS.text-shadow"];
             }
+        }
+        if(tab.classList.contains('active')){
+            if (tab.parentElement.classList.contains("nav-pills")) {
+                tab.style.height = elementHeight + 'px';
+                tab.style.width = width + 'px';
+                tab.style.textAlign = "center";
+
+                tab.style.color = parameters["navTabActiveBS.color"];
+                tab.style.font = parameters["navTabActiveBS.font"];
+                tab.style.fontSize = parameters["navTabActiveBS.font-size"];
+                tab.style.fontWeight = parameters["navTabActiveBS.font-weight"];
+                tab.style.textShadow = parameters["navTabActiveBS.text-shadow"];
+                
+            } else {
+                tab.parentElement.style.height = elementHeight + 'px';
+                tab.parentElement.style.width = width + 'px';
+                tab.parentElement.style.textAlign = "center";
+
+                tab.parentElement.style.color = parameters["navTabActiveBS.color"];
+                tab.parentElement.style.font = parameters["navTabActiveBS.font"];
+                tab.parentElement.style.fontSize = parameters["navTabActiveBS.font-size"];
+                tab.parentElement.style.fontWeight = parameters["navTabActiveBS.font-weight"];
+                tab.parentElement.style.textShadow = parameters["navTabActiveBS.text-shadow"];
+            }
+        }
+
+
         });
 
     }
@@ -355,6 +398,8 @@ function BSMagic(parameters) {
             //check if we are on the first or last tab
             CheckTabLocation(JNewTab, BSObject, parameters);
 
+            JAnimate(JCurTab,JNewTab,BSObject, parameters);
+        
 
             //if there is no next, then we know we just clicked submit button, otherwise which tab is active
             if (JCurTab.classList.contains("nav-link") && JNewTab != null) {
@@ -391,10 +436,16 @@ function BSMagic(parameters) {
             var JNewTab = BSObject.querySelectorAll('[data-tab="' + nextTabNumber + '"]')[0];
             removeStyles(getActiveTab(BSObject, parameters)[0]);
              //check if we are on the first or last tab
-            CheckTabLocation(JNewTab, BSObject, parameters);
-
-
-            NextTab(JCurTab, JNewTab, BSObject, parameters);
+            resp = CheckTabLocation(JNewTab, BSObject, parameters);
+            if(JNewTab === undefined){
+                JNewTab = JCurTab;
+                JAnimate(JCurTab,JNewTab,BSObject, parameters);
+                if(resp == 3){submitClicked();}
+            }
+            else{
+                NextTab(JCurTab, JNewTab, BSObject, parameters);
+                JAnimate(JCurTab,JNewTab,BSObject, parameters);
+            }
 
         });
     }
@@ -412,9 +463,9 @@ function BSMagic(parameters) {
             //check if we are on the first or last tab
             CheckTabLocation(JPrevTab, BSObject, parameters);
 
-
             BackTab(JCurTab, JPrevTab, BSObject, parameters);
 
+            JAnimate(JCurTab,JPrevTab,BSObject, parameters);
         });
     }
 
@@ -575,6 +626,9 @@ function addShapes (parameters, BSObject) {
 }
 
 
+function returnParameters(){
+    return Globalparamaters;
+}
 
 /**
  * @description Ued to manipulate parameters after creation
@@ -1021,16 +1075,53 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
 
         Array.prototype.forEach.call(navlinks, function (tab) {
             // if parent contain nav-pills that we don't have the nav-link in a wrapper
-            if (tab.parentElement.classList.contains("nav-pills")) {
-                tab.style.height = elementHeight + 'px';
-                tab.style.width = width + 'px';
-                tab.style.textAlign = "center";
-
-               
-            } else {
-                tab.parentElement.style.height = elementHeight + 'px';
-                tab.parentElement.style.width = width + 'px';
-                tab.parentElement.style.textAlign = "center";
+            if(!tab.classList.contains('active')){
+                if (tab.parentElement.classList.contains("nav-pills")) {
+                    tab.style.height = elementHeight + 'px';
+                    tab.style.width = width + 'px';
+                    tab.style.textAlign = "center";
+    
+                    tab.style.color = parameters["navTabInactiveBS.color"];
+                    tab.style.font = parameters["navTabInactiveBS.font"];
+                    tab.style.fontSize = parameters["navTabInactiveBS.font-size"];
+                    tab.style.fontWeight = parameters["navTabInactiveBS.font-weight"];
+                    tab.style.textShadow = parameters["navTabInactiveBS.text-shadow"];
+                    
+                } else {
+                    tab.parentElement.style.height = elementHeight + 'px';
+                    tab.parentElement.style.width = width + 'px';
+                    tab.parentElement.style.textAlign = "center";
+    
+                    tab.parentElement.style.color = parameters["navTabInactiveBS.color"];
+                    tab.parentElement.style.font = parameters["navTabInactiveBS.font"];
+                    tab.parentElement.style.fontSize = parameters["navTabInactiveBS.font-size"];
+                    tab.parentElement.style.fontWeight = parameters["navTabInactiveBS.font-weight"];
+                    tab.parentElement.style.textShadow = parameters["navTabInactiveBS.text-shadow"];
+                }
+            }
+            if(tab.classList.contains('active')){
+                if (tab.parentElement.classList.contains("nav-pills")) {
+                    tab.style.height = elementHeight + 'px';
+                    tab.style.width = width + 'px';
+                    tab.style.textAlign = "center";
+    
+                    tab.style.color = parameters["navTabActiveBS.color"];
+                    tab.style.font = parameters["navTabActiveBS.font"];
+                    tab.style.fontSize = parameters["navTabActiveBS.font-size"];
+                    tab.style.fontWeight = parameters["navTabActiveBS.font-weight"];
+                    tab.style.textShadow = parameters["navTabActiveBS.text-shadow"];
+                    
+                } else {
+                    tab.parentElement.style.height = elementHeight + 'px';
+                    tab.parentElement.style.width = width + 'px';
+                    tab.parentElement.style.textAlign = "center";
+    
+                    tab.parentElement.style.color = parameters["navTabActiveBS.color"];
+                    tab.parentElement.style.font = parameters["navTabActiveBS.font"];
+                    tab.parentElement.style.fontSize = parameters["navTabActiveBS.font-size"];
+                    tab.parentElement.style.fontWeight = parameters["navTabActiveBS.font-weight"];
+                    tab.parentElement.style.textShadow = parameters["navTabActiveBS.text-shadow"];
+                }
             }
         });
 
@@ -1082,11 +1173,27 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
        * #Fix buttonBarBS alignment
    */
     tabBSRect = BSObject.getElementsByClassName(parameters.tabBS)[0].getBoundingClientRect();
+    if (parameters.showBottomNavBS) {
    BSObject.getElementsByClassName(parameters.buttonBarBS)[0].style.position = "relative";
    BSObject.getElementsByClassName(parameters.buttonBarBS)[0].style.width = tabBSRect.width+"px";
     if(vertical == true){BSObject.getElementsByClassName(parameters.buttonBarBS)[0].style.margin = "0px -30px 0 -15px";}
-
+    }
    divBase.style.height = baseRect.height+"px";
+
+
+  
+
+if(BSObject.getElementsByClassName('.'+parameters.navTabActiveBS+'.active')[0]){
+    updateTextInf = BSObject.getElementsByClassName('.'+parameters.navTabActiveBS+'.active')[0];
+    updateTextInf.style.color = parameters["navTabActiveBS.color"] + " !important";
+    updateTextInf.style.font = parameters["navTabActiveBS.font"];
+    updateTextInf.style.fontSize = parameters["navTabActiveBS.font-size"];
+    updateTextInf.style.fontWeight = parameters["navTabActiveBS.font-weight"];
+    updateTextInf.style.textShadow = parameters["navTabActiveBS.text-shadow"];
+}
+
+
+
 
 
 
@@ -1205,14 +1312,53 @@ function Initialize(JCurTab, BSObject, parameters) {
 
         Array.prototype.forEach.call(navlinks, function (tab) {
             // if parent contain nav-pills that we don't have the nav-link in a wrapper
-            if (tab.parentElement.classList.contains("nav-pills")) {
-                tab.style.height = elementHeight + 'px';
-                tab.style.width = width + 'px';
-                tab.style.textAlign = "center";
-            } else {
-                tab.parentElement.style.height = elementHeight + 'px';
-                tab.parentElement.style.width = width + 'px';
-                tab.parentElement.style.textAlign = "center";
+            if(!tab.classList.contains('active')){
+                if (tab.parentElement.classList.contains("nav-pills")) {
+                    tab.style.height = elementHeight + 'px';
+                    tab.style.width = width + 'px';
+                    tab.style.textAlign = "center";
+    
+                    tab.style.color = parameters["navTabInactiveBS.color"];
+                    tab.style.font = parameters["navTabInactiveBS.font"];
+                    tab.style.fontSize = parameters["navTabInactiveBS.font-size"];
+                    tab.style.fontWeight = parameters["navTabInactiveBS.font-weight"];
+                    tab.style.textShadow = parameters["navTabInactiveBS.text-shadow"];
+                    
+                } else {
+                    tab.parentElement.style.height = elementHeight + 'px';
+                    tab.parentElement.style.width = width + 'px';
+                    tab.parentElement.style.textAlign = "center";
+    
+                    tab.parentElement.style.color = parameters["navTabInactiveBS.color"];
+                    tab.parentElement.style.font = parameters["navTabInactiveBS.font"];
+                    tab.parentElement.style.fontSize = parameters["navTabInactiveBS.font-size"];
+                    tab.parentElement.style.fontWeight = parameters["navTabInactiveBS.font-weight"];
+                    tab.parentElement.style.textShadow = parameters["navTabInactiveBS.text-shadow"];
+                }
+            }
+            if(tab.classList.contains('active')){
+                if (tab.parentElement.classList.contains("nav-pills")) {
+                    tab.style.height = elementHeight + 'px';
+                    tab.style.width = width + 'px';
+                    tab.style.textAlign = "center";
+    
+                    tab.style.color = parameters["navTabActiveBS.color"];
+                    tab.style.font = parameters["navTabActiveBS.font"];
+                    tab.style.fontSize = parameters["navTabActiveBS.font-size"];
+                    tab.style.fontWeight = parameters["navTabActiveBS.font-weight"];
+                    tab.style.textShadow = parameters["navTabActiveBS.text-shadow"];
+                    
+                } else {
+                    tab.parentElement.style.height = elementHeight + 'px';
+                    tab.parentElement.style.width = width + 'px';
+                    tab.parentElement.style.textAlign = "center";
+    
+                    tab.parentElement.style.color = parameters["navTabActiveBS.color"];
+                    tab.parentElement.style.font = parameters["navTabActiveBS.font"];
+                    tab.parentElement.style.fontSize = parameters["navTabActiveBS.font-size"];
+                    tab.parentElement.style.fontWeight = parameters["navTabActiveBS.font-weight"];
+                    tab.parentElement.style.textShadow = parameters["navTabActiveBS.text-shadow"];
+                }
             }
         });
 
@@ -1243,15 +1389,20 @@ function Initialize(JCurTab, BSObject, parameters) {
         * # TODO: FIX CONTENTS OF ACTIVE TAB 
     */
 
-var elems =JCurTab.cloneNode(true).children;
+
+var elemParent =JCurTab.cloneNode(true);
+elems= elemParent.children;
 var count = elems.length;
 
-if(count > 0)
+
+if(count > 0){
 for (var i = 0; i < count; i++) {
   val = elems[i];
   val.removeAttribute('id');
   val.removeAttribute('class');
   div.innerHTML += val.outerHTML;
+}
+
 }
 else{
   val = JCurTab.cloneNode(true);
@@ -1588,6 +1739,12 @@ function backButtonNotFirstTab(BSObject, parameters) {
 function CheckTabLocation(curTab, BSObject, parameters) {
     //Now we will also check if we are on the first or last tab, in case we want to adjust the buttons
 
+    if(curTab == null){
+        nextButtonOnLastTab(BSObject, parameters);
+        backButtonNotFirstTab(BSObject, parameters);
+        return 3;
+    }
+
     var firstTab = BSObject.getElementsByClassName("nav-link")[0];
     var lastTab = BSObject.getElementsByClassName("nav-link")[BSObject.getElementsByClassName("nav-link").length - 1];
 
@@ -1727,10 +1884,50 @@ function addStyling(parameterBaseElement, parameterBaseName, parameters, JCurTab
         parameterBaseElement.querySelector('.nav-link.active').style.backgroundImage = parameters[parameterBaseName + ".background-image"];
         removeStyles(getActiveTab(document.getElementById(parameters.id), parameters)[0]);
     }
+    // define element.padding-top
+parameterBaseElement.style.paddingTop = parameters[parameterBaseName + ".padding-top"];
+if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+    parameterBaseElement.querySelector('.nav-link.active').style.paddingTop = parameters[parameterBaseName + ".padding-top"];
+}
+// define element.padding-bottom
+parameterBaseElement.style.paddingBottom = parameters[parameterBaseName + ".padding-bottom"];
+if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+    parameterBaseElement.querySelector('.nav-link.active').style.paddingBottom = parameters[parameterBaseName + ".padding-bottom"];
+}
+// define element.padding-left
+parameterBaseElement.style.paddingLeft = parameters[parameterBaseName + ".padding-left"];
+if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+    parameterBaseElement.querySelector('.nav-link.active').style.paddingLeft = parameters[parameterBaseName + ".padding-left"];
+}
+// define element.padding-right
+parameterBaseElement.style.paddingRight = parameters[parameterBaseName + ".padding-right"];
+if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+    parameterBaseElement.querySelector('.nav-link.active').style.paddingRight = parameters[parameterBaseName + ".padding-right"];
+}
     // define element.padding
     parameterBaseElement.style.padding = parameters[parameterBaseName + ".padding"];
     if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
         parameterBaseElement.querySelector('.nav-link.active').style.padding = parameters[parameterBaseName + ".padding"];
+    }
+    // define element.margin-top
+    parameterBaseElement.style.marginTop = parameters[parameterBaseName + ".margin-top"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.marginTop = parameters[parameterBaseName + ".margin-top"];
+    }
+    // define element.margin-bottom
+    parameterBaseElement.style.marginBottom = parameters[parameterBaseName + ".margin-bottom"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.marginBottom = parameters[parameterBaseName + ".margin-bottom"];
+    }
+    // define element.margin-left
+    parameterBaseElement.style.marginLeft = parameters[parameterBaseName + ".margin-left"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.marginLeft = parameters[parameterBaseName + ".margin-left"];
+    }
+    // define element.margin-right
+    parameterBaseElement.style.marginRight = parameters[parameterBaseName + ".margin-right"];
+    if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
+        parameterBaseElement.querySelector('.nav-link.active').style.marginRight = parameters[parameterBaseName + ".margin-right"];
     }
     // define element.margin
     parameterBaseElement.style.margin = parameters[parameterBaseName + ".margin"];
@@ -1748,9 +1945,9 @@ function addStyling(parameterBaseElement, parameterBaseName, parameters, JCurTab
         parameterBaseElement.querySelector('.nav-link.active').style.borderTop = parameters[parameterBaseName + ".border-top"];
     }
     // define element.borderBottom
-    parameterBaseElement.style.borderBottom = parameters[parameterBaseName + ".border-buttom"];
+    parameterBaseElement.style.borderBottom = parameters[parameterBaseName + ".border-bottom"];
     if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
-        parameterBaseElement.querySelector('.nav-link.active').style.borderBottom = parameters[parameterBaseName + ".border-buttom"];
+        parameterBaseElement.querySelector('.nav-link.active').style.borderBottom = parameters[parameterBaseName + ".border-bottom"];
     }
     // define element.borderLeft
     parameterBaseElement.style.borderLeft = parameters[parameterBaseName + ".border-left"];
