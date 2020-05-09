@@ -1,3 +1,43 @@
+.roundedCornerUpperRight{
+    position: absolute;
+    right: 298px;
+    top: 89px;
+    width: 142px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 0px -16px 0px 0px #3E92EE;
+    border-top: 1px solid #3E92EE;
+    border-left: 0px solid #3E92EE;
+    border-bottom: 0px solid #3E92EE;
+    border-right: 1px solid #3E92EE;
+    border-radius: 0px 25px 0px 0px ;
+    padding-top: 15px;
+    margin-left: 0px;
+    padding-left: 0px;
+    min-width: 0px;
+    max-width: 394px;
+    padding-bottom: 15px;
+    }
+    .roundedCornerUpperLeft{
+        position: absolute;
+        left: 230px;
+        top: 89px;
+        width: 142px;
+        height: 60px;
+        background-color: rgba(255, 255, 255, 0);
+        box-shadow: 0px -20px 0px 0px #3E92EE;
+        border-top: 1px solid #3E92EE;
+        border-left: 1px solid #3E92EE;
+        border-bottom: 0px solid #3E92EE;
+        border-right: 0px solid #3E92EE;
+        border-radius: 25px 0px 0px 0px ;
+        padding-top: 15px;
+        margin-left: 0px;
+        padding-left: 0px;
+        min-width: 0px;
+        max-width: 394px;
+        padding-bottom: 15px;
+        }
 
 /* SIDEBAR STYLES */
 .bs-canvas-overlay {

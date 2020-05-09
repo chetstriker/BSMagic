@@ -17,7 +17,7 @@ var GlobalBRadBR = 0;
 var GlobalBRadBL = 0;
 var GlobalBStyle = "none";
 
-var htmlHorizontal = '<div class="row col-sm-12"> ' + 
+var htmlHorizontal = '<div class="row col-sm-12" style="justify-content: center;"> ' + 
 '<center> ' + 
 '<div class="row col-sm-12"> ' + 
 '<center> ' + 
@@ -55,7 +55,7 @@ var htmlHorizontal = '<div class="row col-sm-12"> ' +
 '</center> ' + 
 '</div> '; 
 
-htmlVertical = '<div class="row col-sm-12"> ' + 
+htmlVertical = '<div class="row col-sm-12" style="justify-content: center;"> ' + 
 '<center> ' + 
 '<div class=" bd-example bd-example-tabs" style="max-width: 700px;" id="JTab1"   > ' + 
 '<div class="row"> ' + 

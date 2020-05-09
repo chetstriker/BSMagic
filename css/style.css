@@ -11772,18 +11772,44 @@ h5,
 }
 
 .wrapperL{
-    width: 186px;
+    width: 246px;
 }
 
 #sidebarL {
-    min-width: 186px;
-    max-width: 186px;
+    min-width: 246px;
+    max-width: 246px;
     color: #fff;
     -webkit-transition: all .3s;
     -o-transition: all .3s;
     transition: all .3s;
     position: relative;
     z-index: 0
+}
+
+#topBar{
+    color: #fff;
+    min-width: 800px;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    position: relative;
+    z-index: 0
+}
+
+#topBar:after{
+    background-color: #3E92EE !important;
+    
+    background: -moz-linear-gradient(-45deg, #2f89fc 0%, #5effc9 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, #2f89fc), color-stop(100%, #5effc9));
+    background: -webkit-linear-gradient(-45deg, #2f89fc 0%, #5effc9 100%);
+    background: -o-linear-gradient(-45deg, #2f89fc 0%, #5effc9 100%);
+    background: -ms-linear-gradient(-45deg, #2f89fc 0%, #5effc9 100%);
+    background: -webkit-linear-gradient(315deg, #2f89fc 0%, #5effc9 100%);
+    background: -o-linear-gradient(315deg, #2f89fc 0%, #5effc9 100%);
+    background: linear-gradient(135deg, #2f89fc 0%, #5effc9 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2f89fc', endColorstr='#5effc9', GradientType=1);
+    opacity: .7;
+    z-index: -1
 }
 
 #sidebarL:after {
@@ -11795,7 +11821,7 @@ h5,
     content: '';
   
     background-color: #3E92EE !important;
-    /*
+    
     background: -moz-linear-gradient(-45deg, #2f89fc 0%, #5effc9 100%);
     background: -webkit-gradient(left top, right bottom, color-stop(0%, #2f89fc), color-stop(100%, #5effc9));
     background: -webkit-linear-gradient(-45deg, #2f89fc 0%, #5effc9 100%);
@@ -11805,12 +11831,12 @@ h5,
     background: -o-linear-gradient(315deg, #2f89fc 0%, #5effc9 100%);
     background: linear-gradient(135deg, #2f89fc 0%, #5effc9 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2f89fc', endColorstr='#5effc9', GradientType=1);
-    opacity: .7;*/
+    opacity: .7;
     z-index: -1
 }
 
 #sidebarL.active {
-    margin-right: -186px
+    margin-right: -246px
 }
 
 #sidebarL.active .custom-menu {
@@ -11890,7 +11916,7 @@ h5,
 
 @media(max-width:991.98px) {
     #sidebarL {
-        margin-right: -186px
+        margin-right: -246px
     }
 
     #sidebarL.active {
