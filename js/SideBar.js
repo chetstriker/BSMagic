@@ -610,12 +610,47 @@ function getBSBottom(control){
                     
 
     function getBSWidth(control){
+
         rtn = '<div class="uk-width-1-1">' +
         '<label class="uk-form-label "><span class="uk-badge uk-label-info" ' + 
-        'id="BSWidth">0</span> Width: </label> ' + 
+        'id="BSWidth">100</span> Width: </label> ' + 
         '<input id="range" class="uk-width-expand uk-form-controls  " type="range" ' + 
-        'value="50" min="0" max="500" step="1" ' + 
-        'oninput="document.getElementById(\'BSWidth\').innerHTML = this.value; document.getElementsByClassName(\''+control+'\')[0].style.width = this.value+\'px\';    var myParams = {}; jsonKey  = \'id\'; myParams[jsonKey] = document.getElementsByClassName(\'BSMagic\')[0].parentElement.id; jsonKey = [document.getElementById(\'BSObjectSelector\').value + \'.width\']; myParams[jsonKey] = this.value+\'px\'; adjustParameters(myParams);"></div>  <hr>';
+        'value="100" min="0" max="100" step="1" ' + 
+       
+        'oninput="' + 
+'var withoutFlair = document.getElementById(\'BSObjectSelector\').value.replace(\'Flair\', \'\'); ' + 
+'parameters = returnParameters(); ' + 
+'param = withoutFlair; ' + 
+'wasWidth = parameters[param]; ' + 
+'wasWidth = document.getElementsByClassName(param)[0].getBoundingClientRect().width; ' + 
+'rtnVal = wasWidth + \'px\'; ' + 
+'if(document.getElementById(\'BSObjectSelector\').value.includes(\'Flair\')){ ' + 
+'var withoutFlair = document.getElementById(\'BSObjectSelector\').value.replace(\'Flair\', \'\'); ' + 
+'parameters = returnParameters(); ' + 
+'param = withoutFlair; ' + 
+'wasWidth = parameters[param]; ' + 
+'wasWidth = document.getElementsByClassName(param)[0].getBoundingClientRect().width; ' + 
+'newWidth = this.value; ' + 
+'console.log(parameters); ' + 
+'console.log(wasWidth); ' + 
+'console.log(newWidth); ' + 
+'if(parseInt(newWidth) > 0) { ' + 
+'rtnVal = parseInt(parseFloat((wasWidth / 100)) * parseInt(newWidth)) + \'%\'; rtnVal = this.value + \'%\'; ' + 
+'console.log(rtnVal); ' + 
+'} ' + 
+'else rtnVal =  parseInt(wasWidth) + \'px\'; ' + 
+'} ' + 
+'document.getElementById(\'BSWidth\').innerHTML = this.value;  ' + 
+'document.getElementsByClassName(\''+control+'\')[0].style.width = rtnVal; ' + 
+'var myParams = {}; ' + 
+'jsonKey  = \'id\'; ' + 
+'myParams[jsonKey] = \'JTab1\'; ' + 
+'jsonKey = [document.getElementById(\'BSObjectSelector\').value + \'.width\']; ' + 
+' myParams[jsonKey] = rtnVal; ' + 
+'console.log(myParams); ' + 
+' adjustParameters(myParams);"></div>  <hr>';
+
+      //  'oninput="document.getElementById(\'BSWidth\').innerHTML = this.value; document.getElementsByClassName(\''+control+'\')[0].style.width = this.value+\'px\';    var myParams = {}; jsonKey  = \'id\'; myParams[jsonKey] = document.getElementsByClassName(\'BSMagic\')[0].parentElement.id; jsonKey = [document.getElementById(\'BSObjectSelector\').value + \'.width\']; myParams[jsonKey] = this.value+\'px\'; adjustParameters(myParams);"></div>  <hr>';
         return rtn;
     }
 
@@ -641,14 +676,47 @@ function getBSBottom(control){
 
     function getBSHeight(control){
 
-
+        rtn = '<div class="uk-height-1-1">' +
+        '<label class="uk-form-label "><span class="uk-badge uk-label-info" ' + 
+        'id="BSHeight">100</span> Height: </label> ' + 
+        '<input id="range" class="uk-height-expand uk-form-controls  " type="range" ' + 
+        'value="100" min="0" max="100" step="1" style="width: 100%;" ' +  
+        'oninput="' + 
+        'var withoutFlair = document.getElementById(\'BSObjectSelector\').value.replace(\'Flair\', \'\'); ' + 
+        'parameters = returnParameters(); ' + 
+        'param = withoutFlair; ' + 
+        'wasHeight = parameters[param]; ' + 
+        'wasHeight = document.getElementsByClassName(param)[0].getBoundingClientRect().height; ' + 
+        'rtnVal = wasHeight + \'px\'; ' + 
+        'if(document.getElementById(\'BSObjectSelector\').value.includes(\'Flair\')){ ' + 
+        'var withoutFlair = document.getElementById(\'BSObjectSelector\').value.replace(\'Flair\', \'\'); ' + 
+        'parameters = returnParameters(); ' + 
+        'param = withoutFlair; ' + 
+        'wasHeight = parameters[param]; ' + 
+        'wasHeight = document.getElementsByClassName(param)[0].getBoundingClientRect().height; ' + 
+        'newHeight = this.value; ' + 
+        'if(parseInt(newHeight) > 0) { ' + 
+        'rtnVal = parseInt(parseFloat((wasHeight / 100)) * parseInt(newHeight)) + \'%\'; rtnVal = this.value + \'%\'; ' + 
+        'console.log(rtnVal); ' + 
+        '} ' + 
+        'else rtnVal =  parseInt(wasHeight) + \'px\'; ' + 
+        '} ' + 
+        'document.getElementById(\'BSHeight\').innerHTML = this.value;  ' + 
+        'document.getElementsByClassName(\''+control+'\')[0].style.height = rtnVal; ' + 
+        'var myParams = {}; ' + 
+        'jsonKey  = \'id\'; ' + 
+        'myParams[jsonKey] = \'JTab1\'; ' + 
+        'jsonKey = [document.getElementById(\'BSObjectSelector\').value + \'.height\']; ' + 
+        ' myParams[jsonKey] = rtnVal; ' + 
+        ' adjustParameters(myParams);"></div>  <hr>';
+/*
         rtn = '<div class="uk-width-1-1">' +
         '<label class="uk-form-label "><span class="uk-badge uk-label-info" ' + 
         'id="BSHeight">0</span> Height: </label> ' + 
         '<input id="range" class="uk-width-expand uk-form-controls  " type="range" ' + 
         'value="50" min="0" max="500" step="1" ' + 
         'oninput="document.getElementById(\'BSHeight\').innerHTML = this.value; document.getElementsByClassName(\''+control+'\')[0].style.height = this.value+\'px\';    var myParams = {}; jsonKey  = \'id\'; myParams[jsonKey] = document.getElementsByClassName(\'BSMagic\')[0].parentElement.id; jsonKey = [document.getElementById(\'BSObjectSelector\').value + \'.height\']; myParams[jsonKey] = this.value+\'px\'; adjustParameters(myParams); "></div>  <hr>';
-       
+       */
         return rtn;
     }
 

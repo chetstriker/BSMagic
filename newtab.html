@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+    <title>BS Magic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="content-type" content="application/json; charset=utf-8" />
+    <meta http-equiv="pageEncoding" content="UTF-8" />
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+</head>
+    <body>
+
+        <div id="BSTab" style="position:absolute; top: 300px; left: 200px;"></div>
+
+        <script>
+             BSMagic({ "id": "BSTab", });
+
+function BSMagic(parameters) {
+// get parent object, this way we can have multiple controls on the same page
+var BSObject = document.getElementById(parameters.id);
+/*
+* #define Themes - This will be moved to a separate file later for portability
+*/
+
+
+// define how many tabs
+tabQuantityBS = 3;
+//Create initial tab
+createTabBS = document.createElement("div");
+// *** Add the navbar section ***
+createNavBarBS = document.createElement("div");
+createNavTabActiveBS = document.createElement("div");
+createNavTabInactiveBS = document.createElement("div");
+
+
+createTabContentBS = document.createElement("div");
+
+// *** Add the buttonbar section ***
+createButtonBarBS = document.createElement("div");
+createBackButtonBS = document.createElement("div");
+createNextButtonBS = document.createElement("div");
+
+/*
+    * #define default class names for tab here 
+*/
+createTabBS.className += " tabBS";//" + parameters.tabBS;
+createNavBarBS.className += " navBarBS";//" + parameters.navBarBS;
+createNavTabActiveBS.className += " navTabActiveBS active";//" + parameters.navTabActiveBS;
+createNavTabInactiveBS.className += " navTabInactiveBS";//" + parameters.navTabInactiveBS;
+createTabContentBS.className += " tabContentBS";//" + parameters.tabContentBS;
+createButtonBarBS.className += " buttonBarBS";//" + parameters.buttonBarBS;
+createBackButtonBS.className += " backButtonBS";//" + parameters.backButtonBS;
+createNextButtonBS.className += " nextButtonBS";//" + parameters.nextButtonBS;
+/*
+    * #define default styles
+*/
+BSObjectRect = BSObject.getBoundingClientRect();
+
+createTabBS.style.position = "relative";
+createTabBS.style.minWidth = "600px";
+createTabBS.style.minHeight = "300px";
+createTabBS.style.border = "1px solid #000";
+createTabBS.style.top = BSObjectRect.top;
+createTabBS.style.left = BSObjectRect.left;
+tabBSRect = createTabBS.getBoundingClientRect();
+
+createNavBarBS.style.position = "relative";
+createNavBarBS.style.minWidth = "100%";
+createNavBarBS.style.minHeight = "100px";
+createNavBarBS.style.border = "1px solid #f00";
+createNavBarBS.style.top = tabBSRect.top;
+createNavBarBS.style.left = tabBSRect.left;
+navBarBSRect = createNavBarBS.getBoundingClientRect();
+
+createTabContentBS.style.position = "relative";
+createTabContentBS.style.minWidth = "100%";
+createTabContentBS.style.minHeight = "100px";
+createTabContentBS.style.border = "1px solid #0f0";
+createTabContentBS.style.top = navBarBSRect.top + navBarBSRect.height;
+createTabContentBS.style.left = tabBSRect.left;
+tabContentBSRect = createTabContentBS.getBoundingClientRect();
+
+createButtonBarBS.style.position = "relative";
+createButtonBarBS.style.minWidth = "100%";
+createButtonBarBS.style.minHeight = "100px";
+createButtonBarBS.style.border = "1px solid #00f";
+createButtonBarBS.style.top = tabContentBSRect.top + tabContentBSRect.height;
+createButtonBarBS.style.left = tabBSRect.left;
+buttonBarBSRect = createButtonBarBS.getBoundingClientRect();
+
+/*
+    * #define initial location
+*/
+
+
+BSObject.appendChild(createTabBS);
+BSObject.appendChild(createNavBarBS);
+BSObject.appendChild(createTabContentBS);
+BSObject.appendChild(createButtonBarBS);
+}
+        </script>
+    </body>
+</html>

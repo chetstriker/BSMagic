@@ -134,8 +134,7 @@ function BSMagic(parameters) {
         parameters["tabBS.boxShadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
         parameters["navBarBS.boxShadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
         parameters["navBarFlairBS.box-shadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
-        parameters["navBarFlairBS.width"] =  100;
-        parameters["navBarFlairBS.height"] =  5;
+        parameters["navBarFlairBS.width"] =  "100%";
         parameters["navTabActiveBS.shape"] =  "oval";
       //  parameters["navBarFlairBS.background-color"] =  "purple";
         parameters["navTabActiveBS.box-shadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
@@ -482,6 +481,7 @@ function parameterDefaults(parameters){
      /*
         * #define parameters - these will hold default vaules for parameters if left blank
     */
+
     //define if we want navigation buttons added
     if (parameters.showBottomNavBS === undefined) parameters.showBottomNavBS = true;
 
@@ -490,6 +490,10 @@ function parameterDefaults(parameters){
 
     //define bottom nav back button
     if (parameters.backButtonBS === undefined) parameters.backButtonBS = "backButtonBS";
+
+    //define bottom nav back button
+    if (parameters.navBarFlairBS === undefined) parameters.navBarFlairBS = "navBarFlairBS";
+
 
     if (parameters["backButtonBS.margin"] === undefined) parameters["backButtonBS.margin"] = "10px 15px 10px 15px";
 
@@ -565,6 +569,8 @@ function parameterDefaults(parameters){
     if (parameters.navBarBS === undefined) parameters.navBarBS = "navBarBS";
 
     if (parameters.navBarflairBS === undefined) parameters.navBarflairBS = "navBarflairBS";
+
+
 
     return parameters;
 }
@@ -686,13 +692,62 @@ function defineElements(BSObject,parameters){
    */
    TabContentBS.className += " " + parameters.tabContentFlairBS;
    BSObject.getElementsByClassName("tab-content")[0].appendChild(TabContentBS);
-   navBarFlair = document.createElement("div");
+   TabContentFlairBS = document.createElement("div");
    /*
        * #map navBarFlairBS
    */
+   navBarFlair = document.createElement("div");
    navBarFlair.className += " " + parameters.navBarFlairBS;
    BSObject.getElementsByClassName('nav-pills')[0].appendChild(navBarFlair);
-   BSparent = getCommonAncestor( BSObject.getElementsByClassName('nav-pills')[0],  BSObject.getElementsByClassName('tab-pane')[0]);
+
+   navBarFlair.style.position = "fixed";
+   myParent = BSObject.getElementsByClassName('navBarBS')[0].getBoundingClientRect();
+   navBarFlair.style.marginTop = parseInt(myParent.height * (-1))  + "px";
+
+   if (parameters["navBarFlairBS.width"] === undefined) {
+       navBarFlair.style.width = parseInt( myParent.width ) + "px";
+    }
+   else navBarFlair.style.width = parameters["navBarFlairBS.width"];
+   if (parameters["navBarFlairBS.height"] === undefined) {
+       navBarFlair.style.height =parseInt( myParent.height ) + "px";
+    }
+   else navBarFlair.style.height = parameters["navBarFlairBS.height"];
+
+    navBarFlair.style.pointerEvents = "none";
+
+
+BSparent = getCommonAncestor( BSObject.getElementsByClassName('nav-pills')[0],  BSObject.getElementsByClassName('tab-pane')[0]);
+   
+
+  /*
+   if (parameters["navBarFlairBS.width"] === undefined) parameters["navBarFlairBS.width"] =  "100%";
+    if (parameters["navBarFlairBS.height"] === undefined) parameters["navBarFlairBS.height"] =  "100%";
+
+    if (parameters["navTabActiveFlairBS.width"] === undefined) parameters["navTabActiveFlairBS.width"] =  "100%";
+    if (parameters["navTabActiveFlairBS.height"] === undefined) parameters["navTabActiveFlairBS.height"] =  "100%";
+
+    if (parameters["navTabInactiveFlairBS.width"] === undefined) parameters["navTabInactiveFlairBS.width"] =  "100%";
+    if (parameters["navTabInactiveFlairBS.height"] === undefined) parameters["navTabInactiveFlairBS.height"] =  "100%";
+
+    if (parameters["buttonBarFlairBS.width"] === undefined) parameters["buttonBarFlairBS.width"] =  "100%";
+    if (parameters["buttonBarFlairBS.height"] === undefined) parameters["buttonBarFlairBS.height"] =  "100%";
+
+    if (parameters["tabContentFlairBS.width"] === undefined) parameters["tabContentBS.width"] =  "100%";
+    if (parameters["tabContentFlairBS.height"] === undefined) parameters["tabContentBS.height"] =  "100%";
+
+    if (parameters["backButtonFlairBS.width"] === undefined) parameters["backButtonFlairBS.width"] =  "100%";
+    if (parameters["backButtonFlairBS.height"] === undefined) parameters["backButtonFlairBS.height"] =  "100%";
+
+    if (parameters["nextButtonFlairBS.width"] === undefined) parameters["nextButtonFlairBS.width"] =  "100%";
+    if (parameters["nextButtonFlairBS.height"] === undefined) parameters["nextButtonFlairBS.height"] =  "100%";
+
+
+  
+   
+
+
+
+    
 
   // BSObject.getElementsByClassName('nav-tabs')
    /*
@@ -993,7 +1048,14 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
     div.style.position = "fixed";
     div.style.top = parseInt(JCurtRect.top) + parseInt(parameters.navOffsetY) - 12 + 'px'; //12 subtracted to add for padding in css
     div.style.left = parseInt(JCurtRect.left) + parseInt(parameters.navOffsetX) + 'px';
+    div.style.width =  FullWidth + 'px';
+    div.style.height =  FullHeight + 'px';
     div.style.pointerEvents = "none";
+
+    divFlair.style.position = "fixed";
+    divFlair.style.marginTop = parseInt(JCurtRect.height * (-1))  + "px";
+    
+
     /*
         * #map navTabActiveBS
     */
@@ -1380,6 +1442,20 @@ function Initialize(JCurTab, BSObject, parameters) {
     div.style.top = parseInt(JCurtRect.top) + parseInt(parameters.navOffsetY) - 12 + 'px'; // 12 subtracted to add for padding in css
     div.style.left = parseInt(JCurtRect.left) + parseInt(parameters.navOffsetX) + 'px';
     div.style.pointerEvents = "none";
+
+    divFlair.style.position = "fixed";
+    //divFlair.style.top = parseInt(JCurtRect.top) + parseInt(parameters.navOffsetY) - 12 + "px"; //12 subtracted to add for padding in css
+   // divFlair.style.left = parseInt(JCurtRect.left) + parseInt(parameters.navOffsetX) + "px";
+   divFlair.style.marginTop = parseInt(JCurtRect.height * (-1))  + "px";
+
+   if(parseInt(parameters["navTabActiveFlairBS.width"]) > 0) {
+    selectedWidth =  parseInt(parameters["navTabActiveFlairBS.width"]);
+    parentWidth = parseInt(JCurtRect.width);
+    divFlair.style.width = parseInt((selectedWidth / parentWidth) * 100) + "%";
+}
+   else divFlair.style.width =  parseInt(JCurtRect.width) + "px";
+    divFlair.style.height =  parseInt(JCurtRect.height) + "px";
+    divFlair.style.pointerEvents = "none";
     /*
         * #map navTabActiveBS
     */
@@ -1993,7 +2069,11 @@ if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
     parameterBaseElement.style.width = parameters[parameterBaseName + ".width"];
     if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
         parameterBaseElement.querySelector('.nav-link.active').style.width = parameters[parameterBaseName + ".width"];
+        
     }
+    
+
+
     // define element.min-height
     parameterBaseElement.style.minHeight = parameters[parameterBaseName + ".min-height"];
     if (parameterBaseElement.querySelector('.nav-link.active') !== null) {
