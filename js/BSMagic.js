@@ -131,7 +131,10 @@ function BSMagic(parameters) {
 
     }
     else if(parameters.theme == "Magic3"){
-        parameters["tabBS.boxShadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
+     //   parameters["tabBS.box-shadow"] = "rgba(174, 188, 196, 0.6) 0px 0px 0px 1px !important";
+        parameters["tabBS.box-shadow"] = "rgba(174, 188, 196, 0.6) 0px 0px 0px 1px";
+     
+
         parameters["navBarBS.boxShadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
         parameters["navBarFlairBS.box-shadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
         parameters["navBarFlairBS.width"] =  "100%";
@@ -139,25 +142,37 @@ function BSMagic(parameters) {
       //  parameters["navBarFlairBS.background-color"] =  "purple";
         parameters["navTabActiveBS.box-shadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
         parameters["navTabInactiveBS.box-shadow"] = "initial";
+        parameters["navTabInactiveBS.font-size"] =  "25px";
         parameters["navTabActiveBS.color"] =  "#b6c4d2";
         parameters["navTabActiveBS.text-shadow"] = "0px 3px 3px rgba(255,255,255,0.5)";
         parameters["navTabActiveBS.background-color"] =  "#f4f6f9";
         parameters["navTabActiveBS.font-size"] =  "25px";
-        parameters["navTabActiveBS.padding"] =  "4px 0 0 0";
+    //    parameters["navTabActiveBS.padding"] =  "4px 0 0 0";
         parameters["navTabActiveBS.color"] = "rgb(14, 95, 175)";
         parameters["buttonBarBS.color"] =  "#b6c4d2";
         parameters["buttonBarBS.text-shadow"] = "0px 3px 3px rgba(255,255,255,0.5)";
         parameters["buttonBarBS.background-color"] =  "#f4f6f9";
-        parameters["buttonBarBS.box-shadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
+        parameters["buttonBarBS.box-shadow"] = "rgba(196, 203, 208, 0.48) 0px 0px 17px 0px inset";
         parameters["nextButtonBS.color"] = "#b6c4d2";
         parameters["nextButtonBS.text-shadow"] = "0px 3px 3px rgba(255,255,255,0.5)";
         parameters["nextButtonBS.background-color"] =  "#f4f6f9";
+        parameters["nextButtonBS.border-top"] = "1px solid rgba(167, 171, 176, 0.32)";
+        parameters["nextButtonBS.border-left"] = "1px solid rgba(167, 171, 176, 0.32)";
+        parameters["nextButtonBS.border-bottom"] = "1px solid rgba(167, 171, 176, 0.32)";
+        parameters["nextButtonBS.border-right"] = "1px solid rgba(167, 171, 176, 0.32)";
+
+        parameters["backButtonBS.border-top"] = "1px solid rgba(167, 171, 176, 0.32)";
+        parameters["backButtonBS.border-left"] = "1px solid rgba(167, 171, 176, 0.32)";
+        parameters["backButtonBS.border-bottom"] = "1px solid rgba(167, 171, 176, 0.32)";
+        parameters["backButtonBS.border-right"] = "1px solid rgba(167, 171, 176, 0.32)";
+
+
         parameters["nextButtonBS.box-shadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
         parameters["tabContentBS.color"] = "rgb(14, 95, 175)";
         parameters["tabContentBS.font-size"] =  "medium";
         parameters["tabContentBS.text-shadow"] = "0px 3px 3px rgba(255,255,255,0.5)";
         parameters["tabContentBS.background-color"] =  "#f4f6f9";
-        parameters["tabContentBS.box-shadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
+        parameters["tabContentBS.box-shadow"] = "rgba(162, 171, 181, 0.68) 0px 0px 5px 0px";
         parameters["nextButtonBS.color"] = "rgb(14, 95, 175)";
     }
 
@@ -237,17 +252,20 @@ function BSMagic(parameters) {
             tab.style.width = jwidth + '%';
             btnCopy = BSObject.querySelectorAll(".nav-link.active")[0];
             navrect = btnCopy.getBoundingClientRect();
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.top = navrect.top;
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.left = navrect.left;
+         //   BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.top = navrect.top;
+        //    BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.left = navrect.left;
             BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.width = navrect.width;
+            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.width = navrect.height;
+
             removeStyles(getActiveTab(BSObject, parameters)[0]);
         }
         else{
             tab.parentElement.style.width = jwidth + '%';
             btnCopy = BSObject.querySelectorAll(".nav-link.active")[0];
             navrect = btnCopy.getBoundingClientRect();
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.top = navrect.top;
-            BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.left = navrect.left;
+        //    BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.top = navrect.top;
+        //    BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.left = navrect.left;
+        BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.height = navrect.height;
             BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].style.width = navrect.width;
             removeStyles(getActiveTab(BSObject, parameters)[0]);
         }
@@ -268,6 +286,7 @@ function BSMagic(parameters) {
             // if parent contain nav-pills that we don't have the nav-link in a wrapper
             if(!tab.classList.contains('active')){
             if (tab.parentElement.classList.contains("nav-pills")) {
+                
                 tab.style.height = elementHeight + 'px';
                 tab.style.width = width + 'px';
                 tab.style.textAlign = "center";
@@ -277,6 +296,8 @@ function BSMagic(parameters) {
                 tab.style.fontSize = parameters["navTabInactiveBS.font-size"];
                 tab.style.fontWeight = parameters["navTabInactiveBS.font-weight"];
                 tab.style.textShadow = parameters["navTabInactiveBS.text-shadow"];
+
+                
                 
             } else {
                 tab.parentElement.style.height = elementHeight + 'px';
@@ -288,6 +309,7 @@ function BSMagic(parameters) {
                 tab.parentElement.style.fontSize = parameters["navTabInactiveBS.font-size"];
                 tab.parentElement.style.fontWeight = parameters["navTabInactiveBS.font-weight"];
                 tab.parentElement.style.textShadow = parameters["navTabInactiveBS.text-shadow"];
+
             }
         }
         if(tab.classList.contains('active')){
@@ -301,6 +323,17 @@ function BSMagic(parameters) {
                 tab.style.fontSize = parameters["navTabActiveBS.font-size"];
                 tab.style.fontWeight = parameters["navTabActiveBS.font-weight"];
                 tab.style.textShadow = parameters["navTabActiveBS.text-shadow"];
+
+                btnCopy = BSObject.querySelectorAll(".nav-link.active")[0];
+                btnCopy.style.height = elementHeight + 'px';
+                btnCopy.style.width = width + 'px';
+                btnCopy.style.textAlign = "center";
+
+                btnCopy.style.color = parameters["navTabActiveBS.color"];
+                btnCopy.style.font = parameters["navTabActiveBS.font"];
+                btnCopy.style.fontSize = parameters["navTabActiveBS.font-size"];
+                btnCopy.style.fontWeight = parameters["navTabActiveBS.font-weight"];
+                btnCopy.style.textShadow = parameters["navTabActiveBS.text-shadow"];
                 
             } else {
                 tab.parentElement.style.height = elementHeight + 'px';
@@ -312,6 +345,17 @@ function BSMagic(parameters) {
                 tab.parentElement.style.fontSize = parameters["navTabActiveBS.font-size"];
                 tab.parentElement.style.fontWeight = parameters["navTabActiveBS.font-weight"];
                 tab.parentElement.style.textShadow = parameters["navTabActiveBS.text-shadow"];
+
+                btnCopy = BSObject.querySelectorAll(".nav-link.active")[0];
+                btnCopy.style.height = elementHeight + 'px';
+                btnCopy.style.width = width + 'px';
+                btnCopy.style.textAlign = "center";
+
+                btnCopy.style.color = parameters["navTabActiveBS.color"];
+                btnCopy.style.font = parameters["navTabActiveBS.font"];
+                btnCopy.style.fontSize = parameters["navTabActiveBS.font-size"];
+                btnCopy.style.fontWeight = parameters["navTabActiveBS.font-weight"];
+                btnCopy.style.textShadow = parameters["navTabActiveBS.text-shadow"];
             }
         }
 
@@ -367,7 +411,22 @@ function BSMagic(parameters) {
 
     if (parameters.showBottomNavBS == true) {
         buttonBarBS(getCommonAncestor(pills, pane), parameters);
+
+BSObject.getElementsByClassName(parameters.buttonBarFlairBS)[0].style.height = BSObject.getElementsByClassName(parameters.buttonBarBS)[0].getBoundingClientRect().height+"px";
+BSObject.getElementsByClassName(parameters.buttonBarFlairBS)[0].style.marginTop = (BSObject.getElementsByClassName(parameters.buttonBarBS)[0].getBoundingClientRect().height * -1) +"px";
+  
+
+BSObject.getElementsByClassName(parameters.nextButtonFlairBS)[0].style.height = BSObject.getElementsByClassName(parameters.nextButtonBS)[0].getBoundingClientRect().height+"px";
+BSObject.getElementsByClassName(parameters.nextButtonFlairBS)[0].style.width = BSObject.getElementsByClassName(parameters.nextButtonBS)[0].getBoundingClientRect().width+"px";
+BSObject.getElementsByClassName(parameters.nextButtonFlairBS)[0].style.marginTop = (BSObject.getElementsByClassName(parameters.nextButtonBS)[0].getBoundingClientRect().height * -1) +"px";
+
+BSObject.getElementsByClassName(parameters.backButtonFlairBS)[0].style.height = BSObject.getElementsByClassName(parameters.backButtonBS)[0].getBoundingClientRect().height+"px";
+BSObject.getElementsByClassName(parameters.backButtonFlairBS)[0].style.width = BSObject.getElementsByClassName(parameters.backButtonBS)[0].getBoundingClientRect().width+"px";
+BSObject.getElementsByClassName(parameters.backButtonFlairBS)[0].style.marginTop = (BSObject.getElementsByClassName(parameters.backButtonBS)[0].getBoundingClientRect().height * -1) +"px";
+
     }
+
+  
 
     //check if first or last tab
     CheckTabLocation(JCurTab, BSObject, parameters);
@@ -416,6 +475,7 @@ function BSMagic(parameters) {
                 JCurTabContent.classList.remove("show");
                 nextContent.className += " active";
                 nextContent.className += " show";
+                //nextContent.style.margin = "0px";
             }
 
 
@@ -428,8 +488,27 @@ function BSMagic(parameters) {
 
     //Add listeners for when next button is clicked
      elements = BSObject.getElementsByClassName("nextButtonBS");
+     elements2 = BSObject.getElementsByClassName("nextButtonFlairBS");
     for ( i = 0; i < elements.length; i++) {
         elements[i].addEventListener('click', function () {
+            var JCurTab = BSObject.querySelector('.nav-link.active');
+            var nextTabNumber = parseInt(JCurTab.getAttribute('data-tab')) + 1;
+            var JNewTab = BSObject.querySelectorAll('[data-tab="' + nextTabNumber + '"]')[0];
+            removeStyles(getActiveTab(BSObject, parameters)[0]);
+             //check if we are on the first or last tab
+            resp = CheckTabLocation(JNewTab, BSObject, parameters);
+            if(JNewTab === undefined){
+                JNewTab = JCurTab;
+                JAnimate(JCurTab,JNewTab,BSObject, parameters);
+                if(resp == 3){submitClicked();}
+            }
+            else{
+                NextTab(JCurTab, JNewTab, BSObject, parameters);
+                JAnimate(JCurTab,JNewTab,BSObject, parameters);
+            }
+
+        });
+        elements2[i].addEventListener('click', function () {
             var JCurTab = BSObject.querySelector('.nav-link.active');
             var nextTabNumber = parseInt(JCurTab.getAttribute('data-tab')) + 1;
             var JNewTab = BSObject.querySelectorAll('[data-tab="' + nextTabNumber + '"]')[0];
@@ -452,8 +531,23 @@ function BSMagic(parameters) {
 
     //Add listeners for when back button is clicked
      elements = BSObject.getElementsByClassName("backButtonBS");
+     elements2 = BSObject.getElementsByClassName("backButtonFlairBS");
     for ( i = 0; i < elements.length; i++) {
         elements[i].addEventListener('click', function () {
+            var JCurTab = BSObject.querySelector('.nav-link.active');
+            var prevTabNumber = parseInt(JCurTab.getAttribute('data-tab')) - 1;
+            var JPrevTab = BSObject.querySelectorAll('[data-tab="' + prevTabNumber + '"]')[0];
+            removeStyles(getActiveTab(BSObject, parameters)[0]);
+         
+            //check if we are on the first or last tab
+            CheckTabLocation(JPrevTab, BSObject, parameters);
+
+            BackTab(JCurTab, JPrevTab, BSObject, parameters);
+
+            JAnimate(JCurTab,JPrevTab,BSObject, parameters);
+        });
+
+        elements2[i].addEventListener('click', function () {
             var JCurTab = BSObject.querySelector('.nav-link.active');
             var prevTabNumber = parseInt(JCurTab.getAttribute('data-tab')) - 1;
             var JPrevTab = BSObject.querySelectorAll('[data-tab="' + prevTabNumber + '"]')[0];
@@ -500,6 +594,10 @@ function parameterDefaults(parameters){
     //define bottom nav back button flair
     if (parameters.backButtonFlairBS === undefined) parameters.backButtonFlairBS = "backButtonFlairBS";
 
+
+    if (parameters["backButtonFlairBS.margin"] === undefined) parameters["backButtonFlairBS.margin"] = "-48px 15px 10px 15px";
+
+
     //define bottom nav next button
     if (parameters.nextButtonBS === undefined) parameters.nextButtonBS = "nextButtonBS";
 
@@ -510,11 +608,15 @@ function parameterDefaults(parameters){
     //define bottom nav next button flair
     if (parameters.nextButtonFlairBS === undefined) parameters.nextButtonFlairBS = "nextButtonFlairBS";
 
+    if (parameters["nextButtonFlairBS.margin"] === undefined) parameters["nextButtonFlairBS.margin"] = "-48px 15px 10px 15px";
+
+
     //define active tab content
     if (parameters.tabContentBS === undefined) parameters.tabContentBS = "tabContentBS";
 
     //define active tab content
     if (parameters["tabContentBS.margin"] === undefined) parameters["tabContentBS.margin"] = "0px 0px";
+
 
     //define active tab content flair
     if (parameters.tabContentFlairBS === undefined) parameters.tabContentFlairBS = "tabContentFlairBS";
@@ -589,40 +691,30 @@ function addShapes (parameters, BSObject) {
 
             if (parameters[key] == "circle") {
                 parameterBaseElement.style.textAlign = "center";
-                parameterBaseElement.style.padding = "12px 0 12px 0";
-               // parameterBaseElement.style.fontSize = "12px";
-                parameterBaseElement.style.height = "45px !important";
-                //  parameterBaseElement.style.top = "12px";
-                //parameterBaseElement.style.fontWeight = "500";
+            //    parameterBaseElement.style.height = "45px !important";
                 parameterBaseElement.style.borderRadius = "50%";
-                parameterBaseElement.style.maxWidth = "50px";
-                parameterBaseElement.style.maxHeight = "50px";
+             //   parameterBaseElement.style.maxWidth = "50px";
+             //   parameterBaseElement.style.maxHeight = "50px";
+                
 
             }
 
             if (parameters[key] == "oval") {
+                
                 parameterBaseElement.style.textAlign = "center";
-                parameterBaseElement.style.padding = "12px 0 12px 0";
-              //  parameterBaseElement.style.fontSize = "12px";
-                parameterBaseElement.style.height = "45px";
-                //  parameterBaseElement.style.marginTop = "-45px";
-                //  parameterBaseElement.style.top = "-155px"; //was 12
-                //  parameterBaseElement.style.left = "0px"; //was not here
+            //    parameterBaseElement.style.height = "45px";
                 parameterBaseElement.style.cursor = "pointer";
-//parameterBaseElement.style.fontWeight = "500";
                 parameterBaseElement.style.borderRadius = "24px";
                 parameterBaseElement.style.backgroundColor = "green !important";
-
+                
             }
 
             if (parameters[key] == "square") {
+                
                 parameterBaseElement.style.textAlign = "center";
-                parameterBaseElement.style.padding = "12px 0 12px 0";
-              //  parameterBaseElement.style.fontSize = "12px";
-                parameterBaseElement.style.height = "45px !important";
-                // parameterBaseElement.style.top = "12px";
+             //   parameterBaseElement.style.height = "45px !important";
                 parameterBaseElement.style.cursor = "pointer";
-                //parameterBaseElement.style.fontWeight = "500";
+                
             }
 
 
@@ -657,7 +749,97 @@ for (var i = 0; i < m1_change_key.length; i++) {
 
 
  console.log( JSON.stringify(Globalparamaters));
-  //   parameters = GlobalParameter.paramaters.map((item, i) => Object.assign({}, item, parameterIn[i]));
+
+ barExist = false;
+ if(BSObject.querySelector('.'+Globalparamaters.bottomBarBS) !== null){
+    barExist = true;
+ }
+ 
+ if (parameterIn.showBottomNavBS == true && barExist==false) {
+    var pills = BSObject.getElementsByClassName('nav-pills')[0];
+    var pane = BSObject.getElementsByClassName('tab-pane')[0];
+    buttonBarBS(getCommonAncestor(pills, pane), Globalparamaters);
+
+    //Add listeners for when next button is clicked
+    elements = BSObject.getElementsByClassName("nextButtonBS");
+    elements2 = BSObject.getElementsByClassName("nextButtonFlairBS");
+   for ( i = 0; i < elements.length; i++) {
+       elements[i].addEventListener('click', function () {
+           var JCurTab = BSObject.querySelector('.nav-link.active');
+           var nextTabNumber = parseInt(JCurTab.getAttribute('data-tab')) + 1;
+           var JNewTab = BSObject.querySelectorAll('[data-tab="' + nextTabNumber + '"]')[0];
+           removeStyles(getActiveTab(BSObject, parameters)[0]);
+            //check if we are on the first or last tab
+           resp = CheckTabLocation(JNewTab, BSObject, parameters);
+           if(JNewTab === undefined){
+               JNewTab = JCurTab;
+               JAnimate(JCurTab,JNewTab,BSObject, parameters);
+               if(resp == 3){submitClicked();}
+           }
+           else{
+               NextTab(JCurTab, JNewTab, BSObject, parameters);
+               JAnimate(JCurTab,JNewTab,BSObject, parameters);
+           }
+
+       });
+       elements2[i].addEventListener('click', function () {
+           var JCurTab = BSObject.querySelector('.nav-link.active');
+           var nextTabNumber = parseInt(JCurTab.getAttribute('data-tab')) + 1;
+           var JNewTab = BSObject.querySelectorAll('[data-tab="' + nextTabNumber + '"]')[0];
+           removeStyles(getActiveTab(BSObject, parameters)[0]);
+            //check if we are on the first or last tab
+           resp = CheckTabLocation(JNewTab, BSObject, parameters);
+           if(JNewTab === undefined){
+               JNewTab = JCurTab;
+               JAnimate(JCurTab,JNewTab,BSObject, parameters);
+               if(resp == 3){submitClicked();}
+           }
+           else{
+               NextTab(JCurTab, JNewTab, BSObject, parameters);
+               JAnimate(JCurTab,JNewTab,BSObject, parameters);
+           }
+
+       });
+   }
+
+
+   //Add listeners for when back button is clicked
+    elements = BSObject.getElementsByClassName("backButtonBS");
+    elements2 = BSObject.getElementsByClassName("backButtonFlairBS");
+   for ( i = 0; i < elements.length; i++) {
+       elements[i].addEventListener('click', function () {
+           var JCurTab = BSObject.querySelector('.nav-link.active');
+           var prevTabNumber = parseInt(JCurTab.getAttribute('data-tab')) - 1;
+           var JPrevTab = BSObject.querySelectorAll('[data-tab="' + prevTabNumber + '"]')[0];
+           removeStyles(getActiveTab(BSObject, parameters)[0]);
+        
+           //check if we are on the first or last tab
+           CheckTabLocation(JPrevTab, BSObject, parameters);
+
+           BackTab(JCurTab, JPrevTab, BSObject, parameters);
+
+           JAnimate(JCurTab,JPrevTab,BSObject, parameters);
+       });
+
+       elements2[i].addEventListener('click', function () {
+           var JCurTab = BSObject.querySelector('.nav-link.active');
+           var prevTabNumber = parseInt(JCurTab.getAttribute('data-tab')) - 1;
+           var JPrevTab = BSObject.querySelectorAll('[data-tab="' + prevTabNumber + '"]')[0];
+           removeStyles(getActiveTab(BSObject, parameters)[0]);
+        
+           //check if we are on the first or last tab
+           CheckTabLocation(JPrevTab, BSObject, parameters);
+
+           BackTab(JCurTab, JPrevTab, BSObject, parameters);
+
+           JAnimate(JCurTab,JPrevTab,BSObject, parameters);
+       });
+   }
+
+
+
+   
+ }
 
 
    ReFresh(BSObject,Globalparamaters);
@@ -687,12 +869,26 @@ function defineElements(BSObject,parameters){
    BSObject.getElementsByClassName("tab-content")[0].className += " " + parameters.tabContentBS;
    // define tabContentFlairBS and add it to tabContentBS
    TabContentBS = document.createElement("div");
+
+   // adjust tabContent height if vertical
+ //  myParents =  BSObject.getElementsByClassName("tab-content")[0].parentElement.getBoundingClientRect();
+ //  TabContentBS.style.height =parseInt( myParents.height ) + 0 + 'px';
+
+
    /*
        * #map tabContentFlairBS 
    */
    TabContentBS.className += " " + parameters.tabContentFlairBS;
    BSObject.getElementsByClassName("tab-content")[0].appendChild(TabContentBS);
+
    TabContentFlairBS = document.createElement("div");
+
+
+   //myParent =  BSObject.querySelector('.tab-pane.active').getBoundingClientRect();
+   myParent =   BSObject.querySelector('.'+parameters.tabContentBS).getBoundingClientRect();
+   TabContentFlairBS.style.height =parseInt( myParent.height ) + 0 + 'px';
+   TabContentFlairBS.style.width =parseInt( myParent.width ) + 'px';
+   TabContentFlairBS.style.marginTop = parseInt(myParent.height * (-1) )  + "px";
    /*
        * #map navBarFlairBS
    */
@@ -804,6 +1000,16 @@ BSparent = getCommonAncestor( BSObject.getElementsByClassName('nav-pills')[0],  
                 addFlair.className += " " + parameters.navTabInactiveFlairBS;
                 addStyling(inActive, "navTabInactiveBS", parameters, BSObject.querySelector('.nav-link.active'));
                 removeStyles(getActiveTab(BSObject, parameters)[0]);
+
+                myParent =  BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].getBoundingClientRect();
+                addFlair.style.height =parseInt( myParent.height ) + 0 + 'px';
+                addFlair.style.width =parseInt( myParent.width ) + 'px';
+                addFlair.style.marginTop = (parseInt( myParent.height) * -1)  + "px";
+                //addFlair.style.marginLeft = '-15px';
+
+        //        margin-top: -33px;
+        // margin-left: -15px;
+
                 inActive.appendChild(addFlair);
             }
         }
@@ -819,30 +1025,30 @@ BSparent = getCommonAncestor( BSObject.getElementsByClassName('nav-pills')[0],  
      if(BSObject.getElementsByClassName("BSMagic")[0] !== undefined){
         BSObject.getElementsByClassName("BSMagic")[0].style.margin = "0 0 0 0";
         for (const chld of BSObject.getElementsByClassName("BSMagic")[0].children) {
-            chld.style.margin = "0 -15px 0 -15px";
+           // chld.style.margin = "0 -15px 0 -15px";
             if(chld.classList.contains("col-3")){
                 chld.style.padding = "0 0 0 0";
-                chld.style.margin = "0px 15px 0px -15px";
+              //  chld.style.margin = "0px 15px 0px -15px";
             }
             else if(chld.classList.contains("col-9")){
-                chld.style.padding = "0 15px 0 15px";
+              //  chld.style.padding = "0 15px 0 15px";
               //  chld.style.margin = "0 0 0 0";
-                chld.style.margin = "0px 15px 0px -15px";
+             //   chld.style.margin = "0px 15px 0px -15px";
             }
         }
     }
     else{
         BSObject.style.margin = "0 0 0 0";
         for (const chld of BSObject.children) {
-            chld.style.margin = "0 -15px 0 -15px";
+          //  chld.style.margin = "0 -15px 0 -15px";
             if(chld.classList.contains("col-3")){
                 chld.style.padding = "0 0 0 0";
-                chld.style.margin = "0px 15px 0px -15px";
+              //  chld.style.margin = "0px 15px 0px -15px";
             }
             else if(chld.classList.contains("col-9")){
-                chld.style.padding = "0 15px 0 15px";
+              //  chld.style.padding = "0 15px 0 15px";
               //  chld.style.margin = "0 0 0 0";
-                chld.style.margin = "0px 15px 0px -15px";
+             //   chld.style.margin = "0px 15px 0px -15px";
             }
         }
     }
@@ -979,7 +1185,7 @@ function getInactiveTabs(BSObject, parameters){
 
 function buttonBarBS(topContainer, parameters) {
     console.log("create buttons");
-    var buttombuttons = "<div class='" + parameters.buttonBarBS + "' style='justify-content:space-between;'><div class='" + parameters.buttonBarFlairBS + "'></div> <div class='float-right'> <button type='button' class='" + parameters.nextButtonBS + " btn btn-next btn-fill btn-danger btn-wd square' name='next' value='Next' >" + parameters.nextText + "</button> <div class='" + parameters.nextButtonFlairBS + "'></div>  </div><div class='float-left'><button type='button' class='" + parameters.backButtonBS + " btn btn-previous btn-fill btn-default btn-wd square' name='previous' value='Previous' >" + parameters.prevText + "</button>   <div class='" + parameters.backButtonFlairBS + "'></div> </div><div class='clearfix'></div></div>";
+    var buttombuttons = "<div class='" + parameters.buttonBarBS + "' style='justify-content:space-between;'> <div class='float-right'> <button type='button' class='" + parameters.nextButtonBS + " btn btn-next btn-fill btn-danger btn-wd square' name='next' value='Next' >" + parameters.nextText + "</button> <div class='" + parameters.nextButtonFlairBS + "'></div>  </div><div class='float-left'><button type='button' class='" + parameters.backButtonBS + " btn btn-previous btn-fill btn-default btn-wd square' name='previous' value='Previous' >" + parameters.prevText + "</button>   <div class='" + parameters.backButtonFlairBS + "'></div> </div><div class='clearfix'></div></div> <div style='width:100%;' class='" + parameters.buttonBarFlairBS + "'></div>";
     topContainer.insertAdjacentHTML('beforeend', buttombuttons);
     topContainer.getElementsByClassName(parameters.buttonBarBS).item(0).setAttribute('data-parent', parameters.id);
 
@@ -1046,16 +1252,48 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
     div.style.width = JCurtRect.width;
 
     div.style.position = "fixed";
-    div.style.top = parseInt(JCurtRect.top) + parseInt(parameters.navOffsetY) - 12 + 'px'; //12 subtracted to add for padding in css
-    div.style.left = parseInt(JCurtRect.left) + parseInt(parameters.navOffsetX) + 'px';
+   // div.style.top = parseInt(JCurtRect.top) + parseInt(parameters.navOffsetY) - 12 + 'px'; //12 subtracted to add for padding in css
+  //  div.style.left = parseInt(JCurtRect.left) + parseInt(parameters.navOffsetX) + 'px';
+  div.style.top = parseInt(JCurtRect.top) + parseInt(parameters.navOffsetY)  + 'px';
+  div.style.left = parseInt(JCurtRect.left) + parseInt(parameters.navOffsetX) + 'px';
+
+    
     div.style.width =  FullWidth + 'px';
     div.style.height =  FullHeight + 'px';
     div.style.pointerEvents = "none";
-
     divFlair.style.position = "fixed";
     divFlair.style.marginTop = parseInt(JCurtRect.height * (-1))  + "px";
+
+    
     
 
+    // adjust tabContent height if vertical
+    if (BSObject.getElementsByClassName('nav-pills')[0].classList.contains('flex-column')) {
+   TabContentBS = BSObject.getElementsByClassName(parameters.tabContentBS)[0];
+   myParents =  BSObject.getElementsByClassName("tab-content")[0].parentElement;
+   myParentsRect = myParents.getBoundingClientRect();
+   myParents.style.padding = '0px';
+   TabContentBS.style.height =parseInt( myParentsRect.height ) + 0 + 'px';
+ //  TabContentBS.style.padding = '15px';
+    }
+
+
+    /*
+        * #map tabContentFlairBS 
+    */
+   myParent =   BSObject.querySelector('.'+parameters.tabContentBS).getBoundingClientRect();
+   TabContentFlairBS = BSObject.getElementsByClassName(parameters.tabContentFlairBS)[0];
+
+   myParents.style.padding = '0px';
+   TabContentFlairBS.style.height =parseInt( myParent.height ) + 0 + 'px';
+  // TabContentFlairBS.style.padding = '15px';
+   TabContentFlairBS.style.width =parseInt( myParent.width ) + 'px';
+   TabContentFlairBS.style.marginTop =parseInt( myParent.height * -1) + 'px';
+   //TabContentFlairBS.style.left =parseInt( myParentsRect.left ) + 'px';
+
+   
+
+    
     /*
         * #map navTabActiveBS
     */
@@ -1172,6 +1410,17 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
                     tab.style.fontSize = parameters["navTabActiveBS.font-size"];
                     tab.style.fontWeight = parameters["navTabActiveBS.font-weight"];
                     tab.style.textShadow = parameters["navTabActiveBS.text-shadow"];
+
+                    activeOrig = BSObject.querySelectorAll(".nav-link.active")[0];
+                    activeOrig.style.height = elementHeight + 'px';
+                    activeOrig.style.width = width + 'px';
+                    activeOrig.style.textAlign = "center";
+    
+                    activeOrig.style.color = parameters["navTabActiveBS.color"];
+                    activeOrig.style.font = parameters["navTabActiveBS.font"];
+                    activeOrig.style.fontSize = parameters["navTabActiveBS.font-size"];
+                    activeOrig.style.fontWeight = parameters["navTabActiveBS.font-weight"];
+                    activeOrig.style.textShadow = parameters["navTabActiveBS.text-shadow"];
                     
                 } else {
                     tab.parentElement.style.height = elementHeight + 'px';
@@ -1183,6 +1432,17 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
                     tab.parentElement.style.fontSize = parameters["navTabActiveBS.font-size"];
                     tab.parentElement.style.fontWeight = parameters["navTabActiveBS.font-weight"];
                     tab.parentElement.style.textShadow = parameters["navTabActiveBS.text-shadow"];
+
+                    activeOrig = BSObject.querySelectorAll(".nav-link.active")[0];
+                    activeOrig.style.height = elementHeight + 'px';
+                    activeOrig.style.width = width + 'px';
+                    activeOrig.style.textAlign = "center";
+    
+                    activeOrig.style.color = parameters["navTabActiveBS.color"];
+                    activeOrig.style.font = parameters["navTabActiveBS.font"];
+                    activeOrig.style.fontSize = parameters["navTabActiveBS.font-size"];
+                    activeOrig.style.fontWeight = parameters["navTabActiveBS.font-weight"];
+                    activeOrig.style.textShadow = parameters["navTabActiveBS.text-shadow"];
                 }
             }
         });
@@ -1201,32 +1461,32 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
     if(BSObject.getElementsByClassName("BSMagic")[0] !== undefined){
         BSObject.getElementsByClassName("BSMagic")[0].style.margin = "0 0 0 0";
         for (const chld of BSObject.getElementsByClassName("BSMagic")[0].children) {
-            chld.style.margin = "0 -15px 0 -15px";
+          //  chld.style.margin = "0 -15px 0 -15px";
             if(chld.classList.contains("col-3")){
                 chld.style.padding = "0 0 0 0";
-                chld.style.margin = "0px 15px 0px -15px";
+              //  chld.style.margin = "0px 15px 0px -15px";
             }
             else if(chld.classList.contains("col-9")){
                // chld.style.padding = "0 0 0 0";
-                chld.style.padding = "0 15px 0 15px";
+              //  chld.style.padding = "0 15px 0 15px";
               //  chld.style.margin = "0 0 0 0";
-                chld.style.margin = "0px 15px 0px -15px";
+              //  chld.style.margin = "0px 15px 0px -15px";
             }
         }
     }
     else{
         BSObject.style.margin = "0 0 0 0";
         for (const chld of BSObject.children) {
-            chld.style.margin = "0 -15px 0 -15px";
+         //   chld.style.margin = "0 -15px 0 -15px";
             if(chld.classList.contains("col-3")){
                 chld.style.padding = "0 0 0 0";
-                chld.style.margin = "0px 15px 0px -15px";
+            //    chld.style.margin = "0px 15px 0px -15px";
             }
             else if(chld.classList.contains("col-9")){
                 //chld.style.padding = "0 0 0 0";
-                chld.style.padding = "0 15px 0 15px";
+           //     chld.style.padding = "0 15px 0 15px";
               //  chld.style.margin = "0 0 0 0";
-                chld.style.margin = "0px 15px 0px -15px";
+           //     chld.style.margin = "0px 15px 0px -15px";
             }
         }
     }
@@ -1234,16 +1494,32 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
     /*
        * #Fix buttonBarBS alignment
    */
+
     tabBSRect = BSObject.getElementsByClassName(parameters.tabBS)[0].getBoundingClientRect();
     if (parameters.showBottomNavBS) {
    BSObject.getElementsByClassName(parameters.buttonBarBS)[0].style.position = "relative";
    BSObject.getElementsByClassName(parameters.buttonBarBS)[0].style.width = tabBSRect.width+"px";
-    if(vertical == true){BSObject.getElementsByClassName(parameters.buttonBarBS)[0].style.margin = "0px -30px 0 -15px";}
+   
+//    if(vertical == true){BSObject.getElementsByClassName(parameters.buttonBarBS)[0].style.margin = "0px -30px 0 -15px";}
     }
    divBase.style.height = baseRect.height+"px";
 
-
+   if (parameters.showBottomNavBS == true) {
+  //  buttonBarBS(getCommonAncestor(pills, pane), parameters);
+BSObject.getElementsByClassName(parameters.buttonBarFlairBS)[0].style.height = BSObject.getElementsByClassName(parameters.buttonBarBS)[0].getBoundingClientRect().height+"px";
+BSObject.getElementsByClassName(parameters.buttonBarFlairBS)[0].style.marginTop = (BSObject.getElementsByClassName(parameters.buttonBarBS)[0].getBoundingClientRect().height * -1) +"px";
   
+
+
+BSObject.getElementsByClassName(parameters.nextButtonFlairBS)[0].style.height = BSObject.getElementsByClassName(parameters.nextButtonBS)[0].getBoundingClientRect().height+"px";
+BSObject.getElementsByClassName(parameters.nextButtonFlairBS)[0].style.width = BSObject.getElementsByClassName(parameters.nextButtonBS)[0].getBoundingClientRect().width+"px";
+BSObject.getElementsByClassName(parameters.nextButtonFlairBS)[0].style.marginTop = (BSObject.getElementsByClassName(parameters.nextButtonBS)[0].getBoundingClientRect().height * -1) +"px";
+
+BSObject.getElementsByClassName(parameters.backButtonFlairBS)[0].style.height = BSObject.getElementsByClassName(parameters.backButtonBS)[0].getBoundingClientRect().height+"px";
+BSObject.getElementsByClassName(parameters.backButtonFlairBS)[0].style.width = BSObject.getElementsByClassName(parameters.backButtonBS)[0].getBoundingClientRect().width+"px";
+BSObject.getElementsByClassName(parameters.backButtonFlairBS)[0].style.marginTop = (BSObject.getElementsByClassName(parameters.backButtonBS)[0].getBoundingClientRect().height * -1) +"px";
+   }
+
 
 if(BSObject.getElementsByClassName('.'+parameters.navTabActiveBS+'.active')[0]){
     updateTextInf = BSObject.getElementsByClassName('.'+parameters.navTabActiveBS+'.active')[0];
@@ -1252,6 +1528,13 @@ if(BSObject.getElementsByClassName('.'+parameters.navTabActiveBS+'.active')[0]){
     updateTextInf.style.fontSize = parameters["navTabActiveBS.font-size"];
     updateTextInf.style.fontWeight = parameters["navTabActiveBS.font-weight"];
     updateTextInf.style.textShadow = parameters["navTabActiveBS.text-shadow"];
+
+    activeOrig = BSObject.querySelectorAll(".nav-link.active")[0];
+    activeOrig.style.color = parameters["navTabActiveBS.color"] + " !important";
+    activeOrig.style.font = parameters["navTabActiveBS.font"];
+    activeOrig.style.fontSize = parameters["navTabActiveBS.font-size"];
+    activeOrig.style.fontWeight = parameters["navTabActiveBS.font-weight"];
+    activeOrig.style.textShadow = parameters["navTabActiveBS.text-shadow"];
 }
 
 
@@ -1283,10 +1566,11 @@ if(BSObject.getElementsByClassName('.'+parameters.navTabActiveBS+'.active')[0]){
     addStyling(BSObject.getElementsByClassName(parameters.navBarBS)[0], "navBarBS", parameters, JCurTab);
 
     addStyling(BSObject.getElementsByClassName(parameters.navTabActiveFlairBS)[0], "navTabActiveFlairBS", parameters, JCurTab);
+
     addStyling(BSObject.getElementsByClassName(parameters.navTabActiveBS)[0], "navTabActiveBS", parameters, JCurTab);
     
     addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveFlairBS)[0], "navTabInactiveFlairBS", parameters, JCurTab);
-    addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0], "navTabInactiveBS", parameters, JCurTab);
+ //   addStyling(BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0], "navTabInactiveBS", parameters, JCurTab);
    
     addStyling(BSObject.getElementsByClassName(parameters.tabContentFlairBS)[0], "tabContentFlairBS", parameters, JCurTab);
     addStyling(BSObject.getElementsByClassName(parameters.tabContentBS)[0], "tabContentBS", parameters, JCurTab);
@@ -1409,6 +1693,17 @@ function Initialize(JCurTab, BSObject, parameters) {
                     tab.style.fontSize = parameters["navTabActiveBS.font-size"];
                     tab.style.fontWeight = parameters["navTabActiveBS.font-weight"];
                     tab.style.textShadow = parameters["navTabActiveBS.text-shadow"];
+
+                    activeOrig = BSObject.querySelectorAll(".nav-link.active")[0];
+                    activeOrig.style.height = elementHeight + 'px';
+                    activeOrig.style.width = width + 'px';
+                    activeOrig.style.textAlign = "center";
+    
+                    activeOrig.style.color = parameters["navTabActiveBS.color"];
+                    activeOrig.style.font = parameters["navTabActiveBS.font"];
+                    activeOrig.style.fontSize = parameters["navTabActiveBS.font-size"];
+                    activeOrig.style.fontWeight = parameters["navTabActiveBS.font-weight"];
+                    activeOrig.style.textShadow = parameters["navTabActiveBS.text-shadow"];
                     
                 } else {
                     tab.parentElement.style.height = elementHeight + 'px';
@@ -1420,6 +1715,17 @@ function Initialize(JCurTab, BSObject, parameters) {
                     tab.parentElement.style.fontSize = parameters["navTabActiveBS.font-size"];
                     tab.parentElement.style.fontWeight = parameters["navTabActiveBS.font-weight"];
                     tab.parentElement.style.textShadow = parameters["navTabActiveBS.text-shadow"];
+
+                    activeOrig = BSObject.querySelectorAll(".nav-link.active")[0];
+                    activeOrig.style.height = elementHeight + 'px';
+                    activeOrig.style.width = width + 'px';
+                    activeOrig.style.textAlign = "center";
+    
+                    activeOrig.style.color = parameters["navTabActiveBS.color"];
+                    activeOrig.style.font = parameters["navTabActiveBS.font"];
+                    activeOrig.style.fontSize = parameters["navTabActiveBS.font-size"];
+                    activeOrig.style.fontWeight = parameters["navTabActiveBS.font-weight"];
+                    activeOrig.style.textShadow = parameters["navTabActiveBS.text-shadow"];
                 }
             }
         });
@@ -1436,10 +1742,11 @@ function Initialize(JCurTab, BSObject, parameters) {
     */
     divFlair.className += " " + parameters.navTabActiveFlairBS;
 
+    div.style.height = JCurtRect.height + 'px';
     div.style.width = JCurtRect.width + 'px';
 
     div.style.position = "fixed";
-    div.style.top = parseInt(JCurtRect.top) + parseInt(parameters.navOffsetY) - 12 + 'px'; // 12 subtracted to add for padding in css
+    div.style.top = parseInt(JCurtRect.top) + parseInt(parameters.navOffsetY) + 'px'; // 12 subtracted to add for padding in css
     div.style.left = parseInt(JCurtRect.left) + parseInt(parameters.navOffsetX) + 'px';
     div.style.pointerEvents = "none";
 
@@ -1460,6 +1767,7 @@ function Initialize(JCurTab, BSObject, parameters) {
         * #map navTabActiveBS
     */
     div.className += " " + parameters.navTabActiveBS;
+
 
     /*
         * # TODO: FIX CONTENTS OF ACTIVE TAB 
@@ -1533,8 +1841,33 @@ else{
                 removeStyles(getActiveTab(BSObject, parameters)[0]);
             }
 
-        // define navTabInactiveBS
-        if (BSObject.querySelectorAll(".nav-link:not(.active)"))
+           
+            if (BSObject.querySelectorAll(".tab-pane")){
+                for (const fixMarg of BSObject.querySelectorAll(".tab-pane")) {
+                    fixMarg.style.margin = "0px";
+                }
+            }
+
+            if (BSObject.querySelectorAll("a.nav-link")){
+                for (const fixMarg2 of BSObject.querySelectorAll("a.nav-link")) {
+                    fixMarg2.style.margin = "0px";
+                    fixMarg2.style.padding = "0px";
+                }
+            }
+
+            if (BSObject.querySelectorAll(".navTabInactiveFlairBS")){
+                for (const fixMarg3 of BSObject.querySelectorAll(".navTabInactiveFlairBS")) {
+                    fixMarg3.style.height = BSObject.getElementsByClassName(parameters.navTabActiveBS)[0].getBoundingClientRect().height + "px";
+                }
+            }
+           
+            
+            navbar = BSObject.getElementsByClassName(parameters.navBarBS)[0];
+            navbar.style.padding = "0px";
+
+
+            // define navTabInactiveBS
+        if (BSObject.querySelectorAll(".nav-link:not(.active)")){
             for (const inActive of BSObject.querySelectorAll(".nav-link:not(.active)")) {
 
                 if (!inActive.classList.contains(parameters.navTabActiveBS)) {
@@ -1553,14 +1886,33 @@ else{
                         */
                         addFlair.className += " " + parameters.navTabInactiveFlairBS;
                         addStyling(inActive, "navTabInactiveBS", parameters, JCurTab);
+
+                        myParent =  BSObject.getElementsByClassName(parameters.navTabInactiveBS)[0].getBoundingClientRect();
+                addFlair.style.height =parseInt( myParent.height ) + 0 + 'px';
+                addFlair.style.width =parseInt( myParent.width ) + 'px';
+              //  addFlair.style.marginTop = parseInt(myParent.height * (-1) + 19)  + "px";
+                addFlair.style.marginTop = (parseInt( myParent.height) * -1)  + "px";
+                //addFlair.style.marginLeft = '-15px';
+
                         inActive.appendChild(addFlair);
                     }
                 }
             }
+        }
 
 
-            
-
+        /*
+        if (BSObject.querySelectorAll(".nav-link:not(.active)")){
+            for (const Active2 of BSObject.querySelectorAll(".nav-link.active")) {
+                Active2.style.fontSize='25px';
+                Active2.style.margin =  '0px';
+                Active2.style.padding = '0px';
+                Active2.style.zIndex = '50';
+                Active2.style.fontFamily = 'undefined';
+                Active2.style.boxShadow = 'initial';
+            }
+        }
+        */
 
         console.log("call addShapes - init");
         addShapes(parameters, BSObject);
@@ -1612,7 +1964,7 @@ function ReFresh(BSObject, parameters) {
     console.log("In Refresh");
     //find the currently active tab
     JCurTab = BSObject.querySelector('.nav-link.active');
-    removeStyles(getActiveTab(BSObject, parameters)[0]);
+ //   removeStyles(getActiveTab(BSObject, parameters)[0]);
 
 
     // remove old box first so we don't create duplicates, possibly can remove later
@@ -1887,6 +2239,7 @@ function addStyling(parameterBaseElement, parameterBaseName, parameters, JCurTab
     if (parameterBaseName == "buttonBarFlairBS") {
         parameterBaseElement.style.position = "relative";
         parameterBaseElement.style.zIndex = "55";
+        parameterBaseElement.style.pointerEvents = "none";
     }
 
     if (parameterBaseName == "navTabActiveBS") {
@@ -1908,7 +2261,7 @@ function addStyling(parameterBaseElement, parameterBaseName, parameters, JCurTab
         if (parameterBaseName == "nextButtonFlairBS") {
             parameterBaseElement.style.position = "relative";
             parameterBaseElement.style.zIndex = "115";
-            parameterBaseElement.style.pointerEvents = "none";
+            parameterBaseElement.style.pointerEvents = "bounding-box";
         }
         if (parameterBaseName == "backButtonBS") {
             parameterBaseElement.style.position = "relative";
@@ -1918,7 +2271,7 @@ function addStyling(parameterBaseElement, parameterBaseName, parameters, JCurTab
         if (parameterBaseName == "backButtonFlairBS") {
             parameterBaseElement.style.position = "relative";
             parameterBaseElement.style.zIndex = "115";
-            parameterBaseElement.style.pointerEvents = "none";
+            parameterBaseElement.style.pointerEvents = "bounding-box";
         }
     }
     if (parameterBaseName == "tabContentBS") {

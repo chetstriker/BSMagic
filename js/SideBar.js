@@ -1185,6 +1185,34 @@ $('#BSHorVert').on('change', function() {
 
 
     $('#BSBBarOn').on('change', function() {
+
+        horvert = document.getElementById('BSHorVert').value;
+    console.log(horvert);
+    if(horvert=="Horizontal"){
+        document.getElementById('insertTab').innerHTML=htmlHorizontal;
+        // reinit
+        BSMagic(returnParameters());
+      //  BSMagic({ "id": "JTab1"});
+        //pull back styles and config
+        myParams = {};
+        jsonKey  = "id";
+        myParams[jsonKey] = "JTab1";
+
+        adjustParameters(myParams);
+    }
+    else{
+        document.getElementById('insertTab').innerHTML=htmlVertical;
+        // reinit
+        BSMagic(returnParameters());
+         //pull back styles and config
+        myParams = {};
+        jsonKey  = "id";
+        myParams[jsonKey] = "JTab1";
+
+        adjustParameters(myParams);
+    }
+
+    
         baron = document.getElementById('BSBBarOn').value;
         if (baron=="true"){
 
