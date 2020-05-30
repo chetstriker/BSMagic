@@ -92,7 +92,7 @@
 
  /* COLOR PICKER STYLES */
 
-   .colorpicker.colorpicker-2x {
+.colorpicker.colorpicker-2x {
     width: 272px !important;
   }
 
@@ -138,21 +138,7 @@
 }
 
 .customTab {
-    /*
-    position: absolute;
-    text-align: center;
-    padding: 12px;
-    font-size: 12px;
-    height: 45px !important;
-    text-transform: uppercase;
-    -webkit-font-smoothing: subpixel-antialiased;
-    position: relative;
-    top: 12px;
-    cursor: pointer;
-    font-weight: 500;
-    background-color: rebeccapurple;
-    color: #4caf50;
-    */
+
     top: -10px !important;
     margin-top: -20px;
     margin-bottom: -20px;
@@ -161,8 +147,6 @@
     width: 50px;
     background: transparent;
     height: 35px !important;
-    /* box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); */
-    /* box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); */
 }
 
 .customTabFlair {
@@ -175,14 +159,6 @@
     box-shadow: 0 0px 0px rgba(0, 0, 0, 0.25), 0px 4px 12px 2px rgba(0, 0, 0, 0.22);
 }
 
-/* select all tab that aren't active */
-.nav-link:not(.active) {}
-
-.customTab .nav-link.active {
-    /*margin: 0 -1px;
-  border-top: 4px solid #4cc8f1;
-  */
-}
 
 .BSMagic .tab-pane {
     margin-top: 15px;

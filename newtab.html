@@ -11,97 +11,65 @@
 
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <!-- ONLY NEEDED IF YOU DON'T ALREADY HAVE BOOTSTRAP INSTALLED, ONLY CSS REQUIRED FOR AESTHETICS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    <script type=" text/javascript" src="js/BSMagic.js"></script>
+
+    <link href="css/BSMagic.css" rel="stylesheet">
+    
+    <!-- ONLY NEEDED IF YOU WANT THE ANIMATION EFFECT -->
+    <script type="text/javascript" src="https://cdnjs.cloudFlare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
 </head>
+
     <body>
 
-        <div id="BSTab" style="position:absolute; top: 300px; left: 200px;"></div>
+        <div class="row col-sm-12" style="justify-content: center;">
+            <center>
+            <div class="row col-sm-12">
+            <center>
+                <!-- SWITCH OUT WITH YOUR OWN BOOTSTRAP TAB COMPONENT, JUST MAKE SURE THAT id="JTab1" IS LOCATED BEFORE ANY UL OR ROW ELEMENTS INSIDE THE TAB COMPONENT -->
+            <div class="bd-example-tabs" style="max-width: 700px;" id="JTab1" >
+            <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Messages</a>
+            </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="homes" role="tabpanel" aria-labelledby="home-tab">
+            <p>Raw denim you probably havent heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
+            synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <p>Food truck fixie locavore, accusamus mcsweeneys marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth
+            letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore
+            stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed
+            echo park.</p>
+            </div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeneys organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles
+            etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred
+            you probably havent heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
+            </div>
+            </div>
+            </center>
+            </div>
+            </center>
+            </div> 
+
 
         <script>
-             BSMagic({ "id": "BSTab", });
-
-function BSMagic(parameters) {
-// get parent object, this way we can have multiple controls on the same page
-var BSObject = document.getElementById(parameters.id);
-/*
-* #define Themes - This will be moved to a separate file later for portability
-*/
-
-
-// define how many tabs
-tabQuantityBS = 3;
-//Create initial tab
-createTabBS = document.createElement("div");
-// *** Add the navbar section ***
-createNavBarBS = document.createElement("div");
-createNavTabActiveBS = document.createElement("div");
-createNavTabInactiveBS = document.createElement("div");
-
-
-createTabContentBS = document.createElement("div");
-
-// *** Add the buttonbar section ***
-createButtonBarBS = document.createElement("div");
-createBackButtonBS = document.createElement("div");
-createNextButtonBS = document.createElement("div");
-
-/*
-    * #define default class names for tab here 
-*/
-createTabBS.className += " tabBS";//" + parameters.tabBS;
-createNavBarBS.className += " navBarBS";//" + parameters.navBarBS;
-createNavTabActiveBS.className += " navTabActiveBS active";//" + parameters.navTabActiveBS;
-createNavTabInactiveBS.className += " navTabInactiveBS";//" + parameters.navTabInactiveBS;
-createTabContentBS.className += " tabContentBS";//" + parameters.tabContentBS;
-createButtonBarBS.className += " buttonBarBS";//" + parameters.buttonBarBS;
-createBackButtonBS.className += " backButtonBS";//" + parameters.backButtonBS;
-createNextButtonBS.className += " nextButtonBS";//" + parameters.nextButtonBS;
-/*
-    * #define default styles
-*/
-BSObjectRect = BSObject.getBoundingClientRect();
-
-createTabBS.style.position = "relative";
-createTabBS.style.minWidth = "600px";
-createTabBS.style.minHeight = "300px";
-createTabBS.style.border = "1px solid #000";
-createTabBS.style.top = BSObjectRect.top;
-createTabBS.style.left = BSObjectRect.left;
-tabBSRect = createTabBS.getBoundingClientRect();
-
-createNavBarBS.style.position = "relative";
-createNavBarBS.style.minWidth = "100%";
-createNavBarBS.style.minHeight = "100px";
-createNavBarBS.style.border = "1px solid #f00";
-createNavBarBS.style.top = tabBSRect.top;
-createNavBarBS.style.left = tabBSRect.left;
-navBarBSRect = createNavBarBS.getBoundingClientRect();
-
-createTabContentBS.style.position = "relative";
-createTabContentBS.style.minWidth = "100%";
-createTabContentBS.style.minHeight = "100px";
-createTabContentBS.style.border = "1px solid #0f0";
-createTabContentBS.style.top = navBarBSRect.top + navBarBSRect.height;
-createTabContentBS.style.left = tabBSRect.left;
-tabContentBSRect = createTabContentBS.getBoundingClientRect();
-
-createButtonBarBS.style.position = "relative";
-createButtonBarBS.style.minWidth = "100%";
-createButtonBarBS.style.minHeight = "100px";
-createButtonBarBS.style.border = "1px solid #00f";
-createButtonBarBS.style.top = tabContentBSRect.top + tabContentBSRect.height;
-createButtonBarBS.style.left = tabBSRect.left;
-buttonBarBSRect = createButtonBarBS.getBoundingClientRect();
-
-/*
-    * #define initial location
-*/
-
-
-BSObject.appendChild(createTabBS);
-BSObject.appendChild(createNavBarBS);
-BSObject.appendChild(createTabContentBS);
-BSObject.appendChild(createButtonBarBS);
-}
+            BSMagic({"id":"JTab1","theme":"Magic3","tabBS.box-shadow":"rgba(174, 188, 196, 0.6) 0px 0px 0px 1px","navBarBS.boxShadow":"-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2","navBarFlairBS.box-shadow":"-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2","navBarFlairBS.width":"100%","navTabActiveBS.shape":"oval","navTabActiveBS.box-shadow":"-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2","navTabInactiveBS.box-shadow":"initial","navTabInactiveBS.font-size":"25px","navTabActiveBS.color":"rgb(14, 95, 175)","navTabActiveBS.text-shadow":"0px 3px 3px rgba(255,255,255,0.5)","navTabActiveBS.background-color":"#f4f6f9","navTabActiveBS.font-size":"25px","buttonBarBS.color":"#b6c4d2","buttonBarBS.text-shadow":"0px 3px 3px rgba(255,255,255,0.5)","buttonBarBS.background-color":"#f4f6f9","buttonBarBS.box-shadow":"rgba(196, 203, 208, 0.48) 0px 0px 17px 0px inset","nextButtonBS.color":"rgb(14, 95, 175)","nextButtonBS.text-shadow":"0px 3px 3px rgba(255,255,255,0.5)","nextButtonBS.background-color":"#f4f6f9","nextButtonBS.border-top":"1px solid rgba(167, 171, 176, 0.32)","nextButtonBS.border-left":"1px solid rgba(167, 171, 176, 0.32)","nextButtonBS.border-bottom":"1px solid rgba(167, 171, 176, 0.32)","nextButtonBS.border-right":"1px solid rgba(167, 171, 176, 0.32)","backButtonBS.border-top":"1px solid rgba(167, 171, 176, 0.32)","backButtonBS.border-left":"1px solid rgba(167, 171, 176, 0.32)","backButtonBS.border-bottom":"1px solid rgba(167, 171, 176, 0.32)","backButtonBS.border-right":"1px solid rgba(167, 171, 176, 0.32)","nextButtonBS.box-shadow":"-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2","tabContentBS.color":"rgb(14, 95, 175)","tabContentBS.font-size":"medium","tabContentBS.text-shadow":"0px 3px 3px rgba(255,255,255,0.5)","tabContentBS.background-color":"#f4f6f9","tabContentBS.box-shadow":"rgba(162, 171, 181, 0.68) 0px 0px 5px 0px","showBottomNavBS":true,"tabBS":"tabBS","backButtonBS":"backButtonBS","navBarFlairBS":"navBarFlairBS","backButtonBS.margin":"10px 15px 10px 15px","backButtonFlairBS":"backButtonFlairBS","backButtonFlairBS.margin":"-48px 15px 10px 15px","nextButtonBS":"nextButtonBS","nextButtonBS.margin":"10px 15px 10px 15px","nextButtonFlairBS":"nextButtonFlairBS","nextButtonFlairBS.margin":"-48px 15px 10px 15px","tabContentBS":"tabContentBS","tabContentBS.margin":"0px 0px","tabContentFlairBS":"tabContentFlairBS","buttonBarBS":"buttonBarBS","buttonBarFlairBS":"buttonBarFlairBS","navUnderline":false,"navShadow":false,"nextText":"NEXT","prevText":"PREVIOUS","navOffsetX":0,"navOffsetY":0,"isWizard":false,"navTabActiveBS":"navTabActiveBS","navTabActiveFlairBS":"navTabActiveFlairBS","navTabActiveFlairBS.box-shadow":"","navTabInactiveBS":"navTabInactiveBS","navTabInactiveFlairBS":"navTabInactiveFlairBS","navTabTextOffetX":0,"navTabTextOffetY":0,"navBarBS":"navBarBS","navBarflairBS":"navBarflairBS"});
         </script>
+
     </body>
 </html>

@@ -1181,7 +1181,12 @@ $('#BSHorVert').on('change', function() {
     }
 });
 
-
+$('#exportBtn').on('click', function() {
+     settings= returnParameters();
+     rtn = JSON.stringify(settings);
+   // console.log("BSMagic(" + rtn + ");");
+    $("#exportTxt").val("BSMagic(" + rtn + ");");
+});
 
 
     $('#BSBBarOn').on('change', function() {

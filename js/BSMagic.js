@@ -94,12 +94,15 @@ function BSMagic(parameters) {
     parameters["tabBS.boxShadow"] = "-6px -6px 16px #FFFFFF, 6px 6px 16px #BECDE2";
 
         // NavShapeSquare2
-    parameters["navTabActiveBS.height"] = "52px !important";
+    parameters["navTabActiveBS.height"] = '52px';
     parameters["navTabActiveBS.text-align"] = "center";
     parameters["navTabActiveBS.padding"] = "12px";
     parameters["navTabActiveBS.font-weight"] = "500";
     parameters["navTabActiveBS.border-radius"] = "10px";
     parameters["navTabActiveBS.box-shadow"] = "0px 2px 11px -10px rgba(0, 188, 212, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), inset 1px 6px 0px 0px rgba(0, 188, 212, 0.2)";
+
+    parameters["navTabInactiveBS.padding-top"] = "12px";
+
 
     parameters["navTabActiveBS.color"] = "blue";
     parameters["navTabActiveBS.background-color"] = "transparent";
@@ -120,7 +123,7 @@ function BSMagic(parameters) {
     //   .customTabFlair
     parameters["navTabActiveFlairBS.margin"] = "0px -1px";
     parameters["navTabActiveFlairBS.border-top"] = "3px solid #f0a5a5";
-    parameters["navTabActiveFlairBS.border-radius"] = "30px";
+ //   parameters["navTabActiveFlairBS.border-radius"] = "30px";
     parameters["navTabActiveFlairBS.width"] = "20%";
     parameters["navTabActiveFlairBS.margin"] = "-2% 0% 0% 40%";
     parameters["navTabActiveFlairBS.box-shadow"] = "0 0px 0px rgba(0, 0, 0, 0.25), 0px 4px 12px 2px rgba(0, 0, 0, 0.22)";
@@ -588,6 +591,9 @@ function parameterDefaults(parameters){
     //define bottom nav back button
     if (parameters.navBarFlairBS === undefined) parameters.navBarFlairBS = "navBarFlairBS";
 
+    if (parameters["backButtonBS.padding"] === undefined) parameters["backButtonBS.padding"] = "6px 12px";
+
+    if (parameters["backButtonBS.font-size"] === undefined) parameters["backButtonBS.font-size"] = "16px";
 
     if (parameters["backButtonBS.margin"] === undefined) parameters["backButtonBS.margin"] = "10px 15px 10px 15px";
 
@@ -601,6 +607,10 @@ function parameterDefaults(parameters){
     //define bottom nav next button
     if (parameters.nextButtonBS === undefined) parameters.nextButtonBS = "nextButtonBS";
 
+
+    if (parameters["nextButtonBS.padding"] === undefined) parameters["nextButtonBS.padding"] = "6px 12px";
+
+    if (parameters["nextButtonBS.font-size"] === undefined) parameters["nextButtonBS.font-size"] = "16px";
 
     if (parameters["nextButtonBS.margin"] === undefined) parameters["nextButtonBS.margin"] = "10px 15px 10px 15px";
 
@@ -751,7 +761,7 @@ for (var i = 0; i < m1_change_key.length; i++) {
  console.log( JSON.stringify(Globalparamaters));
 
  barExist = false;
- if(BSObject.querySelector('.'+Globalparamaters.bottomBarBS) !== null){
+ if(BSObject.querySelector('.'+Globalparamaters.buttonBarBS) !== null){
     barExist = true;
  }
  
@@ -838,7 +848,7 @@ for (var i = 0; i < m1_change_key.length; i++) {
 
 
 
-   
+
  }
 
 
@@ -1282,6 +1292,7 @@ function JAnimate(JCurTab, JNewTab, BSObject, parameters) {
         * #map tabContentFlairBS 
     */
    myParent =   BSObject.querySelector('.'+parameters.tabContentBS).getBoundingClientRect();
+   myParents =  BSObject.getElementsByClassName("tab-content")[0].parentElement;
    TabContentFlairBS = BSObject.getElementsByClassName(parameters.tabContentFlairBS)[0];
 
    myParents.style.padding = '0px';
